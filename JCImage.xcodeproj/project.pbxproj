@@ -13,6 +13,8 @@
 		19D73A922AE94640003571E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19D73A902AE94640003571E7 /* Main.storyboard */; };
 		19D73A942AE94642003571E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19D73A932AE94642003571E7 /* Assets.xcassets */; };
 		19D73A972AE94642003571E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19D73A952AE94642003571E7 /* LaunchScreen.storyboard */; };
+		19D73AA22AE960D3003571E7 /* JCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D73AA12AE960D3003571E7 /* JCView.swift */; };
+		19D73AA52AE9786D003571E7 /* JCCommonUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D73AA42AE9786D003571E7 /* JCCommonUnit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		19D73A932AE94642003571E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19D73A962AE94642003571E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		19D73A982AE94642003571E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		19D73AA12AE960D3003571E7 /* JCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCView.swift; sourceTree = "<group>"; };
+		19D73AA42AE9786D003571E7 /* JCCommonUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCCommonUnit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 		19D73A892AE94640003571E7 /* JCImage */ = {
 			isa = PBXGroup;
 			children = (
+				19D73AA32AE97855003571E7 /* Unit */,
+				19D73AA02AE960BD003571E7 /* Image */,
 				19D73A8A2AE94640003571E7 /* AppDelegate.swift */,
 				19D73A8C2AE94640003571E7 /* SceneDelegate.swift */,
 				19D73A8E2AE94640003571E7 /* ViewController.swift */,
@@ -65,6 +71,22 @@
 				19D73A982AE94642003571E7 /* Info.plist */,
 			);
 			path = JCImage;
+			sourceTree = "<group>";
+		};
+		19D73AA02AE960BD003571E7 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				19D73AA12AE960D3003571E7 /* JCView.swift */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		19D73AA32AE97855003571E7 /* Unit */ = {
+			isa = PBXGroup;
+			children = (
+				19D73AA42AE9786D003571E7 /* JCCommonUnit.swift */,
+			);
+			path = Unit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,7 +162,9 @@
 			files = (
 				19D73A8F2AE94640003571E7 /* ViewController.swift in Sources */,
 				19D73A8B2AE94640003571E7 /* AppDelegate.swift in Sources */,
+				19D73AA52AE9786D003571E7 /* JCCommonUnit.swift in Sources */,
 				19D73A8D2AE94640003571E7 /* SceneDelegate.swift in Sources */,
+				19D73AA22AE960D3003571E7 /* JCView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

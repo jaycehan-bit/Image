@@ -8,12 +8,14 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    var imageView = UIImageView(frame: CGRect.zero)
+    override func loadView() {
+        let window = JCCommonUnit.mainWindow()
+        self.view = JCView(frame: window.bounds)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.view.addSubview(self.imageView)
     }
-
-
 }
 
