@@ -17,13 +17,13 @@ class JCView: UIView {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
         self.addSubview(imageView)
-        imageView.image = UIImage.init(named: "泡面")
+//        imageView.image = UIImage.init(named: "泡面")
     }
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        imageView.frame = CGRect(x: 100, y: 150, width: self.bounds.size.width - 200, height: self.bounds.size.width - 200)
+//        imageView.frame = CGRect(x: 100, y: 150, width: self.bounds.size.width - 200, height: self.bounds.size.width - 200)
     }
 }
