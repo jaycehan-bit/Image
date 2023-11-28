@@ -24,6 +24,9 @@
 		4E39F1202AEB81A30054BAB0 /* Riven.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E39F11F2AEB81A30054BAB0 /* Riven.jpg */; };
 		4E39F1222AEB81AC0054BAB0 /* Katarina.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E39F1212AEB81AC0054BAB0 /* Katarina.jpg */; };
 		4E39F1242AEB95990054BAB0 /* JCImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E39F1232AEB95990054BAB0 /* JCImageTableViewCell.swift */; };
+		4E5D338E2AF8E3E50049DEE1 /* JCAudioUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5D338D2AF8E3E50049DEE1 /* JCAudioUnit.swift */; };
+		4E7134942B15E9C9002A7DC3 /* JCGLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7134932B15E9C9002A7DC3 /* JCGLViewController.swift */; };
+		4E760A0F2AFC869000B53AEF /* JCShader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E760A0E2AFC869000B53AEF /* JCShader.swift */; };
 		4ED08C162AECD75400E6CF4A /* JCImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED08C152AECD75400E6CF4A /* JCImageLoader.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +50,9 @@
 		4E39F11F2AEB81A30054BAB0 /* Riven.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Riven.jpg; sourceTree = "<group>"; };
 		4E39F1212AEB81AC0054BAB0 /* Katarina.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Katarina.jpg; sourceTree = "<group>"; };
 		4E39F1232AEB95990054BAB0 /* JCImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCImageTableViewCell.swift; sourceTree = "<group>"; };
+		4E5D338D2AF8E3E50049DEE1 /* JCAudioUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCAudioUnit.swift; sourceTree = "<group>"; };
+		4E7134932B15E9C9002A7DC3 /* JCGLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCGLViewController.swift; sourceTree = "<group>"; };
+		4E760A0E2AFC869000B53AEF /* JCShader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCShader.swift; sourceTree = "<group>"; };
 		4ED08C152AECD75400E6CF4A /* JCImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCImageLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,7 +86,8 @@
 		19D73A892AE94640003571E7 /* JCImage */ = {
 			isa = PBXGroup;
 			children = (
-				4E2A214D2AEF79C100F4DB35 /* View */,
+				4E7134902B15E8BC002A7DC3 /* Module */,
+				4EFCAD5B2AF4991300BDF7ED /* Player */,
 				4E39F1182AEB74BB0054BAB0 /* Resource */,
 				19D73AA32AE97855003571E7 /* Unit */,
 				19D73AA02AE960BD003571E7 /* Image */,
@@ -98,7 +105,6 @@
 		19D73AA02AE960BD003571E7 /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				19D73AA12AE960D3003571E7 /* JCView.swift */,
 				4E39F1232AEB95990054BAB0 /* JCImageTableViewCell.swift */,
 				4ED08C152AECD75400E6CF4A /* JCImageLoader.swift */,
 			);
@@ -113,16 +119,6 @@
 			path = Unit;
 			sourceTree = "<group>";
 		};
-		4E2A214D2AEF79C100F4DB35 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				4E2A214E2AEF79D700F4DB35 /* JCTableViewController.swift */,
-				4E2A21502AEF79E700F4DB35 /* JCTableViewCellViewModel.swift */,
-				4E2A21522AEF79F600F4DB35 /* JCTableViewCell.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		4E39F1182AEB74BB0054BAB0 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +129,43 @@
 				4E39F1212AEB81AC0054BAB0 /* Katarina.jpg */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		4E7134902B15E8BC002A7DC3 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				4E7134922B15E9A1002A7DC3 /* OpenGLES */,
+				4E7134912B15E8CC002A7DC3 /* Image */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		4E7134912B15E8CC002A7DC3 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				4E2A214E2AEF79D700F4DB35 /* JCTableViewController.swift */,
+				4E2A21502AEF79E700F4DB35 /* JCTableViewCellViewModel.swift */,
+				4E2A21522AEF79F600F4DB35 /* JCTableViewCell.swift */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		4E7134922B15E9A1002A7DC3 /* OpenGLES */ = {
+			isa = PBXGroup;
+			children = (
+				19D73AA12AE960D3003571E7 /* JCView.swift */,
+				4E7134932B15E9C9002A7DC3 /* JCGLViewController.swift */,
+			);
+			path = OpenGLES;
+			sourceTree = "<group>";
+		};
+		4EFCAD5B2AF4991300BDF7ED /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				4E5D338D2AF8E3E50049DEE1 /* JCAudioUnit.swift */,
+				4E760A0E2AFC869000B53AEF /* JCShader.swift */,
+			);
+			path = Player;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,15 +245,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				19D73A8F2AE94640003571E7 /* ViewController.swift in Sources */,
+				4E5D338E2AF8E3E50049DEE1 /* JCAudioUnit.swift in Sources */,
 				19D73A8B2AE94640003571E7 /* AppDelegate.swift in Sources */,
 				4E2A214F2AEF79D700F4DB35 /* JCTableViewController.swift in Sources */,
 				19D73AA52AE9786D003571E7 /* JCCommonUnit.swift in Sources */,
+				4E760A0F2AFC869000B53AEF /* JCShader.swift in Sources */,
 				4E2A21532AEF79F600F4DB35 /* JCTableViewCell.swift in Sources */,
 				19D73A8D2AE94640003571E7 /* SceneDelegate.swift in Sources */,
 				4E2A21512AEF79E700F4DB35 /* JCTableViewCellViewModel.swift in Sources */,
 				4E39F1242AEB95990054BAB0 /* JCImageTableViewCell.swift in Sources */,
 				4ED08C162AECD75400E6CF4A /* JCImageLoader.swift in Sources */,
 				19D73AA22AE960D3003571E7 /* JCView.swift in Sources */,
+				4E7134942B15E9C9002A7DC3 /* JCGLViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +409,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P2VK525HWZ;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"GLES_SILENCE_DEPRECATION=1",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JCImage/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

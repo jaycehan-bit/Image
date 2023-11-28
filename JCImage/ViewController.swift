@@ -9,7 +9,7 @@ import UIKit
 
 struct ViewControllerData {
     static let gJCImageCellIdentifier: String = "gJCImageCellIdentifier"
-    static let JCImageNameList = ["Riven.jpg",  "Seraphine.jpg", "Akali.jpg", "Teemo.png", "Katarina.jpg"]
+    static let JCImageNameList = ["JCImage.JCTableViewController",  "JCImage.JCGLViewController",]
 }
 
 class ViewController: UIViewController {
@@ -43,19 +43,34 @@ class ViewController: UIViewController {
 extension ViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return JCCommonUnit.mainWindow().bounds.size.width / 1.7778
+        return 75
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let className = ViewControllerData.JCImageNameList[indexPath.row]
+        guard let controllerClass = NSClassFromString(className) else {
+            return
+        }
+        guard let _controllerClass = controllerClass as? UIViewController.Type else {
+            return
+        }
+        let controller = _controllerClass.init(nibName: nil, bundle: nil)
+        self.navigationController?.pushViewController(controller , animated: true)
     }
 }
 
 extension ViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: JCImageTableViewCell?
+        var cell: UITableViewCell?
         cell = tableView.dequeueReusableCell(withIdentifier: ViewControllerData.gJCImageCellIdentifier) as? JCImageTableViewCell
         if (cell == nil) {
-            cell = JCImageTableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: ViewControllerData.gJCImageCellIdentifier)
+            cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: ViewControllerData.gJCImageCellIdentifier)
         }
-        cell?.refreshImage(named: ViewControllerData.JCImageNameList[indexPath.row])
+        var configuration = UIListContentConfiguration.cell()
+        configuration.text = ViewControllerData.JCImageNameList[indexPath.row]
+        configuration.textProperties.font = UIFont.systemFont(ofSize: 18.0)
+        cell?.contentConfiguration = configuration
         return cell!
     }
     
@@ -63,14 +78,4 @@ extension ViewController : UITableViewDataSource {
         return ViewControllerData.JCImageNameList.count
     }
     
-}
-
-
-extension ViewController : UITableViewDataSourcePrefetching {
-    
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        serialQueue.async {
-            
-        }
-    }
 }

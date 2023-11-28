@@ -29,7 +29,7 @@ class JCTableViewController: UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        var array = NSMutableArray.init(array: [])
+        let array = NSMutableArray.init(array: [])
         for imageName in JCTableViewControllerData.JCImageNameList {
             let viewModel = JCTableViewCellViewModel(title: imageName, subTitle: nil, imageName: imageName)
             array.add(viewModel)
@@ -52,21 +52,26 @@ class JCTableViewController: UIViewController {
     }
 }
 
-extension JCTableViewController: UITableViewDelegate {
+extension JCTableViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 0
+        return JCCommonUnit.mainWindow().bounds.size.width / 1.7778
     }
 }
 
-extension JCTableViewController: UITableViewDataSource {
+extension JCTableViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: JCTableViewCell = tableView.dequeueReusableCell(withIdentifier: JCTableViewControllerData.JCTableViewCellIdentifier, for: indexPath) as! JCTableViewCell
-        return cell
+        var cell: JCImageTableViewCell?
+        cell = tableView.dequeueReusableCell(withIdentifier: JCTableViewControllerData.JCTableViewCellIdentifier) as? JCImageTableViewCell
+        if (cell == nil) {
+            cell = JCImageTableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: JCTableViewControllerData.JCTableViewCellIdentifier)
+        }
+        cell?.refreshImage(named: JCTableViewControllerData.JCImageNameList[indexPath.row])
+        return cell!
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModelList?.count ?? 0
+        return JCTableViewControllerData.JCImageNameList.count
     }
 }
