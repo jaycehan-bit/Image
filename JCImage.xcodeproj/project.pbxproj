@@ -15,6 +15,8 @@
 		19D73A972AE94642003571E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19D73A952AE94642003571E7 /* LaunchScreen.storyboard */; };
 		19D73AA22AE960D3003571E7 /* JCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D73AA12AE960D3003571E7 /* JCView.swift */; };
 		19D73AA52AE9786D003571E7 /* JCCommonUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D73AA42AE9786D003571E7 /* JCCommonUnit.swift */; };
+		4E2806B92B273E5600ABFA68 /* JCSymbolParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2806B82B273E5600ABFA68 /* JCSymbolParser.m */; };
+		4E28E25C2B26B89000ABFA68 /* JCStackFrameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E28E25B2B26B89000ABFA68 /* JCStackFrameProvider.swift */; };
 		4E2A214F2AEF79D700F4DB35 /* JCTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A214E2AEF79D700F4DB35 /* JCTableViewController.swift */; };
 		4E2A21512AEF79E700F4DB35 /* JCTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A21502AEF79E700F4DB35 /* JCTableViewCellViewModel.swift */; };
 		4E2A21532AEF79F600F4DB35 /* JCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A21522AEF79F600F4DB35 /* JCTableViewCell.swift */; };
@@ -28,9 +30,13 @@
 		4E7134942B15E9C9002A7DC3 /* JCGLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7134932B15E9C9002A7DC3 /* JCGLViewController.swift */; };
 		4E760A0F2AFC869000B53AEF /* JCShader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E760A0E2AFC869000B53AEF /* JCShader.swift */; };
 		4ED08C162AECD75400E6CF4A /* JCImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED08C152AECD75400E6CF4A /* JCImageLoader.swift */; };
+		4EEC9A2E2B208DCD00DBA33A /* JCStackFrameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEC9A2D2B208DCD00DBA33A /* JCStackFrameManager.swift */; };
+		4EEC9A322B20935500DBA33A /* JCStackFrameCatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEC9A312B20935500DBA33A /* JCStackFrameCatcher.m */; };
+		5CD8D4792E16A99F842BA400 /* libPods-JCImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60EE499D31F6D8017A8490C5 /* libPods-JCImage.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16E8C841733ED2E08BFBE8CB /* Pods-JCImage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JCImage.release.xcconfig"; path = "Target Support Files/Pods-JCImage/Pods-JCImage.release.xcconfig"; sourceTree = "<group>"; };
 		19D73A872AE94640003571E7 /* JCImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JCImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19D73A8A2AE94640003571E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19D73A8C2AE94640003571E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +47,10 @@
 		19D73A982AE94642003571E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19D73AA12AE960D3003571E7 /* JCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCView.swift; sourceTree = "<group>"; };
 		19D73AA42AE9786D003571E7 /* JCCommonUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCCommonUnit.swift; sourceTree = "<group>"; };
+		4E2806B62B271CBB00ABFA68 /* JCStackFrameDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCStackFrameDefine.h; sourceTree = "<group>"; };
+		4E2806B72B273E5600ABFA68 /* JCSymbolParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCSymbolParser.h; sourceTree = "<group>"; };
+		4E2806B82B273E5600ABFA68 /* JCSymbolParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCSymbolParser.m; sourceTree = "<group>"; };
+		4E28E25B2B26B89000ABFA68 /* JCStackFrameProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCStackFrameProvider.swift; sourceTree = "<group>"; };
 		4E2A214E2AEF79D700F4DB35 /* JCTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCTableViewController.swift; sourceTree = "<group>"; };
 		4E2A21502AEF79E700F4DB35 /* JCTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		4E2A21522AEF79F600F4DB35 /* JCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCTableViewCell.swift; sourceTree = "<group>"; };
@@ -54,6 +64,12 @@
 		4E7134932B15E9C9002A7DC3 /* JCGLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCGLViewController.swift; sourceTree = "<group>"; };
 		4E760A0E2AFC869000B53AEF /* JCShader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCShader.swift; sourceTree = "<group>"; };
 		4ED08C152AECD75400E6CF4A /* JCImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCImageLoader.swift; sourceTree = "<group>"; };
+		4EEC9A2D2B208DCD00DBA33A /* JCStackFrameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCStackFrameManager.swift; sourceTree = "<group>"; };
+		4EEC9A2F2B20935400DBA33A /* JCImage-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JCImage-Bridging-Header.h"; sourceTree = "<group>"; };
+		4EEC9A302B20935500DBA33A /* JCStackFrameCatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCStackFrameCatcher.h; sourceTree = "<group>"; };
+		4EEC9A312B20935500DBA33A /* JCStackFrameCatcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCStackFrameCatcher.m; sourceTree = "<group>"; };
+		60EE499D31F6D8017A8490C5 /* libPods-JCImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JCImage.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B01D7BA44A171B01443D7564 /* Pods-JCImage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JCImage.debug.xcconfig"; path = "Target Support Files/Pods-JCImage/Pods-JCImage.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CD8D4792E16A99F842BA400 /* libPods-JCImage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +89,8 @@
 			children = (
 				19D73A892AE94640003571E7 /* JCImage */,
 				19D73A882AE94640003571E7 /* Products */,
+				89E0BD14D8AF81F3619934C6 /* Pods */,
+				55DB5B4D934FCE0BB3AC0FA4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -134,6 +153,7 @@
 		4E7134902B15E8BC002A7DC3 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				4EEC9A2C2B208D5C00DBA33A /* Stack */,
 				4E7134922B15E9A1002A7DC3 /* OpenGLES */,
 				4E7134912B15E8CC002A7DC3 /* Image */,
 			);
@@ -159,6 +179,21 @@
 			path = OpenGLES;
 			sourceTree = "<group>";
 		};
+		4EEC9A2C2B208D5C00DBA33A /* Stack */ = {
+			isa = PBXGroup;
+			children = (
+				4EEC9A2D2B208DCD00DBA33A /* JCStackFrameManager.swift */,
+				4E2806B62B271CBB00ABFA68 /* JCStackFrameDefine.h */,
+				4EEC9A302B20935500DBA33A /* JCStackFrameCatcher.h */,
+				4EEC9A312B20935500DBA33A /* JCStackFrameCatcher.m */,
+				4EEC9A2F2B20935400DBA33A /* JCImage-Bridging-Header.h */,
+				4E28E25B2B26B89000ABFA68 /* JCStackFrameProvider.swift */,
+				4E2806B72B273E5600ABFA68 /* JCSymbolParser.h */,
+				4E2806B82B273E5600ABFA68 /* JCSymbolParser.m */,
+			);
+			path = Stack;
+			sourceTree = "<group>";
+		};
 		4EFCAD5B2AF4991300BDF7ED /* Player */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +203,23 @@
 			path = Player;
 			sourceTree = "<group>";
 		};
+		55DB5B4D934FCE0BB3AC0FA4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				60EE499D31F6D8017A8490C5 /* libPods-JCImage.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		89E0BD14D8AF81F3619934C6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B01D7BA44A171B01443D7564 /* Pods-JCImage.debug.xcconfig */,
+				16E8C841733ED2E08BFBE8CB /* Pods-JCImage.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -175,6 +227,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 19D73A9B2AE94642003571E7 /* Build configuration list for PBXNativeTarget "JCImage" */;
 			buildPhases = (
+				8507EAF0999004555D95B61F /* [CP] Check Pods Manifest.lock */,
 				19D73A832AE94640003571E7 /* Sources */,
 				19D73A842AE94640003571E7 /* Frameworks */,
 				19D73A852AE94640003571E7 /* Resources */,
@@ -200,6 +253,7 @@
 				TargetAttributes = {
 					19D73A862AE94640003571E7 = {
 						CreatedOnToolsVersion = 15.0;
+						LastSwiftMigration = 1420;
 					};
 				};
 			};
@@ -239,14 +293,42 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8507EAF0999004555D95B61F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-JCImage-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		19D73A832AE94640003571E7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				19D73A8F2AE94640003571E7 /* ViewController.swift in Sources */,
+				4E2806B92B273E5600ABFA68 /* JCSymbolParser.m in Sources */,
 				4E5D338E2AF8E3E50049DEE1 /* JCAudioUnit.swift in Sources */,
+				4EEC9A322B20935500DBA33A /* JCStackFrameCatcher.m in Sources */,
 				19D73A8B2AE94640003571E7 /* AppDelegate.swift in Sources */,
+				4EEC9A2E2B208DCD00DBA33A /* JCStackFrameManager.swift in Sources */,
 				4E2A214F2AEF79D700F4DB35 /* JCTableViewController.swift in Sources */,
 				19D73AA52AE9786D003571E7 /* JCCommonUnit.swift in Sources */,
 				4E760A0F2AFC869000B53AEF /* JCShader.swift in Sources */,
@@ -256,6 +338,7 @@
 				4E39F1242AEB95990054BAB0 /* JCImageTableViewCell.swift in Sources */,
 				4ED08C162AECD75400E6CF4A /* JCImageLoader.swift in Sources */,
 				19D73AA22AE960D3003571E7 /* JCView.swift in Sources */,
+				4E28E25C2B26B89000ABFA68 /* JCStackFrameProvider.swift in Sources */,
 				4E7134942B15E9C9002A7DC3 /* JCGLViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,9 +486,11 @@
 		};
 		19D73A9C2AE94642003571E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B01D7BA44A171B01443D7564 /* Pods-JCImage.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P2VK525HWZ;
@@ -430,6 +515,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jaycehan.bit.JCImage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "JCImage/Module/Stack/JCImage-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -437,9 +524,11 @@
 		};
 		19D73A9D2AE94642003571E7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16E8C841733ED2E08BFBE8CB /* Pods-JCImage.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P2VK525HWZ;
@@ -459,6 +548,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jaycehan.bit.JCImage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "JCImage/Module/Stack/JCImage-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
