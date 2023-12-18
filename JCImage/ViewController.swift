@@ -47,6 +47,7 @@ extension ViewController : UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
         let className = ViewControllerData.JCImageNameList[indexPath.row]
         guard let controllerClass = NSClassFromString(className) else {
             JCStackFrameProvider.provideStackFrame {

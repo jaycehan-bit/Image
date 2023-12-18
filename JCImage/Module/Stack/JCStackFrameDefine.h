@@ -34,5 +34,13 @@
     #define JC_INSTRUCTION_ADDRESS __eip
 #endif
 
+/**
+ SP寄存器：stack pointer，堆栈寄存器，存放栈当前位置
+ SS寄存器：存放栈的段地址
+ BP寄存器：base pointer基数指针寄存器
+ FP寄存器：栈顶指针，指向一个栈帧的顶部。函数跳转时会记录当前栈的起始地址
+ */
+
+
 
 #endif /* JCStackFrameDefine_h */
