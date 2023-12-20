@@ -47,7 +47,7 @@ class JCEAGLView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func configBuffer() -> Void {
+    public func configBuffer() -> Bool {
         let context = EAGLContext.init(api: EAGLRenderingAPI.openGLES2)
         EAGLContext.setCurrent(context)
         // 创建帧缓冲区
@@ -72,9 +72,11 @@ class JCEAGLView: UIView {
         
         let status = glCheckFramebufferStatus(GLenum(GL_FRAMEBUFFER))
         if (status == GL_FRAMEBUFFER_COMPLETE) {
-            context!.presentRenderbuffer(Int(GL_RENDERBUFFER))
+//            context!.presentRenderbuffer(Int(GL_RENDERBUFFER))
+            return true
         } else {
             // 配置失败
+            return false
         }
     }
 }

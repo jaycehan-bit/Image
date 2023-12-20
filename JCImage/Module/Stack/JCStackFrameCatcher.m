@@ -34,7 +34,7 @@ typedef struct StackFrameEntry{
     //    task_threads(mach_task_self(), &threads, &thread_count);
     
     _STRUCT_MCONTEXT machineContext;
-    mach_msg_type_number_t state_count = ARM_THREAD_STATE64_COUNT;
+    mach_msg_type_number_t state_count = JC_THREAD_STATE_COUNT;
     kern_return_t kr = thread_get_state(mach_thread_self(), JC_THREAD_STATE, (thread_state_t)&machineContext.__ss, &state_count);
     if (kr != KERN_SUCCESS) {
         NSLog(@"获取线程信息失败");
