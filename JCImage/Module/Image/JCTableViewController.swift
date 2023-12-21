@@ -17,29 +17,12 @@ class JCTableViewController: UIViewController {
     
     lazy var tableView: UITableView = {
         let tableView = UITableView.init(frame: CGRect.zero, style: UITableView.Style.plain)
-        tableView.register(JCTableViewCell.self, forCellReuseIdentifier: JCTableViewControllerData.JCTableViewCellIdentifier)
+        tableView.register(JCImageTableViewCell.self, forCellReuseIdentifier: JCTableViewControllerData.JCTableViewCellIdentifier)
         tableView.backgroundColor = UIColor.black
         tableView.delegate = self
         tableView.dataSource = self
         return tableView
     }()
-    
-    var viewModelList: NSArray?
-    
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        let array = NSMutableArray.init(array: [])
-        for imageName in JCTableViewControllerData.JCImageNameList {
-            let viewModel = JCTableViewCellViewModel(title: imageName, subTitle: nil, imageName: imageName)
-            array.add(viewModel)
-        }
-        self.viewModelList = array.copy() as? NSArray
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

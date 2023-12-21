@@ -15,11 +15,12 @@
 		19D73A972AE94642003571E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19D73A952AE94642003571E7 /* LaunchScreen.storyboard */; };
 		19D73AA22AE960D3003571E7 /* JCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D73AA12AE960D3003571E7 /* JCView.swift */; };
 		19D73AA52AE9786D003571E7 /* JCCommonUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D73AA42AE9786D003571E7 /* JCCommonUnit.swift */; };
+		19FEB6AF2B348D18001E432B /* JCProgramProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FEB6AE2B348D18001E432B /* JCProgramProvider.m */; };
+		19FEB6B22B349281001E432B /* VertexShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 19FEB6B12B349281001E432B /* VertexShader.vsh */; };
+		19FEB6B42B3492CD001E432B /* FragShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 19FEB6B32B3492CD001E432B /* FragShader.fsh */; };
 		4E2806B92B273E5600ABFA68 /* JCSymbolParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2806B82B273E5600ABFA68 /* JCSymbolParser.m */; };
 		4E28E25C2B26B89000ABFA68 /* JCStackFrameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E28E25B2B26B89000ABFA68 /* JCStackFrameProvider.swift */; };
 		4E2A214F2AEF79D700F4DB35 /* JCTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A214E2AEF79D700F4DB35 /* JCTableViewController.swift */; };
-		4E2A21512AEF79E700F4DB35 /* JCTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A21502AEF79E700F4DB35 /* JCTableViewCellViewModel.swift */; };
-		4E2A21532AEF79F600F4DB35 /* JCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A21522AEF79F600F4DB35 /* JCTableViewCell.swift */; };
 		4E39F11A2AEB74C50054BAB0 /* Teemo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E39F1192AEB74C50054BAB0 /* Teemo.png */; };
 		4E39F11C2AEB7DE60054BAB0 /* Akali.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E39F11B2AEB7DE60054BAB0 /* Akali.jpg */; };
 		4E39F11E2AEB7FB70054BAB0 /* Seraphine.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E39F11D2AEB7FB60054BAB0 /* Seraphine.jpg */; };
@@ -47,13 +48,15 @@
 		19D73A982AE94642003571E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19D73AA12AE960D3003571E7 /* JCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCView.swift; sourceTree = "<group>"; };
 		19D73AA42AE9786D003571E7 /* JCCommonUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCCommonUnit.swift; sourceTree = "<group>"; };
+		19FEB6AD2B348D18001E432B /* JCProgramProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCProgramProvider.h; sourceTree = "<group>"; };
+		19FEB6AE2B348D18001E432B /* JCProgramProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCProgramProvider.m; sourceTree = "<group>"; };
+		19FEB6B12B349281001E432B /* VertexShader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = VertexShader.vsh; sourceTree = "<group>"; };
+		19FEB6B32B3492CD001E432B /* FragShader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = FragShader.fsh; sourceTree = "<group>"; };
 		4E2806B62B271CBB00ABFA68 /* JCStackFrameDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCStackFrameDefine.h; sourceTree = "<group>"; };
 		4E2806B72B273E5600ABFA68 /* JCSymbolParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCSymbolParser.h; sourceTree = "<group>"; };
 		4E2806B82B273E5600ABFA68 /* JCSymbolParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCSymbolParser.m; sourceTree = "<group>"; };
 		4E28E25B2B26B89000ABFA68 /* JCStackFrameProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCStackFrameProvider.swift; sourceTree = "<group>"; };
 		4E2A214E2AEF79D700F4DB35 /* JCTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCTableViewController.swift; sourceTree = "<group>"; };
-		4E2A21502AEF79E700F4DB35 /* JCTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCTableViewCellViewModel.swift; sourceTree = "<group>"; };
-		4E2A21522AEF79F600F4DB35 /* JCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCTableViewCell.swift; sourceTree = "<group>"; };
 		4E39F1192AEB74C50054BAB0 /* Teemo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Teemo.png; sourceTree = "<group>"; };
 		4E39F11B2AEB7DE60054BAB0 /* Akali.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Akali.jpg; sourceTree = "<group>"; };
 		4E39F11D2AEB7FB60054BAB0 /* Seraphine.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Seraphine.jpg; sourceTree = "<group>"; };
@@ -109,25 +112,16 @@
 				4EFCAD5B2AF4991300BDF7ED /* Player */,
 				4E39F1182AEB74BB0054BAB0 /* Resource */,
 				19D73AA32AE97855003571E7 /* Unit */,
-				19D73AA02AE960BD003571E7 /* Image */,
 				19D73A8A2AE94640003571E7 /* AppDelegate.swift */,
 				19D73A8C2AE94640003571E7 /* SceneDelegate.swift */,
 				19D73A8E2AE94640003571E7 /* ViewController.swift */,
+				4EEC9A2F2B20935400DBA33A /* JCImage-Bridging-Header.h */,
 				19D73A902AE94640003571E7 /* Main.storyboard */,
 				19D73A932AE94642003571E7 /* Assets.xcassets */,
 				19D73A952AE94642003571E7 /* LaunchScreen.storyboard */,
 				19D73A982AE94642003571E7 /* Info.plist */,
 			);
 			path = JCImage;
-			sourceTree = "<group>";
-		};
-		19D73AA02AE960BD003571E7 /* Image */ = {
-			isa = PBXGroup;
-			children = (
-				4E39F1232AEB95990054BAB0 /* JCImageTableViewCell.swift */,
-				4ED08C152AECD75400E6CF4A /* JCImageLoader.swift */,
-			);
-			path = Image;
 			sourceTree = "<group>";
 		};
 		19D73AA32AE97855003571E7 /* Unit */ = {
@@ -138,9 +132,19 @@
 			path = Unit;
 			sourceTree = "<group>";
 		};
+		19FEB6B02B3491EF001E432B /* ShaderFile */ = {
+			isa = PBXGroup;
+			children = (
+				19FEB6B12B349281001E432B /* VertexShader.vsh */,
+				19FEB6B32B3492CD001E432B /* FragShader.fsh */,
+			);
+			path = ShaderFile;
+			sourceTree = "<group>";
+		};
 		4E39F1182AEB74BB0054BAB0 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				19FEB6B02B3491EF001E432B /* ShaderFile */,
 				4E39F11F2AEB81A30054BAB0 /* Riven.jpg */,
 				4E39F11D2AEB7FB60054BAB0 /* Seraphine.jpg */,
 				4E39F11B2AEB7DE60054BAB0 /* Akali.jpg */,
@@ -163,9 +167,9 @@
 		4E7134912B15E8CC002A7DC3 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				4E39F1232AEB95990054BAB0 /* JCImageTableViewCell.swift */,
+				4ED08C152AECD75400E6CF4A /* JCImageLoader.swift */,
 				4E2A214E2AEF79D700F4DB35 /* JCTableViewController.swift */,
-				4E2A21502AEF79E700F4DB35 /* JCTableViewCellViewModel.swift */,
-				4E2A21522AEF79F600F4DB35 /* JCTableViewCell.swift */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -175,6 +179,8 @@
 			children = (
 				19D73AA12AE960D3003571E7 /* JCView.swift */,
 				4E7134932B15E9C9002A7DC3 /* JCGLViewController.swift */,
+				19FEB6AD2B348D18001E432B /* JCProgramProvider.h */,
+				19FEB6AE2B348D18001E432B /* JCProgramProvider.m */,
 			);
 			path = OpenGLES;
 			sourceTree = "<group>";
@@ -186,7 +192,6 @@
 				4E2806B62B271CBB00ABFA68 /* JCStackFrameDefine.h */,
 				4EEC9A302B20935500DBA33A /* JCStackFrameCatcher.h */,
 				4EEC9A312B20935500DBA33A /* JCStackFrameCatcher.m */,
-				4EEC9A2F2B20935400DBA33A /* JCImage-Bridging-Header.h */,
 				4E28E25B2B26B89000ABFA68 /* JCStackFrameProvider.swift */,
 				4E2806B72B273E5600ABFA68 /* JCSymbolParser.h */,
 				4E2806B82B273E5600ABFA68 /* JCSymbolParser.m */,
@@ -282,11 +287,13 @@
 			files = (
 				19D73A972AE94642003571E7 /* LaunchScreen.storyboard in Resources */,
 				4E39F11C2AEB7DE60054BAB0 /* Akali.jpg in Resources */,
+				19FEB6B22B349281001E432B /* VertexShader.vsh in Resources */,
 				19D73A942AE94642003571E7 /* Assets.xcassets in Resources */,
 				4E39F11E2AEB7FB70054BAB0 /* Seraphine.jpg in Resources */,
 				4E39F11A2AEB74C50054BAB0 /* Teemo.png in Resources */,
 				4E39F1202AEB81A30054BAB0 /* Riven.jpg in Resources */,
 				4E39F1222AEB81AC0054BAB0 /* Katarina.jpg in Resources */,
+				19FEB6B42B3492CD001E432B /* FragShader.fsh in Resources */,
 				19D73A922AE94640003571E7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,6 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19FEB6AF2B348D18001E432B /* JCProgramProvider.m in Sources */,
 				19D73A8F2AE94640003571E7 /* ViewController.swift in Sources */,
 				4E2806B92B273E5600ABFA68 /* JCSymbolParser.m in Sources */,
 				4E5D338E2AF8E3E50049DEE1 /* JCAudioUnit.swift in Sources */,
@@ -332,9 +340,7 @@
 				4E2A214F2AEF79D700F4DB35 /* JCTableViewController.swift in Sources */,
 				19D73AA52AE9786D003571E7 /* JCCommonUnit.swift in Sources */,
 				4E760A0F2AFC869000B53AEF /* JCShader.swift in Sources */,
-				4E2A21532AEF79F600F4DB35 /* JCTableViewCell.swift in Sources */,
 				19D73A8D2AE94640003571E7 /* SceneDelegate.swift in Sources */,
-				4E2A21512AEF79E700F4DB35 /* JCTableViewCellViewModel.swift in Sources */,
 				4E39F1242AEB95990054BAB0 /* JCImageTableViewCell.swift in Sources */,
 				4ED08C162AECD75400E6CF4A /* JCImageLoader.swift in Sources */,
 				19D73AA22AE960D3003571E7 /* JCView.swift in Sources */,
@@ -516,7 +522,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jaycehan.bit.JCImage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "JCImage/Module/Stack/JCImage-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "JCImage/JCImage-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -549,7 +555,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jaycehan.bit.JCImage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "JCImage/Module/Stack/JCImage-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "JCImage/JCImage-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
