@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Dispatch
 
 class JCGLViewController: UIViewController {
     
@@ -18,13 +19,23 @@ class JCGLViewController: UIViewController {
         view.backgroundColor = UIColor.black
         view.addSubview(EAGLView)
         EAGLView.frame = view.bounds
-        var result = EAGLView.configBuffer()
-        print(result)
+        self.startRenderImage()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         EAGLView.frame = view.bounds
+    }
+    
+    deinit {
+//        EAGLView.d
+    }
+    
+    func startRenderImage() {
+        let deadline = DispatchTime.now() + .milliseconds(300)
+        DispatchQueue.main.asyncAfter(deadline: deadline) {
+            self.EAGLView.renderImage(withName: "Seraphine.jpg")
+        }
     }
 }
 

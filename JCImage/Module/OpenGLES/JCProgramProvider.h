@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JCProgramProvider : NSObject
 
-GLuint sharder(GLenum type, NSString *filePath);
++ (void)shader:(GLuint *)shader type:(GLenum)type filePath:(NSString *)filePath;
 
-GLuint program(GLuint vertexShader, GLuint fragShader);
++ (void)program:(GLuint *)program vertexShader:(GLuint)vertexShader fragSharder:(GLuint)fragShader;
 
 @end
 

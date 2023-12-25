@@ -24,11 +24,6 @@ class ViewController: UIViewController {
         return tableView
     }()
     
-    override func loadView() {
-        let window = JCCommonUnit.mainWindow()
-        self.view = JCView(frame: window.bounds)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(tableView)

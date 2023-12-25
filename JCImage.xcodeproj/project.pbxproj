@@ -13,7 +13,6 @@
 		19D73A922AE94640003571E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19D73A902AE94640003571E7 /* Main.storyboard */; };
 		19D73A942AE94642003571E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19D73A932AE94642003571E7 /* Assets.xcassets */; };
 		19D73A972AE94642003571E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19D73A952AE94642003571E7 /* LaunchScreen.storyboard */; };
-		19D73AA22AE960D3003571E7 /* JCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D73AA12AE960D3003571E7 /* JCView.swift */; };
 		19D73AA52AE9786D003571E7 /* JCCommonUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D73AA42AE9786D003571E7 /* JCCommonUnit.swift */; };
 		19FEB6AF2B348D18001E432B /* JCProgramProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FEB6AE2B348D18001E432B /* JCProgramProvider.m */; };
 		19FEB6B22B349281001E432B /* VertexShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 19FEB6B12B349281001E432B /* VertexShader.vsh */; };
@@ -30,6 +29,8 @@
 		4E5D338E2AF8E3E50049DEE1 /* JCAudioUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5D338D2AF8E3E50049DEE1 /* JCAudioUnit.swift */; };
 		4E7134942B15E9C9002A7DC3 /* JCGLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7134932B15E9C9002A7DC3 /* JCGLViewController.swift */; };
 		4E760A0F2AFC869000B53AEF /* JCShader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E760A0E2AFC869000B53AEF /* JCShader.swift */; };
+		4EA815B42B387F3C00E28F0A /* JCEAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA815B32B387F3C00E28F0A /* JCEAGLView.m */; };
+		4EA815B72B388AF800E28F0A /* JCProgramArena.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA815B62B388AF800E28F0A /* JCProgramArena.m */; };
 		4ED08C162AECD75400E6CF4A /* JCImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED08C152AECD75400E6CF4A /* JCImageLoader.swift */; };
 		4EEC9A2E2B208DCD00DBA33A /* JCStackFrameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEC9A2D2B208DCD00DBA33A /* JCStackFrameManager.swift */; };
 		4EEC9A322B20935500DBA33A /* JCStackFrameCatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEC9A312B20935500DBA33A /* JCStackFrameCatcher.m */; };
@@ -46,7 +47,6 @@
 		19D73A932AE94642003571E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19D73A962AE94642003571E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		19D73A982AE94642003571E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		19D73AA12AE960D3003571E7 /* JCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCView.swift; sourceTree = "<group>"; };
 		19D73AA42AE9786D003571E7 /* JCCommonUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCCommonUnit.swift; sourceTree = "<group>"; };
 		19FEB6AD2B348D18001E432B /* JCProgramProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCProgramProvider.h; sourceTree = "<group>"; };
 		19FEB6AE2B348D18001E432B /* JCProgramProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCProgramProvider.m; sourceTree = "<group>"; };
@@ -66,6 +66,10 @@
 		4E5D338D2AF8E3E50049DEE1 /* JCAudioUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCAudioUnit.swift; sourceTree = "<group>"; };
 		4E7134932B15E9C9002A7DC3 /* JCGLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCGLViewController.swift; sourceTree = "<group>"; };
 		4E760A0E2AFC869000B53AEF /* JCShader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCShader.swift; sourceTree = "<group>"; };
+		4EA815B22B387F3C00E28F0A /* JCEAGLView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCEAGLView.h; sourceTree = "<group>"; };
+		4EA815B32B387F3C00E28F0A /* JCEAGLView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCEAGLView.m; sourceTree = "<group>"; };
+		4EA815B52B388AF800E28F0A /* JCProgramArena.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCProgramArena.h; sourceTree = "<group>"; };
+		4EA815B62B388AF800E28F0A /* JCProgramArena.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCProgramArena.m; sourceTree = "<group>"; };
 		4ED08C152AECD75400E6CF4A /* JCImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCImageLoader.swift; sourceTree = "<group>"; };
 		4EEC9A2D2B208DCD00DBA33A /* JCStackFrameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCStackFrameManager.swift; sourceTree = "<group>"; };
 		4EEC9A2F2B20935400DBA33A /* JCImage-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JCImage-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -177,10 +181,13 @@
 		4E7134922B15E9A1002A7DC3 /* OpenGLES */ = {
 			isa = PBXGroup;
 			children = (
-				19D73AA12AE960D3003571E7 /* JCView.swift */,
 				4E7134932B15E9C9002A7DC3 /* JCGLViewController.swift */,
 				19FEB6AD2B348D18001E432B /* JCProgramProvider.h */,
 				19FEB6AE2B348D18001E432B /* JCProgramProvider.m */,
+				4EA815B22B387F3C00E28F0A /* JCEAGLView.h */,
+				4EA815B32B387F3C00E28F0A /* JCEAGLView.m */,
+				4EA815B52B388AF800E28F0A /* JCProgramArena.h */,
+				4EA815B62B388AF800E28F0A /* JCProgramArena.m */,
 			);
 			path = OpenGLES;
 			sourceTree = "<group>";
@@ -331,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				19FEB6AF2B348D18001E432B /* JCProgramProvider.m in Sources */,
+				4EA815B42B387F3C00E28F0A /* JCEAGLView.m in Sources */,
 				19D73A8F2AE94640003571E7 /* ViewController.swift in Sources */,
 				4E2806B92B273E5600ABFA68 /* JCSymbolParser.m in Sources */,
 				4E5D338E2AF8E3E50049DEE1 /* JCAudioUnit.swift in Sources */,
@@ -343,9 +351,9 @@
 				19D73A8D2AE94640003571E7 /* SceneDelegate.swift in Sources */,
 				4E39F1242AEB95990054BAB0 /* JCImageTableViewCell.swift in Sources */,
 				4ED08C162AECD75400E6CF4A /* JCImageLoader.swift in Sources */,
-				19D73AA22AE960D3003571E7 /* JCView.swift in Sources */,
 				4E28E25C2B26B89000ABFA68 /* JCStackFrameProvider.swift in Sources */,
 				4E7134942B15E9C9002A7DC3 /* JCGLViewController.swift in Sources */,
+				4EA815B72B388AF800E28F0A /* JCProgramArena.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

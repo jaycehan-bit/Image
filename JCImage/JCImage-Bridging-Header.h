@@ -5,3 +5,5 @@
 #import "JCStackFrameCatcher.h"
 
 #import "JCProgramProvider.h"
+
+#import "JCEAGLView.h"
