@@ -37,6 +37,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         CAEAGLLayer *layer = (CAEAGLLayer *)self.layer;
+        layer.backgroundColor = UIColor.blackColor.CGColor;
         layer.opaque = YES;
         layer.drawableProperties = @{
             kEAGLDrawablePropertyRetainedBacking: @(NO),
@@ -88,20 +89,21 @@
     if (!image) {
         return;
     }
-    CGSize size = image.size;
     dispatch_sync(self.renderQueue, ^{
         [self configRenderBuffer];
         [self.programArena perpare];
     });
+    CGFloat bottom = self.safeAreaInsets.bottom;
     dispatch_async(self.renderQueue, ^{
         [EAGLContext setCurrentContext:self.context];
         CGImageRef imageRef = image.CGImage;
         CGDataProviderRef dataProvider = CGImageGetDataProvider(imageRef);
         CFDataRef dataRef = CGDataProviderCopyData(dataProvider);
         uint8_t *pixel = (uint8_t *)CFDataGetBytePtr(dataRef);
-        glViewport(0, 0, self.backingWidth, self.backingHeight);
-        [self.programArena renderForFrame:pixel size:size];
-        glBindRenderbuffer(GL_RENDERBUFFER, self->_renderBuffer);
+        CGFloat height = image.size.height / image.size.width * self.backingWidth;
+        glViewport(0, bottom, self.backingWidth, height);
+        [self.programArena renderForFrame:pixel size:image.size];
+        glBindRenderbuffer(GL_RENDERBUFFER, self.renderBuffer);
         [self.context presentRenderbuffer:GL_RENDERBUFFER];
     });
 }
