@@ -7,3 +7,7 @@
 #import "JCProgramProvider.h"
 
 #import "JCEAGLView.h"
+
+#import "JCStuckDetector.h"
+
+#import "JCStuckModule.h"

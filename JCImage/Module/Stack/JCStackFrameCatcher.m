@@ -12,8 +12,11 @@
 #import <mach/thread_act.h>
 #import <mach/thread_info.h>
 #import <mach/vm_map.h>
+#import <mach-o/dyld.h>
+#import <mach-o/loader.h>
 #import <pthread/pthread.h>
 #import <sys/sysctl.h>
+#import <dlfcn.h>
 #import "JCStackFrameCatcher.h"
 #import "JCStackFrameDefine.h"
 #import "JCSymbolParser.h"
@@ -47,15 +50,22 @@ typedef struct StackFrameEntry{
         return;
     }
     uintptr_t buffer[gJCStackFrameMaxCount] = {0};
+    uint32_t stack_depth = gJCStackFrameMaxCount;
     for (int index = 0; index < gJCStackFrameMaxCount; index ++) {
         buffer[index] = node.return_address;
         kern_return_t result = jc_mach_overwrite((void *)node.previous,  &node, sizeof(node));
         if (result != KERN_SUCCESS) {
+            stack_depth = index;
             break;
         }
     }
+    Dl_info symbolicated[gJCStackFrameMaxCount] = {0};
+    parse(buffer, symbolicated, stack_depth);
     
-    [JCSymbolParser run];
+    for (uint32_t index = 0; index < gJCStackFrameMaxCount; index ++) {
+        Dl_info info = symbolicated[index];
+        printf("%s\n", info.dli_sname);
+    }
     
     NSLog(@"%p", buffer);
 }

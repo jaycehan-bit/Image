@@ -34,6 +34,20 @@
     #define JC_INSTRUCTION_ADDRESS __eip
 #endif
 
+#ifdef __LP64__
+typedef struct mach_header_64     jc_mach_header;
+typedef struct segment_command_64 jc_segment_comand;
+//typedef struct section_64         sectionByCPU;
+typedef struct nlist_64           jc_nlist;
+#define JC_LC_SEGMENT LC_SEGMENT_64
+#else
+typedef struct mach_header        jc_mach_header;
+typedef struct segment_command    jc_segment_comand;
+//typedef struct section            sectionByCPU;
+typedef struct nlist              jc_nlist;
+#define JC_LC_SEGMENT LC_SEGMENT
+#endif
+
 /**
  SP寄存器：stack pointer，堆栈寄存器，存放栈当前位置
  SS寄存器：存放栈的段地址

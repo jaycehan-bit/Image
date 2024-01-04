@@ -24,9 +24,14 @@ class ViewController: UIViewController {
         return tableView
     }()
     
+    lazy var stuckDetector: JCStuckDetector = {
+        return JCStuckDetector.init()
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(tableView)
+        stuckDetector.run()
     }
     
     override func viewDidLayoutSubviews() {

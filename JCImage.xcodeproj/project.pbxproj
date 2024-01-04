@@ -47,6 +47,9 @@
 		4ED421162B3DA8E4006A6C1D /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ED421152B3DA8E4006A6C1D /* VideoToolbox.framework */; };
 		4ED421182B3DA8ED006A6C1D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ED421172B3DA8ED006A6C1D /* AudioToolbox.framework */; };
 		4ED4211A2B3DA97F006A6C1D /* ffmpegkit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ED421192B3DA97F006A6C1D /* ffmpegkit.xcframework */; };
+		4ED445CA2B3E8EC6006A6C1D /* Fireworks.mov in Resources */ = {isa = PBXBuildFile; fileRef = 4ED445C92B3E8EC6006A6C1D /* Fireworks.mov */; };
+		4ED445CE2B3E8F42006A6C1D /* JCVideoDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED445CD2B3E8F42006A6C1D /* JCVideoDecoder.m */; };
+		4ED5D1C42B445835009AD6AE /* JCStuckDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED5D1C32B445835009AD6AE /* JCStuckDetector.m */; };
 		4EEC9A2E2B208DCD00DBA33A /* JCStackFrameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEC9A2D2B208DCD00DBA33A /* JCStackFrameManager.swift */; };
 		4EEC9A322B20935500DBA33A /* JCStackFrameCatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEC9A312B20935500DBA33A /* JCStackFrameCatcher.m */; };
 		5CD8D4792E16A99F842BA400 /* libPods-JCImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60EE499D31F6D8017A8490C5 /* libPods-JCImage.a */; };
@@ -225,6 +228,12 @@
 		4ED421152B3DA8E4006A6C1D /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		4ED421172B3DA8ED006A6C1D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		4ED421192B3DA97F006A6C1D /* ffmpegkit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ffmpegkit.xcframework; path = "Pods/ffmpeg-kit-ios-full/ffmpegkit.xcframework"; sourceTree = "<group>"; };
+		4ED445C92B3E8EC6006A6C1D /* Fireworks.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Fireworks.mov; sourceTree = "<group>"; };
+		4ED445CC2B3E8F42006A6C1D /* JCVideoDecoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCVideoDecoder.h; sourceTree = "<group>"; };
+		4ED445CD2B3E8F42006A6C1D /* JCVideoDecoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCVideoDecoder.m; sourceTree = "<group>"; };
+		4ED5D1C22B445835009AD6AE /* JCStuckDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCStuckDetector.h; sourceTree = "<group>"; };
+		4ED5D1C32B445835009AD6AE /* JCStuckDetector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCStuckDetector.m; sourceTree = "<group>"; };
+		4ED5D1C62B445975009AD6AE /* JCStuckModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCStuckModule.h; sourceTree = "<group>"; };
 		4EEC9A2D2B208DCD00DBA33A /* JCStackFrameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCStackFrameManager.swift; sourceTree = "<group>"; };
 		4EEC9A2F2B20935400DBA33A /* JCImage-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JCImage-Bridging-Header.h"; sourceTree = "<group>"; };
 		4EEC9A302B20935500DBA33A /* JCStackFrameCatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCStackFrameCatcher.h; sourceTree = "<group>"; };
@@ -248,12 +257,12 @@
 				4ED4210C2B3DA89C006A6C1D /* libz.tbd in Frameworks */,
 				4ED421052B3DA878006A6C1D /* libavfilter.a in Frameworks */,
 				4ED421042B3DA878006A6C1D /* libavutil.a in Frameworks */,
-				5CD8D4792E16A99F842BA400 /* libPods-JCImage.a in Frameworks */,
 				4ED421072B3DA878006A6C1D /* libavformat.a in Frameworks */,
 				4ED4210A2B3DA878006A6C1D /* libswscale.a in Frameworks */,
 				4ED421082B3DA878006A6C1D /* libavdevice.a in Frameworks */,
 				4ED421092B3DA878006A6C1D /* libswresample.a in Frameworks */,
 				4ED421062B3DA878006A6C1D /* libavcodec.a in Frameworks */,
+				5CD8D4792E16A99F842BA400 /* libPods-JCImage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +333,7 @@
 				4E39F11B2AEB7DE60054BAB0 /* Akali.jpg */,
 				4E39F1192AEB74C50054BAB0 /* Teemo.png */,
 				4E39F1212AEB81AC0054BAB0 /* Katarina.jpg */,
+				4ED445C92B3E8EC6006A6C1D /* Fireworks.mov */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -571,16 +581,42 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		4ED445C72B3E8DA9006A6C1D /* AudioDecoder */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AudioDecoder;
+			sourceTree = "<group>";
+		};
+		4ED445C82B3E8DF8006A6C1D /* AudioRender */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AudioRender;
+			sourceTree = "<group>";
+		};
+		4ED445CB2B3E8EE6006A6C1D /* VideoDecoder */ = {
+			isa = PBXGroup;
+			children = (
+				4ED445CC2B3E8F42006A6C1D /* JCVideoDecoder.h */,
+				4ED445CD2B3E8F42006A6C1D /* JCVideoDecoder.m */,
+			);
+			path = VideoDecoder;
+			sourceTree = "<group>";
+		};
 		4EEC9A2C2B208D5C00DBA33A /* Stack */ = {
 			isa = PBXGroup;
 			children = (
 				4EEC9A2D2B208DCD00DBA33A /* JCStackFrameManager.swift */,
+				4E28E25B2B26B89000ABFA68 /* JCStackFrameProvider.swift */,
 				4E2806B62B271CBB00ABFA68 /* JCStackFrameDefine.h */,
 				4EEC9A302B20935500DBA33A /* JCStackFrameCatcher.h */,
 				4EEC9A312B20935500DBA33A /* JCStackFrameCatcher.m */,
-				4E28E25B2B26B89000ABFA68 /* JCStackFrameProvider.swift */,
 				4E2806B72B273E5600ABFA68 /* JCSymbolParser.h */,
 				4E2806B82B273E5600ABFA68 /* JCSymbolParser.m */,
+				4ED5D1C22B445835009AD6AE /* JCStuckDetector.h */,
+				4ED5D1C32B445835009AD6AE /* JCStuckDetector.m */,
+				4ED5D1C62B445975009AD6AE /* JCStuckModule.h */,
 			);
 			path = Stack;
 			sourceTree = "<group>";
@@ -588,6 +624,9 @@
 		4EFCAD5B2AF4991300BDF7ED /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				4ED445CB2B3E8EE6006A6C1D /* VideoDecoder */,
+				4ED445C82B3E8DF8006A6C1D /* AudioRender */,
+				4ED445C72B3E8DA9006A6C1D /* AudioDecoder */,
 				4E5D338D2AF8E3E50049DEE1 /* JCAudioUnit.swift */,
 				4E2ABB592B3D37FA00882ECE /* JCPlayerVideoDecoder.h */,
 				4E2ABB5A2B3D37FA00882ECE /* JCPlayerVideoDecoder.m */,
@@ -688,6 +727,7 @@
 				4E39F11E2AEB7FB70054BAB0 /* Seraphine.jpg in Resources */,
 				4E39F11A2AEB74C50054BAB0 /* Teemo.png in Resources */,
 				4E39F1202AEB81A30054BAB0 /* Riven.jpg in Resources */,
+				4ED445CA2B3E8EC6006A6C1D /* Fireworks.mov in Resources */,
 				4E39F1222AEB81AC0054BAB0 /* Katarina.jpg in Resources */,
 				19FEB6B42B3492CD001E432B /* FragShader.fsh in Resources */,
 				19D73A922AE94640003571E7 /* Main.storyboard in Resources */,
@@ -749,7 +789,9 @@
 				4E2806B92B273E5600ABFA68 /* JCSymbolParser.m in Sources */,
 				4E5D338E2AF8E3E50049DEE1 /* JCAudioUnit.swift in Sources */,
 				4E2ABB5B2B3D37FA00882ECE /* JCPlayerVideoDecoder.m in Sources */,
+				4ED5D1C42B445835009AD6AE /* JCStuckDetector.m in Sources */,
 				4EEC9A322B20935500DBA33A /* JCStackFrameCatcher.m in Sources */,
+				4ED445CE2B3E8F42006A6C1D /* JCVideoDecoder.m in Sources */,
 				19D73A8B2AE94640003571E7 /* AppDelegate.swift in Sources */,
 				4EEC9A2E2B208DCD00DBA33A /* JCStackFrameManager.swift in Sources */,
 				4E2A214F2AEF79D700F4DB35 /* JCTableViewController.swift in Sources */,
