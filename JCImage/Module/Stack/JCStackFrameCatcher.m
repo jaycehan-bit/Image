@@ -23,6 +23,8 @@
 
 static const NSInteger gJCStackFrameMaxCount = 30;
 
+static mach_port_t main_thread_id;
+
 typedef struct StackFrameEntry{
     const struct StackFrameEntry *const previous;  // 前一个栈帧地址
     const uintptr_t return_address;                // 栈帧的函数返回地址
@@ -30,15 +32,19 @@ typedef struct StackFrameEntry{
 
 @implementation JCStackFrameCatcher
 
++ (void)load {
+    main_thread_id = mach_thread_self();
+}
+
 + (void)run {
     // 获取线程个数和线程地址
-    //    thread_act_array_t threads;
-    //    mach_msg_type_number_t thread_count = 0;
-    //    task_threads(mach_task_self(), &threads, &thread_count);
-    
+//    thread_act_array_t threads;
+//    mach_msg_type_number_t thread_count = 0;
+//    task_threads(mach_task_self(), &threads, &thread_count);
+
     _STRUCT_MCONTEXT machineContext;
     mach_msg_type_number_t state_count = JC_THREAD_STATE_COUNT;
-    kern_return_t kr = thread_get_state(mach_thread_self(), JC_THREAD_STATE, (thread_state_t)&machineContext.__ss, &state_count);
+    kern_return_t kr = thread_get_state(main_thread_id, JC_THREAD_STATE, (thread_state_t)&machineContext.__ss, &state_count);
     if (kr != KERN_SUCCESS) {
         NSLog(@"获取线程信息失败");
         return;
@@ -66,8 +72,6 @@ typedef struct StackFrameEntry{
         Dl_info info = symbolicated[index];
         printf("%s\n", info.dli_sname);
     }
-    
-    NSLog(@"%p", buffer);
 }
 
 kern_return_t jc_mach_overwrite(const void *const src, void *const dst, const size_t num_bytes) {

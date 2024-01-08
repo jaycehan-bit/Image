@@ -9,7 +9,7 @@ import UIKit
 
 struct ViewControllerData {
     static let gJCImageCellIdentifier: String = "gJCImageCellIdentifier"
-    static let JCImageNameList = ["JCImage.JCTableViewController",  "JCImage.JCGLViewController", "JCImage.ModuleController"]
+    static let JCImageNameList = ["JCImage.JCTableViewController",  "JCImage.JCGLViewController", "JCImage.ModuleController", "JCLeaksViewController"]
 }
 
 class ViewController: UIViewController {

@@ -11,3 +11,5 @@
 #import "JCStuckDetector.h"
 
 #import "JCStuckModule.h"
+
+#import "JCLeaksViewController.h"

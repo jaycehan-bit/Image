@@ -31,6 +31,7 @@
 		4E7134942B15E9C9002A7DC3 /* JCGLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7134932B15E9C9002A7DC3 /* JCGLViewController.swift */; };
 		4EA815B42B387F3C00E28F0A /* JCEAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA815B32B387F3C00E28F0A /* JCEAGLView.m */; };
 		4EA815B72B388AF800E28F0A /* JCProgramArena.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA815B62B388AF800E28F0A /* JCProgramArena.m */; };
+		4EAA8B412B46CFA000CE4C67 /* JCLeaksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAA8B402B46CFA000CE4C67 /* JCLeaksViewController.m */; };
 		4ED08C162AECD75400E6CF4A /* JCImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED08C152AECD75400E6CF4A /* JCImageLoader.swift */; };
 		4ED421042B3DA878006A6C1D /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ED420FD2B3DA877006A6C1D /* libavutil.a */; };
 		4ED421052B3DA878006A6C1D /* libavfilter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ED420FE2B3DA877006A6C1D /* libavfilter.a */; };
@@ -46,11 +47,9 @@
 		4ED421142B3DA8DA006A6C1D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ED421132B3DA8DA006A6C1D /* AVFoundation.framework */; };
 		4ED421162B3DA8E4006A6C1D /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ED421152B3DA8E4006A6C1D /* VideoToolbox.framework */; };
 		4ED421182B3DA8ED006A6C1D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ED421172B3DA8ED006A6C1D /* AudioToolbox.framework */; };
-		4ED4211A2B3DA97F006A6C1D /* ffmpegkit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ED421192B3DA97F006A6C1D /* ffmpegkit.xcframework */; };
 		4ED445CA2B3E8EC6006A6C1D /* Fireworks.mov in Resources */ = {isa = PBXBuildFile; fileRef = 4ED445C92B3E8EC6006A6C1D /* Fireworks.mov */; };
 		4ED445CE2B3E8F42006A6C1D /* JCVideoDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED445CD2B3E8F42006A6C1D /* JCVideoDecoder.m */; };
 		4ED5D1C42B445835009AD6AE /* JCStuckDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED5D1C32B445835009AD6AE /* JCStuckDetector.m */; };
-		4EEC9A2E2B208DCD00DBA33A /* JCStackFrameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEC9A2D2B208DCD00DBA33A /* JCStackFrameManager.swift */; };
 		4EEC9A322B20935500DBA33A /* JCStackFrameCatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEC9A312B20935500DBA33A /* JCStackFrameCatcher.m */; };
 		5CD8D4792E16A99F842BA400 /* libPods-JCImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60EE499D31F6D8017A8490C5 /* libPods-JCImage.a */; };
 /* End PBXBuildFile section */
@@ -89,6 +88,9 @@
 		4EA815B32B387F3C00E28F0A /* JCEAGLView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCEAGLView.m; sourceTree = "<group>"; };
 		4EA815B52B388AF800E28F0A /* JCProgramArena.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCProgramArena.h; sourceTree = "<group>"; };
 		4EA815B62B388AF800E28F0A /* JCProgramArena.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCProgramArena.m; sourceTree = "<group>"; };
+		4EAA8B3F2B46CFA000CE4C67 /* JCLeaksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCLeaksViewController.h; sourceTree = "<group>"; };
+		4EAA8B402B46CFA000CE4C67 /* JCLeaksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCLeaksViewController.m; sourceTree = "<group>"; };
+		4EAA8B422B46D2EE00CE4C67 /* JCLeaskModuleDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCLeaskModuleDefine.h; sourceTree = "<group>"; };
 		4ED08C152AECD75400E6CF4A /* JCImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCImageLoader.swift; sourceTree = "<group>"; };
 		4ED4207B2B3DA877006A6C1D /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		4ED4207C2B3DA877006A6C1D /* buffersrc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffersrc.h; sourceTree = "<group>"; };
@@ -234,7 +236,6 @@
 		4ED5D1C22B445835009AD6AE /* JCStuckDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCStuckDetector.h; sourceTree = "<group>"; };
 		4ED5D1C32B445835009AD6AE /* JCStuckDetector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCStuckDetector.m; sourceTree = "<group>"; };
 		4ED5D1C62B445975009AD6AE /* JCStuckModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCStuckModule.h; sourceTree = "<group>"; };
-		4EEC9A2D2B208DCD00DBA33A /* JCStackFrameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCStackFrameManager.swift; sourceTree = "<group>"; };
 		4EEC9A2F2B20935400DBA33A /* JCImage-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JCImage-Bridging-Header.h"; sourceTree = "<group>"; };
 		4EEC9A302B20935500DBA33A /* JCStackFrameCatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCStackFrameCatcher.h; sourceTree = "<group>"; };
 		4EEC9A312B20935500DBA33A /* JCStackFrameCatcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCStackFrameCatcher.m; sourceTree = "<group>"; };
@@ -247,7 +248,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4ED4211A2B3DA97F006A6C1D /* ffmpegkit.xcframework in Frameworks */,
 				4ED421182B3DA8ED006A6C1D /* AudioToolbox.framework in Frameworks */,
 				4ED421162B3DA8E4006A6C1D /* VideoToolbox.framework in Frameworks */,
 				4ED421142B3DA8DA006A6C1D /* AVFoundation.framework in Frameworks */,
@@ -341,6 +341,7 @@
 		4E7134902B15E8BC002A7DC3 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				4EAA8B3E2B46CF7E00CE4C67 /* MemoryLeaks */,
 				4EEC9A2C2B208D5C00DBA33A /* Stack */,
 				4E7134922B15E9A1002A7DC3 /* OpenGLES */,
 				4E7134912B15E8CC002A7DC3 /* Image */,
@@ -370,6 +371,16 @@
 				4EA815B62B388AF800E28F0A /* JCProgramArena.m */,
 			);
 			path = OpenGLES;
+			sourceTree = "<group>";
+		};
+		4EAA8B3E2B46CF7E00CE4C67 /* MemoryLeaks */ = {
+			isa = PBXGroup;
+			children = (
+				4EAA8B3F2B46CFA000CE4C67 /* JCLeaksViewController.h */,
+				4EAA8B402B46CFA000CE4C67 /* JCLeaksViewController.m */,
+				4EAA8B422B46D2EE00CE4C67 /* JCLeaskModuleDefine.h */,
+			);
+			path = MemoryLeaks;
 			sourceTree = "<group>";
 		};
 		4ED420782B3DA877006A6C1D /* FFmpeg-iOS */ = {
@@ -607,7 +618,6 @@
 		4EEC9A2C2B208D5C00DBA33A /* Stack */ = {
 			isa = PBXGroup;
 			children = (
-				4EEC9A2D2B208DCD00DBA33A /* JCStackFrameManager.swift */,
 				4E28E25B2B26B89000ABFA68 /* JCStackFrameProvider.swift */,
 				4E2806B62B271CBB00ABFA68 /* JCStackFrameDefine.h */,
 				4EEC9A302B20935500DBA33A /* JCStackFrameCatcher.h */,
@@ -670,7 +680,6 @@
 				19D73A832AE94640003571E7 /* Sources */,
 				19D73A842AE94640003571E7 /* Frameworks */,
 				19D73A852AE94640003571E7 /* Resources */,
-				8440EFB822668E9BC19D1341 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -737,23 +746,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8440EFB822668E9BC19D1341 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JCImage/Pods-JCImage-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JCImage/Pods-JCImage-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JCImage/Pods-JCImage-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8507EAF0999004555D95B61F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -793,7 +785,7 @@
 				4EEC9A322B20935500DBA33A /* JCStackFrameCatcher.m in Sources */,
 				4ED445CE2B3E8F42006A6C1D /* JCVideoDecoder.m in Sources */,
 				19D73A8B2AE94640003571E7 /* AppDelegate.swift in Sources */,
-				4EEC9A2E2B208DCD00DBA33A /* JCStackFrameManager.swift in Sources */,
+				4EAA8B412B46CFA000CE4C67 /* JCLeaksViewController.m in Sources */,
 				4E2A214F2AEF79D700F4DB35 /* JCTableViewController.swift in Sources */,
 				19D73AA52AE9786D003571E7 /* JCCommonUnit.swift in Sources */,
 				19D73A8D2AE94640003571E7 /* SceneDelegate.swift in Sources */,
@@ -958,6 +950,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = P2VK525HWZ;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -991,6 +987,31 @@
 					"$(PROJECT_DIR)/FFmpeg-iOS/lib",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"Aspects\"",
+					"-l\"CocoaAsyncSocket\"",
+					"-l\"ReactiveObjC\"",
+					"-l\"SDWebImage\"",
+					"-l\"YYAsyncLayer\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CrashReporter\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"UIKit\"",
+					"-all_load",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jaycehan.bit.JCImage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1012,6 +1033,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P2VK525HWZ;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1040,6 +1065,31 @@
 					"$(PROJECT_DIR)/FFmpeg-iOS/lib",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"Aspects\"",
+					"-l\"CocoaAsyncSocket\"",
+					"-l\"ReactiveObjC\"",
+					"-l\"SDWebImage\"",
+					"-l\"YYAsyncLayer\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CrashReporter\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"UIKit\"",
+					"-all_load",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jaycehan.bit.JCImage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
