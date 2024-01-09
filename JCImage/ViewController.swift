@@ -51,7 +51,8 @@ extension ViewController : UITableViewDelegate {
         let className = ViewControllerData.JCImageNameList[indexPath.row]
         guard let controllerClass = NSClassFromString(className) else {
             JCStackFrameProvider.provideStackFrame {
-                JCStackFrameCatcher.run()
+//                JCStackFrameCatcher.run()
+//                JCStackFrameCatcher.runWithTestStack()
             }
             return
         }

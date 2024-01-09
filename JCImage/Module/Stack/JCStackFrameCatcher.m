@@ -25,10 +25,12 @@ static const NSInteger gJCStackFrameMaxCount = 30;
 
 static mach_port_t main_thread_id;
 
-typedef struct StackFrameEntry{
-    const struct StackFrameEntry *const previous;  // 前一个栈帧地址
+static dispatch_queue_t backtraceQueue;
+
+typedef struct JCStackFrameEntry{
+    const struct JCStackFrameEntry *const previous;  // 前一个栈帧地址
     const uintptr_t return_address;                // 栈帧的函数返回地址
-} StackFrameEntry;
+} JCStackFrameEntry;
 
 @implementation JCStackFrameCatcher
 
@@ -37,6 +39,15 @@ typedef struct StackFrameEntry{
 }
 
 + (void)run {
+    if (!backtraceQueue) {
+        backtraceQueue = dispatch_queue_create("com.JCImage.backtraceQueue", DISPATCH_QUEUE_SERIAL);
+    }
+    dispatch_async(backtraceQueue, ^{
+        [self runInSubthread];
+    });
+}
+
++ (void)runInSubthread {
     // 获取线程个数和线程地址
 //    thread_act_array_t threads;
 //    mach_msg_type_number_t thread_count = 0;
@@ -49,7 +60,7 @@ typedef struct StackFrameEntry{
         NSLog(@"获取线程信息失败");
         return;
     }
-    StackFrameEntry node = {0};
+    JCStackFrameEntry node = {0};
     kern_return_t result = jc_mach_overwrite((void *)(&machineContext)->__ss.JC_FRAME_POINTER, &node, sizeof(node));
     if (result != KERN_SUCCESS) {
         NSLog(@"获取线程栈顶失败");
@@ -88,6 +99,22 @@ cpu_type_t cpu_type(void) {
     mach_msg_type_number_t infoCount = HOST_BASIC_INFO_COUNT;
     host_info(mach_host_self(), HOST_BASIC_INFO, (host_info_t)&hostInfo, &infoCount);
     return hostInfo.cpu_type;
+}
+
++ (void)runWithTestStack {
+    [self testForStackFrame];
+}
+
++ (void)testForStackFrame {
+    [self testForStackFrameAnother];
+}
+
++ (void)testForStackFrameAnother {
+    [self testForStackFrameOther];
+}
+
++ (void)testForStackFrameOther {
+    [self run];
 }
 
 @end
