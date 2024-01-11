@@ -109,11 +109,9 @@ void symbolicated_address(const uintptr_t address, Dl_info *const info) {
 }
 
 uint32_t image_index_for_address(const uintptr_t address) {
-    // 获取Image总数
-    const uint32_t image_count = _dyld_image_count();
     const struct mach_header *machHeader = 0;
     // 遍历Image
-    for (uint32_t index = 0; index < image_count; index ++) {
+    for (uint32_t index = 0; index < _dyld_image_count(); index ++) {
         machHeader = _dyld_get_image_header(index);
         if (machHeader == NULL) {
             break;
