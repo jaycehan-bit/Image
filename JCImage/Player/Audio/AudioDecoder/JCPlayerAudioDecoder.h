@@ -1,15 +1,15 @@
 //
-//  JCVideoDecoder.h
+//  JCPlayerAudioDecoder.h
 //  JCImage
 //
-//  Created by jaycehan on 2023/12/29.
+//  Created by jaycehan on 2024/1/15.
 //
 
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JCVideoDecoder : NSObject
+@interface JCPlayerAudioDecoder : NSObject
 
 @end
 

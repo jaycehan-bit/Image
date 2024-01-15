@@ -124,13 +124,8 @@ uint32_t image_index_for_address(const uintptr_t address) {
         // 遍历load_command,判断地址是否处于其中；需判断32/64位
         for (uint32_t cmd_index = 0; cmd_index < machHeader->ncmds; cmd_index ++) {
             const struct load_command *load_command = (struct load_command *)cmdPointer;
-            if (load_command->cmd == LC_SEGMENT) {
-                const struct segment_command *segment_command = (struct segment_command *)cmdPointer;
-                if (offset_address >= segment_command->vmaddr && offset_address < segment_command->vmaddr + segment_command->vmsize) {
-                    return index;
-                }
-            } else if(load_command->cmd == LC_SEGMENT_64){
-                const struct segment_command_64 *segment_command = (struct segment_command_64 *)cmdPointer;
+            if (load_command->cmd == JC_LC_SEGMENT) {
+                const jc_segment_comand *segment_command = (jc_segment_comand *)cmdPointer;
                 if (offset_address >= segment_command->vmaddr && offset_address < segment_command->vmaddr + segment_command->vmsize) {
                     return index;
                 }

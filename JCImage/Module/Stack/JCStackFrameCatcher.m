@@ -42,9 +42,9 @@ typedef struct JCStackFrameEntry{
     if (!backtraceQueue) {
         backtraceQueue = dispatch_queue_create("com.JCImage.backtraceQueue", DISPATCH_QUEUE_SERIAL);
     }
-    dispatch_async(backtraceQueue, ^{
+//    dispatch_async(backtraceQueue, ^{
         [self runInSubthread];
-    });
+//    });
 }
 
 + (void)runInSubthread {
@@ -81,7 +81,9 @@ typedef struct JCStackFrameEntry{
     
     for (uint32_t index = 0; index < gJCStackFrameMaxCount; index ++) {
         Dl_info info = symbolicated[index];
-        printf("%s\n", info.dli_sname);
+        if (info.dli_sname) {
+            printf("%s\n", info.dli_sname);
+        }
     }
 }
 
