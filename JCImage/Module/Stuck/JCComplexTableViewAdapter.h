@@ -10,15 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol JCComplexTableViewAdapterDataSource <NSObject>
-
-- (CGFloat)tableViewWidth;
-
-@end
-
 @interface JCComplexTableViewAdapter : NSObject <UITableViewDataSource, UITableViewDelegate>
-
-@property (nonatomic, weak) id<JCComplexTableViewAdapterDataSource> dataSource;
 
 @end
 

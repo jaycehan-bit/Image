@@ -16,25 +16,27 @@ PODS:
     - AFNetworking/NSURLSession
   - Aspects (1.4.1)
   - CocoaAsyncSocket (7.6.5)
-  - FBRetainCycleDetector (5.0.6.1)
-  - MLeaksFinder (1.1.6):
-    - FBRetainCycleDetector
   - PLCrashReporter (1.11.1)
   - ReactiveObjC (3.1.1)
   - SDWebImage (5.18.1):
     - SDWebImage/Core (= 5.18.1)
   - SDWebImage/Core (5.18.1)
+  - WCDB.objc (2.0.4):
+    - WCDB.objc/no-arc (= 2.0.4)
+    - WCDBOptimizedSQLCipher (~> 1.4.2)
+  - WCDB.objc/no-arc (2.0.4):
+    - WCDBOptimizedSQLCipher (~> 1.4.2)
+  - WCDBOptimizedSQLCipher (1.4.2)
   - YYAsyncLayer (1.0)
 
 DEPENDENCIES:
   - AFNetworking
   - Aspects
   - CocoaAsyncSocket
-  - FBRetainCycleDetector (from `https://git.woa.com/TencentVideoShared/FBRetainCycleDetector.git`, tag `5.0.6.1`)
-  - MLeaksFinder (from `https://git.woa.com/TencentVideoShared/MLeaksFinder.git`, tag `1.1.6`)
   - PLCrashReporter
   - ReactiveObjC
   - SDWebImage
+  - WCDB.objc
   - YYAsyncLayer
 
 SPEC REPOS:
@@ -45,35 +47,21 @@ SPEC REPOS:
     - PLCrashReporter
     - ReactiveObjC
     - SDWebImage
+    - WCDB.objc
+    - WCDBOptimizedSQLCipher
     - YYAsyncLayer
-
-EXTERNAL SOURCES:
-  FBRetainCycleDetector:
-    :git: https://git.woa.com/TencentVideoShared/FBRetainCycleDetector.git
-    :tag: 5.0.6.1
-  MLeaksFinder:
-    :git: https://git.woa.com/TencentVideoShared/MLeaksFinder.git
-    :tag: 1.1.6
-
-CHECKOUT OPTIONS:
-  FBRetainCycleDetector:
-    :git: https://git.woa.com/TencentVideoShared/FBRetainCycleDetector.git
-    :tag: 5.0.6.1
-  MLeaksFinder:
-    :git: https://git.woa.com/TencentVideoShared/MLeaksFinder.git
-    :tag: 1.1.6
 
 SPEC CHECKSUMS:
   AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
   Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
-  FBRetainCycleDetector: ee24aea715a321293522a4bc54512964e0e9d802
-  MLeaksFinder: c07f24e886e08fc17e5a896f9458a9937f51c0ab
   PLCrashReporter: 5d2d3967afe0efad61b3048d617e2199a5d1b787
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   SDWebImage: ebdbcebc7933a45226d9313bd0118bc052ad458b
+  WCDB.objc: da286748c22cfecfc2e317492e6dce5c4052345e
+  WCDBOptimizedSQLCipher: ef2be79fed278289a309ad0d4d707c55bf166d6d
   YYAsyncLayer: df6b01ebc695c5f6b4c15dd5c23fa3e081eb25c0
 
-PODFILE CHECKSUM: a49bb1cb3db16381e436b2792c17007fc9c0a2b3
+PODFILE CHECKSUM: dc813292feb7d494faf85085fa5c796c26cf08a3
 
 COCOAPODS: 1.12.1

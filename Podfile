@@ -10,6 +10,7 @@ target 'JCImage' do
    pod 'YYAsyncLayer'
    pod 'SDWebImage'
    pod 'PLCrashReporter'
+   pod 'WCDB.objc'
 #   pod 'FBRetainCycleDetector'
 #   pod 'OOMDetector'
 #   pod 'fishhook', '0.2'

@@ -1,0 +1,1 @@
+../../../../WCDB.objc/src/bridge/objcbridge/WCTBridgeProperty+CPP.h
