@@ -21,6 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = UINavigationController.init(rootViewController: controller)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+        
+        JCStuckDetectorX.sharedInstance().run()
+//        JCStuckDetector.sharedInstance().run()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

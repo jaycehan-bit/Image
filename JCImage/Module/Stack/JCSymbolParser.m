@@ -96,12 +96,12 @@ void symbolicated_address(const uintptr_t address, Dl_info *const info) {
         if (symbol) {
             info->dli_saddr = (void *)(symbol->n_value + image_slide);
             info->dli_sname = (char *)((intptr_t)string_table + (intptr_t)symbol->n_un.n_strx);
-//            if (*info->dli_sname == '_') {
-//                info->dli_sname++;
-//            }
-//            if (info->dli_saddr == info->dli_fbase && symbol->n_type == 3) {
-//                    info->dli_sname = NULL;
-//            }
+            if (*info->dli_sname == '_') {
+                info->dli_sname++;
+            }
+            if (info->dli_saddr == info->dli_fbase && symbol->n_type == 3) {
+                info->dli_sname = NULL;
+            }
             break;
         }
         

@@ -9,29 +9,23 @@ import UIKit
 
 struct ViewControllerData {
     static let gJCImageCellIdentifier: String = "gJCImageCellIdentifier"
-    static let JCImageNameList = ["JCImage.JCTableViewController",  "JCImage.JCGLViewController", "JCImage.ModuleController", "JCLeaksViewController"]
+    static let JCImageNameList = ["JCImage.JCTableViewController",  "JCImage.JCGLViewController", "JCImage.ModuleController", "JCLeaksViewController", "JCStuckViewController"]
 }
 
 class ViewController: UIViewController {
     
-    let serialQueue = dispatch_queue_serial_t(label: "com.github.jaycehan.bit.JCImage.serialQueue")
-    
     lazy var tableView: UITableView = {
         let tableView = UITableView.init(frame: CGRect.zero, style: UITableView.Style.plain)
         tableView.backgroundColor = UIColor.black
+        tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         tableView.delegate = self
         tableView.dataSource = self
         return tableView
     }()
     
-    lazy var stuckDetector: JCStuckDetector = {
-        return JCStuckDetector.init()
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(tableView)
-        stuckDetector.run()
     }
     
     override func viewDidLayoutSubviews() {
@@ -51,9 +45,6 @@ extension ViewController : UITableViewDelegate {
         let className = ViewControllerData.JCImageNameList[indexPath.row]
         guard let controllerClass = NSClassFromString(className) else {
             JCStackFrameProvider.provideStackFrame {
-//                JCStackFrameCatcher.run()
-//                JCStackFrameCatcher.runWithTestStack()
-//                sleep(10)
             }
             return
         }

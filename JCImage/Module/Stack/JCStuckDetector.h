@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 // 探测间隔，默认为100
 @property (nonatomic, assign) NSTimeInterval detectInterval;
 
++ (instancetype)sharedInstance;
+
 @end
 
 NS_ASSUME_NONNULL_END

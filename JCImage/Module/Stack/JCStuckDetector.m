@@ -26,15 +26,22 @@
 
 @implementation JCStuckDetector
 
+static JCStuckDetector *detector = nil;
+
++ (instancetype)sharedInstance {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        detector = [[JCStuckDetector alloc] init];
+    });
+    return detector;
+}
+
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.detectInterval = 100;
+        self.detectInterval = 20;
         self.detectorQueue = dispatch_queue_create("com.JCImage.stuckQueue", DISPATCH_QUEUE_SERIAL);
         self.observerLock = [[NSLock alloc] init];
-        CFRunLoopObserverContext context = {0, (__bridge void *)(self), NULL, NULL};
-        //参数分别是: 分配空间 状态枚举 是否循环调用observer 优先级 回调函数 结构体
-        self.runLoopObserver = CFRunLoopObserverCreate(kCFAllocatorDefault, kCFRunLoopAllActivities, YES, 0, &runLoopObserverCallBack, &context);
         self.cancelled = YES;
     }
     return self;
@@ -44,9 +51,10 @@
     if (!self.cancelled) {
         return;
     }
+    [self.observerLock lock];
     self.cancelled = NO;
-    CFRunLoopAddObserver(CFRunLoopGetMain(), self.runLoopObserver, kCFRunLoopCommonModes);
-    [self launchDetectorThread];
+    [self.observerLock unlock];
+    [self beginMonitor];
 }
 
 - (void)cancel {
@@ -57,35 +65,28 @@
 }
 
 - (void)setDetectInterval:(NSTimeInterval)detectInterval {
-    [self.observerLock lock];
     _detectInterval = detectInterval;
-    [self.observerLock unlock];
 }
 
 #pragma mark - Detect
 
-- (void)launchDetectorThread {
-    self.semaphore = dispatch_semaphore_create(1);
+- (void)beginMonitor {
+    CFRunLoopObserverContext context = {0,(__bridge void *)self, NULL, NULL};
+    self.runLoopObserver = CFRunLoopObserverCreate(kCFAllocatorDefault, kCFRunLoopAllActivities, YES, 0, &runLoopObserverCallBack, &context);
+    CFRunLoopAddObserver(CFRunLoopGetMain(), self.runLoopObserver, kCFRunLoopCommonModes);
+    self.semaphore = dispatch_semaphore_create(0);
     dispatch_async(self.detectorQueue, ^{
-        NSUInteger stayCount = 0;
         while (!self.cancelled) {
-            intptr_t state = dispatch_semaphore_wait(self.semaphore, self.detectInterval);
-            if (self.activity != kCFRunLoopBeforeSources && self.activity != kCFRunLoopAfterWaiting) {
-                stayCount = 0;
-                continue;
-            }
+            intptr_t state = dispatch_semaphore_wait(self.semaphore, dispatch_time(DISPATCH_TIME_NOW, self.detectInterval * NSEC_PER_MSEC));
             if (state == 0) {
                 // 成功获取信号
-                stayCount = 0;
+                continue;
+            }
+            if (self.activity == kCFRunLoopBeforeWaiting) {
                 continue;
             }
             // 获取信号超时
-            stayCount += 1;
-            if (stayCount == 3) {
-                // 卡顿
-                [JCStackFrameCatcher run];
-                stayCount = 0;
-            }
+            [JCStackFrameCatcher run];
         }
     });
 }
@@ -119,11 +120,10 @@ static void runLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
     if (![((__bridge id)info) isKindOfClass:JCStuckDetector.class]) {
         return;
     }
-    if (activity == kCFRunLoopBeforeSources || activity == kCFRunLoopAfterWaiting) {
-        JCStuckDetector *detector = (__bridge id)info;
-        detector.activity = activity;
-        dispatch_semaphore_signal(detector.semaphore);
-    }
+//    NSLog(@"runLoopObserverCallBack:%@", activityStr);
+    JCStuckDetector *detector = (__bridge id)info;
+    detector.activity = activity;
+    dispatch_semaphore_signal(detector.semaphore);
 }
 
 @end

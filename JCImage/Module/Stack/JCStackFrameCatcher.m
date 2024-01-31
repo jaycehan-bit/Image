@@ -42,9 +42,7 @@ typedef struct JCStackFrameEntry{
     if (!backtraceQueue) {
         backtraceQueue = dispatch_queue_create("com.JCImage.backtraceQueue", DISPATCH_QUEUE_SERIAL);
     }
-//    dispatch_async(backtraceQueue, ^{
-        [self runInSubthread];
-//    });
+    [self runInSubthread];
 }
 
 + (void)runInSubthread {

@@ -28,14 +28,13 @@ class JCGLViewController: UIViewController {
     }
     
     deinit {
-//        EAGLView.d
     }
     
     func startRenderImage() {
-        let deadline = DispatchTime.now() + .milliseconds(300)
-        DispatchQueue.main.asyncAfter(deadline: deadline) {
+//        let deadline = DispatchTime.now() + .milliseconds(300)
+//        DispatchQueue.main.asyncAfter(deadline: deadline) {
             self.EAGLView.renderImage(withName: "Seraphine.jpg")
-        }
+//        }
     }
 }
 

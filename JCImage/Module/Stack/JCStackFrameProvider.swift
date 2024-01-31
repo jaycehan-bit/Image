@@ -11,20 +11,24 @@ class JCStackFrameProvider: NSObject {
     
     class func provideStackFrame(topStackFrame: @escaping () -> Void) {
         self.stackFrameFunction {
-            sleep(1)
+            sleep(10)
             topStackFrame()
         }
     }
     
     class func stackFrameFunction(topStackFrame: @escaping () -> Void) {
         self.anotherStackFrame {
-            sleep(1)
+            for i in (0..<100000) {
+                autoreleasepool {
+                    let str = String.init(format: "%d", i)
+                    
+                }
+            }
             topStackFrame()
         }
     }
     
     class func anotherStackFrame(topStackFrame: @escaping () -> Void) {
-        sleep(1)
         topStackFrame()
     }
     

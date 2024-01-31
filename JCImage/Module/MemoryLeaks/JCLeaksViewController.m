@@ -12,22 +12,20 @@
 
 - (void)registerDelegate:(id)delegate;
 
-@property (nonatomic, copy) void(^block)(void);
-
 @end
 
 @implementation JCLeaksViewDelegate {
-    NSMutableArray *_delegates;
+    NSMutableArray *_delegateList;
 }
 
 - (void)registerDelegate:(id)delegate {
     if (!delegate) {
         return;
     }
-    if (!_delegates) {
-        _delegates = [NSMutableArray array];
+    if (!_delegateList) {
+        _delegateList = [NSMutableArray array];
     }
-    [_delegates addObject:delegate];
+    [_delegateList addObject:delegate];
 }
 
 @end
@@ -36,9 +34,9 @@
     NSInteger _controllerID;
 }
 
-@property (nonatomic, strong) UIButton *leaksButton;
+@property (nonatomic, strong) UIButton *pushButton;
 
-@property (nonatomic, strong) UIButton *safeButton;
+@property (nonatomic, strong) UIButton *presentButton;
 
 @property (nonatomic, strong) JCLeaksViewDelegate *delegate;
 
@@ -49,58 +47,55 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.blackColor;
-    [self.view addSubview:self.leaksButton];
-    [self.view addSubview:self.safeButton];
+    [self.view addSubview:self.pushButton];
+    [self.view addSubview:self.presentButton];
     self.delegate = [[JCLeaksViewDelegate alloc] init];
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.leaksButton.frame = CGRectMake(16, 200, self.view.bounds.size.width - 32, 80);
-    self.safeButton.frame = CGRectMake(16, 400, self.view.bounds.size.width - 32, 80);
+    self.pushButton.frame = CGRectMake(16, 200, self.view.bounds.size.width - 32, 80);
+    self.presentButton.frame = CGRectMake(16, 400, self.view.bounds.size.width - 32, 80);
 }
 
-- (UIButton *)leaksButton {
-    if (!_leaksButton) {
-        _leaksButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_leaksButton.titleLabel setText:@"leaks测试"];
-        _leaksButton.titleLabel.textColor = UIColor.whiteColor;
-        _leaksButton.backgroundColor = UIColor.orangeColor;
-        _leaksButton.layer.cornerRadius = 10;
-        [_leaksButton addTarget:self action:@selector(leaksButtonDidSelect) forControlEvents:UIControlEventTouchUpInside];
-        [_leaksButton addTarget:self action:@selector(_leaksButtonDidSelect) forControlEvents:UIControlEventTouchUpInside];
+- (UIButton *)pushButton {
+    if (!_pushButton) {
+        _pushButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_pushButton setTitle:@"Push测试" forState:UIControlStateNormal];
+        [_pushButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+        _pushButton.backgroundColor = UIColor.orangeColor;
+        _pushButton.layer.cornerRadius = 10;
+        [_pushButton addTarget:self action:@selector(leaksButtonDidSelect) forControlEvents:UIControlEventTouchUpInside];
+        [_pushButton addTarget:self action:@selector(pushButtonDidSelect) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _leaksButton;
+    return _pushButton;
 }
 
 - (void)leaksButtonDidSelect {
     [self.delegate registerDelegate:self];
 }
 
-- (void)_leaksButtonDidSelect {
-    self.delegate.block = ^(){
-        [self description];
-    };
+- (void)pushButtonDidSelect {
+    UIViewController *viewController = [[JCLeaksViewController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
-- (UIButton *)safeButton {
-    if (!_safeButton) {
-        _safeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_safeButton.titleLabel setText:@"free测试"];
-        _safeButton.titleLabel.textColor = UIColor.whiteColor;
-        _safeButton.backgroundColor = UIColor.greenColor;
-        _safeButton.layer.cornerRadius = 10;
-        [_safeButton addTarget:self action:@selector(leaksButtonDidSelect) forControlEvents:UIControlEventTouchUpInside];
+- (UIButton *)presentButton {
+    if (!_presentButton) {
+        _presentButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_presentButton setTitle:@"Present测试" forState:UIControlStateNormal];
+        [_presentButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+        _presentButton.backgroundColor = UIColor.greenColor;
+        _presentButton.layer.cornerRadius = 10;
+        [_presentButton addTarget:self action:@selector(presentButtonDidSelect) forControlEvents:UIControlEventTouchUpInside];
+        [_presentButton addTarget:self action:@selector(leaksButtonDidSelect) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _safeButton;
+    return _presentButton;
 }
 
-- (void)safeButtonDidSelect {
-    
-}
-
-- (void)dealloc {
-    
+- (void)presentButtonDidSelect {
+    UIViewController *viewController = [[JCLeaksViewController alloc] initWithNibName:nil bundle:nil];
+    [self presentViewController:viewController animated:YES completion:nil];
 }
 
 @end

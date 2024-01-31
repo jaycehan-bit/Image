@@ -17,6 +17,8 @@
 		19FEB6AF2B348D18001E432B /* JCProgramProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FEB6AE2B348D18001E432B /* JCProgramProvider.m */; };
 		19FEB6B22B349281001E432B /* VertexShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 19FEB6B12B349281001E432B /* VertexShader.vsh */; };
 		19FEB6B42B3492CD001E432B /* FragShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 19FEB6B32B3492CD001E432B /* FragShader.fsh */; };
+		4E1C17682B639A5B00563325 /* JCStuckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1C17672B639A5B00563325 /* JCStuckViewController.m */; };
+		4E1C176B2B639B1100563325 /* JCComplexTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1C176A2B639B1100563325 /* JCComplexTableViewCell.m */; };
 		4E2806B92B273E5600ABFA68 /* JCSymbolParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2806B82B273E5600ABFA68 /* JCSymbolParser.m */; };
 		4E28E25C2B26B89000ABFA68 /* JCStackFrameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E28E25B2B26B89000ABFA68 /* JCStackFrameProvider.swift */; };
 		4E2A214F2AEF79D700F4DB35 /* JCTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2A214E2AEF79D700F4DB35 /* JCTableViewController.swift */; };
@@ -27,6 +29,11 @@
 		4E39F1202AEB81A30054BAB0 /* Riven.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E39F11F2AEB81A30054BAB0 /* Riven.jpg */; };
 		4E39F1222AEB81AC0054BAB0 /* Katarina.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4E39F1212AEB81AC0054BAB0 /* Katarina.jpg */; };
 		4E39F1242AEB95990054BAB0 /* JCImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E39F1232AEB95990054BAB0 /* JCImageTableViewCell.swift */; };
+		4E3F3AE12B679AE60002BC47 /* JCComplexTableViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3F3AE02B679AE60002BC47 /* JCComplexTableViewAdapter.m */; };
+		4E3F3AE42B67C0C80002BC47 /* JCComplexTableViewCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3F3AE32B67C0C70002BC47 /* JCComplexTableViewCellModel.m */; };
+		4E3F3AF12B67CE060002BC47 /* EmoticonQQ.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4E3F3AF02B67CE060002BC47 /* EmoticonQQ.bundle */; };
+		4E3F3AF62B68B3170002BC47 /* Package.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E3F3AF52B68B3170002BC47 /* Package.json */; };
+		4E3FABA82B6A23000002BC47 /* JCStuckDetectorX.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3FABA72B6A23000002BC47 /* JCStuckDetectorX.m */; };
 		4E5D338E2AF8E3E50049DEE1 /* JCAudioUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5D338D2AF8E3E50049DEE1 /* JCAudioUnit.swift */; };
 		4E7134942B15E9C9002A7DC3 /* JCGLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7134932B15E9C9002A7DC3 /* JCGLViewController.swift */; };
 		4EA815B42B387F3C00E28F0A /* JCEAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA815B32B387F3C00E28F0A /* JCEAGLView.m */; };
@@ -70,6 +77,10 @@
 		19FEB6AE2B348D18001E432B /* JCProgramProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCProgramProvider.m; sourceTree = "<group>"; };
 		19FEB6B12B349281001E432B /* VertexShader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = VertexShader.vsh; sourceTree = "<group>"; };
 		19FEB6B32B3492CD001E432B /* FragShader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = FragShader.fsh; sourceTree = "<group>"; };
+		4E1C17662B639A5B00563325 /* JCStuckViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCStuckViewController.h; sourceTree = "<group>"; };
+		4E1C17672B639A5B00563325 /* JCStuckViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCStuckViewController.m; sourceTree = "<group>"; };
+		4E1C17692B639B1100563325 /* JCComplexTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCComplexTableViewCell.h; sourceTree = "<group>"; };
+		4E1C176A2B639B1100563325 /* JCComplexTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCComplexTableViewCell.m; sourceTree = "<group>"; };
 		4E2806B62B271CBB00ABFA68 /* JCStackFrameDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCStackFrameDefine.h; sourceTree = "<group>"; };
 		4E2806B72B273E5600ABFA68 /* JCSymbolParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCSymbolParser.h; sourceTree = "<group>"; };
 		4E2806B82B273E5600ABFA68 /* JCSymbolParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCSymbolParser.m; sourceTree = "<group>"; };
@@ -83,6 +94,14 @@
 		4E39F11F2AEB81A30054BAB0 /* Riven.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Riven.jpg; sourceTree = "<group>"; };
 		4E39F1212AEB81AC0054BAB0 /* Katarina.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Katarina.jpg; sourceTree = "<group>"; };
 		4E39F1232AEB95990054BAB0 /* JCImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCImageTableViewCell.swift; sourceTree = "<group>"; };
+		4E3F3ADF2B679AE60002BC47 /* JCComplexTableViewAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCComplexTableViewAdapter.h; sourceTree = "<group>"; };
+		4E3F3AE02B679AE60002BC47 /* JCComplexTableViewAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCComplexTableViewAdapter.m; sourceTree = "<group>"; };
+		4E3F3AE22B67C0C70002BC47 /* JCComplexTableViewCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCComplexTableViewCellModel.h; sourceTree = "<group>"; };
+		4E3F3AE32B67C0C70002BC47 /* JCComplexTableViewCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCComplexTableViewCellModel.m; sourceTree = "<group>"; };
+		4E3F3AF02B67CE060002BC47 /* EmoticonQQ.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EmoticonQQ.bundle; sourceTree = "<group>"; };
+		4E3F3AF52B68B3170002BC47 /* Package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Package.json; sourceTree = "<group>"; };
+		4E3FABA62B6A23000002BC47 /* JCStuckDetectorX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCStuckDetectorX.h; sourceTree = "<group>"; };
+		4E3FABA72B6A23000002BC47 /* JCStuckDetectorX.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCStuckDetectorX.m; sourceTree = "<group>"; };
 		4E5D338D2AF8E3E50049DEE1 /* JCAudioUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCAudioUnit.swift; sourceTree = "<group>"; };
 		4E7134932B15E9C9002A7DC3 /* JCGLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCGLViewController.swift; sourceTree = "<group>"; };
 		4EA815B22B387F3C00E28F0A /* JCEAGLView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCEAGLView.h; sourceTree = "<group>"; };
@@ -328,9 +347,25 @@
 			path = ShaderFile;
 			sourceTree = "<group>";
 		};
+		4E1C17652B639A2A00563325 /* Stuck */ = {
+			isa = PBXGroup;
+			children = (
+				4E1C17662B639A5B00563325 /* JCStuckViewController.h */,
+				4E1C17672B639A5B00563325 /* JCStuckViewController.m */,
+				4E1C17692B639B1100563325 /* JCComplexTableViewCell.h */,
+				4E1C176A2B639B1100563325 /* JCComplexTableViewCell.m */,
+				4E3F3AE22B67C0C70002BC47 /* JCComplexTableViewCellModel.h */,
+				4E3F3AE32B67C0C70002BC47 /* JCComplexTableViewCellModel.m */,
+				4E3F3ADF2B679AE60002BC47 /* JCComplexTableViewAdapter.h */,
+				4E3F3AE02B679AE60002BC47 /* JCComplexTableViewAdapter.m */,
+			);
+			path = Stuck;
+			sourceTree = "<group>";
+		};
 		4E39F1182AEB74BB0054BAB0 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				4E3F3AF02B67CE060002BC47 /* EmoticonQQ.bundle */,
 				19FEB6B02B3491EF001E432B /* ShaderFile */,
 				4E39F11F2AEB81A30054BAB0 /* Riven.jpg */,
 				4E39F11D2AEB7FB60054BAB0 /* Seraphine.jpg */,
@@ -338,6 +373,7 @@
 				4E39F1192AEB74C50054BAB0 /* Teemo.png */,
 				4E39F1212AEB81AC0054BAB0 /* Katarina.jpg */,
 				4ED445C92B3E8EC6006A6C1D /* Fireworks.mov */,
+				4E3F3AF52B68B3170002BC47 /* Package.json */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -345,6 +381,7 @@
 		4E7134902B15E8BC002A7DC3 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				4E1C17652B639A2A00563325 /* Stuck */,
 				4EAA8B3E2B46CF7E00CE4C67 /* MemoryLeaks */,
 				4EEC9A2C2B208D5C00DBA33A /* Stack */,
 				4E7134922B15E9A1002A7DC3 /* OpenGLES */,
@@ -427,6 +464,13 @@
 				4EC625552B54FEE500F4CA55 /* JCPlayer.h */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		4EC625562B55006200F4CA55 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		4ED420782B3DA877006A6C1D /* FFmpeg-iOS */ = {
@@ -675,6 +719,8 @@
 				4ED5D1C22B445835009AD6AE /* JCStuckDetector.h */,
 				4ED5D1C32B445835009AD6AE /* JCStuckDetector.m */,
 				4ED5D1C62B445975009AD6AE /* JCStuckModule.h */,
+				4E3FABA62B6A23000002BC47 /* JCStuckDetectorX.h */,
+				4E3FABA72B6A23000002BC47 /* JCStuckDetectorX.m */,
 			);
 			path = Stack;
 			sourceTree = "<group>";
@@ -682,6 +728,7 @@
 		4EFCAD5B2AF4991300BDF7ED /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				4EC625562B55006200F4CA55 /* Config */,
 				4EC625512B54FE8200F4CA55 /* Controller */,
 				4EC625502B54FE5D00F4CA55 /* SyncModule */,
 				4EC6254B2B54FE2800F4CA55 /* Audio */,
@@ -785,8 +832,10 @@
 				4E39F1202AEB81A30054BAB0 /* Riven.jpg in Resources */,
 				4ED445CA2B3E8EC6006A6C1D /* Fireworks.mov in Resources */,
 				4E39F1222AEB81AC0054BAB0 /* Katarina.jpg in Resources */,
+				4E3F3AF12B67CE060002BC47 /* EmoticonQQ.bundle in Resources */,
 				19FEB6B42B3492CD001E432B /* FragShader.fsh in Resources */,
 				19D73A922AE94640003571E7 /* Main.storyboard in Resources */,
+				4E3F3AF62B68B3170002BC47 /* Package.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -825,9 +874,13 @@
 				4EC625542B54FE9700F4CA55 /* JCPlayerViewController.m in Sources */,
 				19FEB6AF2B348D18001E432B /* JCProgramProvider.m in Sources */,
 				4EA815B42B387F3C00E28F0A /* JCEAGLView.m in Sources */,
+				4E1C176B2B639B1100563325 /* JCComplexTableViewCell.m in Sources */,
+				4E3F3AE12B679AE60002BC47 /* JCComplexTableViewAdapter.m in Sources */,
 				19D73A8F2AE94640003571E7 /* ViewController.swift in Sources */,
 				4E2806B92B273E5600ABFA68 /* JCSymbolParser.m in Sources */,
 				4E5D338E2AF8E3E50049DEE1 /* JCAudioUnit.swift in Sources */,
+				4E1C17682B639A5B00563325 /* JCStuckViewController.m in Sources */,
+				4E3F3AE42B67C0C80002BC47 /* JCComplexTableViewCellModel.m in Sources */,
 				4E2ABB5B2B3D37FA00882ECE /* JCPlayerVideoDecoder.m in Sources */,
 				4ED5D1C42B445835009AD6AE /* JCStuckDetector.m in Sources */,
 				4EC6254F2B54FE5500F4CA55 /* JCPlayerAudioDecoder.m in Sources */,
@@ -839,6 +892,7 @@
 				19D73A8D2AE94640003571E7 /* SceneDelegate.swift in Sources */,
 				4E39F1242AEB95990054BAB0 /* JCImageTableViewCell.swift in Sources */,
 				4ED08C162AECD75400E6CF4A /* JCImageLoader.swift in Sources */,
+				4E3FABA82B6A23000002BC47 /* JCStuckDetectorX.m in Sources */,
 				4E28E25C2B26B89000ABFA68 /* JCStackFrameProvider.swift in Sources */,
 				4E7134942B15E9C9002A7DC3 /* JCGLViewController.swift in Sources */,
 				4EA815B72B388AF800E28F0A /* JCProgramArena.m in Sources */,
@@ -996,6 +1050,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = P2VK525HWZ;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1079,6 +1134,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = P2VK525HWZ;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
