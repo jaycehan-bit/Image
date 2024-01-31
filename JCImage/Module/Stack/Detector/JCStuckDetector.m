@@ -39,7 +39,7 @@ static JCStuckDetector *detector = nil;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.detectInterval = 20;
+        self.detectInterval = 100;
         self.detectorQueue = dispatch_queue_create("com.JCImage.stuckQueue", DISPATCH_QUEUE_SERIAL);
         self.observerLock = [[NSLock alloc] init];
         self.cancelled = YES;
@@ -94,33 +94,9 @@ static JCStuckDetector *detector = nil;
 #pragma mark - RunLoopObserverCallBack
 
 static void runLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void *info){
-    NSString *activityStr = @"";
-    switch (activity) {
-        case kCFRunLoopEntry:
-            activityStr = @"kCFRunLoopEntry";
-            break;
-        case kCFRunLoopBeforeTimers:
-            activityStr = @"kCFRunLoopBeforeTimers";
-            break;
-        case kCFRunLoopBeforeSources:
-            activityStr = @"kCFRunLoopBeforeSources";
-            break;
-        case kCFRunLoopBeforeWaiting:
-            activityStr = @"kCFRunLoopBeforeWaiting";
-            break;
-        case kCFRunLoopAfterWaiting:
-            activityStr = @"kCFRunLoopAfterWaiting";
-            break;
-        case kCFRunLoopExit:
-            activityStr = @"kCFRunLoopExit";
-            break;
-        default:
-            break;
-    }
     if (![((__bridge id)info) isKindOfClass:JCStuckDetector.class]) {
         return;
     }
-//    NSLog(@"runLoopObserverCallBack:%@", activityStr);
     JCStuckDetector *detector = (__bridge id)info;
     detector.activity = activity;
     dispatch_semaphore_signal(detector.semaphore);

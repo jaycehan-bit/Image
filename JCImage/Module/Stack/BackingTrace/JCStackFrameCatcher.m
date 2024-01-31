@@ -19,6 +19,7 @@
 #import <dlfcn.h>
 #import "JCStackFrameCatcher.h"
 #import "JCStackFrameDefine.h"
+#import "JCStuckInfoStorage.h"
 #import "JCSymbolParser.h"
 
 static const NSInteger gJCStackFrameMaxCount = 30;
@@ -67,13 +68,7 @@ typedef struct JCStackFrameEntry{
     }
     Dl_info symbolicated[gJCStackFrameMaxCount] = {0};
     parse(buffer, symbolicated, stack_depth);
-    
-    for (uint32_t index = 0; index < gJCStackFrameMaxCount; index ++) {
-        Dl_info info = symbolicated[index];
-        if (info.dli_sname) {
-            printf("%s\n", info.dli_sname);
-        }
-    }
+    storage(buffer, symbolicated, stack_depth);
 }
 
 kern_return_t jc_mach_overwrite(const void *const src, void *const dst, const size_t num_bytes) {

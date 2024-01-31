@@ -34,6 +34,7 @@
 		4E3F3AF12B67CE060002BC47 /* EmoticonQQ.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4E3F3AF02B67CE060002BC47 /* EmoticonQQ.bundle */; };
 		4E3F3AF62B68B3170002BC47 /* Package.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E3F3AF52B68B3170002BC47 /* Package.json */; };
 		4E3FABA82B6A23000002BC47 /* JCStuckDetectorX.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3FABA72B6A23000002BC47 /* JCStuckDetectorX.m */; };
+		4E3FABB02B6A3CDF0002BC47 /* JCStuckInfoStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3FABAF2B6A3CDF0002BC47 /* JCStuckInfoStorage.m */; };
 		4E5D338E2AF8E3E50049DEE1 /* JCAudioUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5D338D2AF8E3E50049DEE1 /* JCAudioUnit.swift */; };
 		4E7134942B15E9C9002A7DC3 /* JCGLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7134932B15E9C9002A7DC3 /* JCGLViewController.swift */; };
 		4EA815B42B387F3C00E28F0A /* JCEAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA815B32B387F3C00E28F0A /* JCEAGLView.m */; };
@@ -102,6 +103,8 @@
 		4E3F3AF52B68B3170002BC47 /* Package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Package.json; sourceTree = "<group>"; };
 		4E3FABA62B6A23000002BC47 /* JCStuckDetectorX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCStuckDetectorX.h; sourceTree = "<group>"; };
 		4E3FABA72B6A23000002BC47 /* JCStuckDetectorX.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCStuckDetectorX.m; sourceTree = "<group>"; };
+		4E3FABAE2B6A3CDF0002BC47 /* JCStuckInfoStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCStuckInfoStorage.h; sourceTree = "<group>"; };
+		4E3FABAF2B6A3CDF0002BC47 /* JCStuckInfoStorage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCStuckInfoStorage.m; sourceTree = "<group>"; };
 		4E5D338D2AF8E3E50049DEE1 /* JCAudioUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCAudioUnit.swift; sourceTree = "<group>"; };
 		4E7134932B15E9C9002A7DC3 /* JCGLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCGLViewController.swift; sourceTree = "<group>"; };
 		4EA815B22B387F3C00E28F0A /* JCEAGLView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCEAGLView.h; sourceTree = "<group>"; };
@@ -397,6 +400,8 @@
 				4EEC9A312B20935500DBA33A /* JCStackFrameCatcher.m */,
 				4E2806B72B273E5600ABFA68 /* JCSymbolParser.h */,
 				4E2806B82B273E5600ABFA68 /* JCSymbolParser.m */,
+				4E3FABAE2B6A3CDF0002BC47 /* JCStuckInfoStorage.h */,
+				4E3FABAF2B6A3CDF0002BC47 /* JCStuckInfoStorage.m */,
 			);
 			path = BackingTrace;
 			sourceTree = "<group>";
@@ -906,6 +911,7 @@
 				4E2A214F2AEF79D700F4DB35 /* JCTableViewController.swift in Sources */,
 				19D73AA52AE9786D003571E7 /* JCCommonUnit.swift in Sources */,
 				19D73A8D2AE94640003571E7 /* SceneDelegate.swift in Sources */,
+				4E3FABB02B6A3CDF0002BC47 /* JCStuckInfoStorage.m in Sources */,
 				4E39F1242AEB95990054BAB0 /* JCImageTableViewCell.swift in Sources */,
 				4ED08C162AECD75400E6CF4A /* JCImageLoader.swift in Sources */,
 				4E3FABA82B6A23000002BC47 /* JCStuckDetectorX.m in Sources */,

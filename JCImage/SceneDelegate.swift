@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         
-        JCStuckDetectorX.sharedInstance().run()
+//        JCStuckDetectorX.sharedInstance().run()
 //        JCStuckDetector.sharedInstance().run()
     }
 

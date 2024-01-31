@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JCSymbolParser : NSObject
 
-+ (void)run;
-
 void parse(uintptr_t *symbol, Dl_info *symbolicated, uint32_t symbol_count);
 
 @end
