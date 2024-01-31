@@ -378,6 +378,29 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		4E3FABA92B6A2ED90002BC47 /* Detector */ = {
+			isa = PBXGroup;
+			children = (
+				4ED5D1C22B445835009AD6AE /* JCStuckDetector.h */,
+				4ED5D1C32B445835009AD6AE /* JCStuckDetector.m */,
+				4ED5D1C62B445975009AD6AE /* JCStuckModule.h */,
+				4E3FABA62B6A23000002BC47 /* JCStuckDetectorX.h */,
+				4E3FABA72B6A23000002BC47 /* JCStuckDetectorX.m */,
+			);
+			path = Detector;
+			sourceTree = "<group>";
+		};
+		4E3FABAA2B6A2EE80002BC47 /* BackingTrace */ = {
+			isa = PBXGroup;
+			children = (
+				4EEC9A302B20935500DBA33A /* JCStackFrameCatcher.h */,
+				4EEC9A312B20935500DBA33A /* JCStackFrameCatcher.m */,
+				4E2806B72B273E5600ABFA68 /* JCSymbolParser.h */,
+				4E2806B82B273E5600ABFA68 /* JCSymbolParser.m */,
+			);
+			path = BackingTrace;
+			sourceTree = "<group>";
+		};
 		4E7134902B15E8BC002A7DC3 /* Module */ = {
 			isa = PBXGroup;
 			children = (
@@ -710,17 +733,10 @@
 		4EEC9A2C2B208D5C00DBA33A /* Stack */ = {
 			isa = PBXGroup;
 			children = (
+				4E3FABAA2B6A2EE80002BC47 /* BackingTrace */,
+				4E3FABA92B6A2ED90002BC47 /* Detector */,
 				4E28E25B2B26B89000ABFA68 /* JCStackFrameProvider.swift */,
 				4E2806B62B271CBB00ABFA68 /* JCStackFrameDefine.h */,
-				4EEC9A302B20935500DBA33A /* JCStackFrameCatcher.h */,
-				4EEC9A312B20935500DBA33A /* JCStackFrameCatcher.m */,
-				4E2806B72B273E5600ABFA68 /* JCSymbolParser.h */,
-				4E2806B82B273E5600ABFA68 /* JCSymbolParser.m */,
-				4ED5D1C22B445835009AD6AE /* JCStuckDetector.h */,
-				4ED5D1C32B445835009AD6AE /* JCStuckDetector.m */,
-				4ED5D1C62B445975009AD6AE /* JCStuckModule.h */,
-				4E3FABA62B6A23000002BC47 /* JCStuckDetectorX.h */,
-				4E3FABA72B6A23000002BC47 /* JCStuckDetectorX.m */,
 			);
 			path = Stack;
 			sourceTree = "<group>";
