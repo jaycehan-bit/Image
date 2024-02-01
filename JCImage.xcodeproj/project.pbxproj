@@ -60,6 +60,7 @@
 		4ED445CA2B3E8EC6006A6C1D /* Fireworks.mov in Resources */ = {isa = PBXBuildFile; fileRef = 4ED445C92B3E8EC6006A6C1D /* Fireworks.mov */; };
 		4ED5D1C42B445835009AD6AE /* JCStuckDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED5D1C32B445835009AD6AE /* JCStuckDetector.m */; };
 		4EEC9A322B20935500DBA33A /* JCStackFrameCatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEC9A312B20935500DBA33A /* JCStackFrameCatcher.m */; };
+		4EFAE8142B6B39B5002CC770 /* JCStuckMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EFAE8132B6B39B5002CC770 /* JCStuckMaker.m */; };
 		5CD8D4792E16A99F842BA400 /* libPods-JCImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60EE499D31F6D8017A8490C5 /* libPods-JCImage.a */; };
 /* End PBXBuildFile section */
 
@@ -265,6 +266,8 @@
 		4EEC9A2F2B20935400DBA33A /* JCImage-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JCImage-Bridging-Header.h"; sourceTree = "<group>"; };
 		4EEC9A302B20935500DBA33A /* JCStackFrameCatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCStackFrameCatcher.h; sourceTree = "<group>"; };
 		4EEC9A312B20935500DBA33A /* JCStackFrameCatcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCStackFrameCatcher.m; sourceTree = "<group>"; };
+		4EFAE8122B6B39B5002CC770 /* JCStuckMaker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCStuckMaker.h; sourceTree = "<group>"; };
+		4EFAE8132B6B39B5002CC770 /* JCStuckMaker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCStuckMaker.m; sourceTree = "<group>"; };
 		60EE499D31F6D8017A8490C5 /* libPods-JCImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JCImage.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B01D7BA44A171B01443D7564 /* Pods-JCImage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JCImage.debug.xcconfig"; path = "Target Support Files/Pods-JCImage/Pods-JCImage.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -738,12 +741,22 @@
 		4EEC9A2C2B208D5C00DBA33A /* Stack */ = {
 			isa = PBXGroup;
 			children = (
+				4EFAE8112B6B39A6002CC770 /* StuckMaker */,
 				4E3FABAA2B6A2EE80002BC47 /* BackingTrace */,
 				4E3FABA92B6A2ED90002BC47 /* Detector */,
 				4E28E25B2B26B89000ABFA68 /* JCStackFrameProvider.swift */,
 				4E2806B62B271CBB00ABFA68 /* JCStackFrameDefine.h */,
 			);
 			path = Stack;
+			sourceTree = "<group>";
+		};
+		4EFAE8112B6B39A6002CC770 /* StuckMaker */ = {
+			isa = PBXGroup;
+			children = (
+				4EFAE8122B6B39B5002CC770 /* JCStuckMaker.h */,
+				4EFAE8132B6B39B5002CC770 /* JCStuckMaker.m */,
+			);
+			path = StuckMaker;
 			sourceTree = "<group>";
 		};
 		4EFCAD5B2AF4991300BDF7ED /* Player */ = {
@@ -909,6 +922,7 @@
 				19D73A8B2AE94640003571E7 /* AppDelegate.swift in Sources */,
 				4EAA8B412B46CFA000CE4C67 /* JCLeaksViewController.m in Sources */,
 				4E2A214F2AEF79D700F4DB35 /* JCTableViewController.swift in Sources */,
+				4EFAE8142B6B39B5002CC770 /* JCStuckMaker.m in Sources */,
 				19D73AA52AE9786D003571E7 /* JCCommonUnit.swift in Sources */,
 				19D73A8D2AE94640003571E7 /* SceneDelegate.swift in Sources */,
 				4E3FABB02B6A3CDF0002BC47 /* JCStuckInfoStorage.m in Sources */,

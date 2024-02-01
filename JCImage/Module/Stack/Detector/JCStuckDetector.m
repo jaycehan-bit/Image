@@ -39,7 +39,7 @@ static JCStuckDetector *detector = nil;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.detectInterval = 100;
+        self.detectInterval = 50;
         self.detectorQueue = dispatch_queue_create("com.JCImage.stuckQueue", DISPATCH_QUEUE_SERIAL);
         self.observerLock = [[NSLock alloc] init];
         self.cancelled = YES;

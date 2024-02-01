@@ -7,13 +7,17 @@
 
 #import "JCComplexTableViewCell.h"
 #import "JCComplexTableViewAdapter.h"
+#import "JCStuckMaker.h"
 #import "JCStuckViewController.h"
 
-static NSString * const JCComplexTableViewCellIdentifier = @"JCComplexTableViewCellIdentifier";
+static const CGFloat JCStuckButtonSize = 50;
+static const CGFloat JCStuckViewPadding = 16;
 
 @interface JCStuckViewController ()
 
 @property (nonatomic, strong) JCComplexTableViewAdapter *dataSource;
+
+@property (nonatomic, strong) UIBarButtonItem *rightButton;
 
 @end
 
@@ -23,6 +27,7 @@ static NSString * const JCComplexTableViewCellIdentifier = @"JCComplexTableViewC
     [super viewDidLoad];
     self.tableView.dataSource = self.dataSource;
     self.tableView.delegate = self.dataSource;
+    self.navigationItem.rightBarButtonItem = self.rightButton;
 }
 
 #pragma mark - DataSource
@@ -32,6 +37,20 @@ static NSString * const JCComplexTableViewCellIdentifier = @"JCComplexTableViewC
         _dataSource = [[JCComplexTableViewAdapter alloc] init];
     }
     return _dataSource;
+}
+
+#pragma mark - Button
+
+- (UIBarButtonItem *)rightButton {
+    if (!_rightButton) {
+        _rightButton = [[UIBarButtonItem alloc] initWithTitle:@"卡顿" style:UIBarButtonItemStylePlain target:self action:@selector(stuckButtonDidClick)];
+        _rightButton.tintColor = UIColor.redColor;
+    }
+    return _rightButton;
+}
+
+- (void)stuckButtonDidClick {
+    [JCStuckMaker stuckWithDegree:JCStuckDegreeModerate untilDate:[NSDate dateWithTimeIntervalSinceNow:10]];
 }
 
 @end

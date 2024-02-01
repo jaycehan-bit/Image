@@ -8,7 +8,7 @@
 #import "JCStuckDetectorX.h"
 #import "JCStackFrameCatcher.h"
 
-static NSTimeInterval JCStuckThreshold = 0.1;
+static NSTimeInterval JCStuckThreshold = 0.05;
 
 @interface JCStuckDetectorX ()
 

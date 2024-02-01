@@ -18,6 +18,8 @@ static NSArray * const imageList = @[@"Riven.jpg",  @"Seraphine.jpg", @"Akali.jp
 
 @property (nonatomic, strong) NSMutableArray<JCComplexTableViewCellModel *> *dataList;
 
+@property (nonatomic, strong) NSTimer *timer;
+
 @end
 
 @implementation JCComplexTableViewAdapter
@@ -26,6 +28,13 @@ static NSArray * const imageList = @[@"Riven.jpg",  @"Seraphine.jpg", @"Akali.jp
     self = [super init];
     if (self) {
         [self mockCellData];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            __weak JCComplexTableViewAdapter *weakSelf = self;
+            self.timer = [NSTimer timerWithTimeInterval:0.4 repeats:YES block:^(NSTimer * _Nonnull timer) {
+//                [weakSelf timeConsumingMethod];
+            }];
+            [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
+        });
     }
     return self;
 }
@@ -35,7 +44,6 @@ static NSArray * const imageList = @[@"Riven.jpg",  @"Seraphine.jpg", @"Akali.jp
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     [self timeConsumingMethod];
     JCComplexTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:JCComplexTableViewCellIdentifier];
-    [self timeConsumingMethod];
     if (!cell) {
         cell = [[JCComplexTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JCComplexTableViewCellIdentifier];
     }
