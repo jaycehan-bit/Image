@@ -10,9 +10,6 @@
 #import "JCStuckMaker.h"
 #import "JCStuckViewController.h"
 
-static const CGFloat JCStuckButtonSize = 50;
-static const CGFloat JCStuckViewPadding = 16;
-
 @interface JCStuckViewController ()
 
 @property (nonatomic, strong) JCComplexTableViewAdapter *dataSource;
@@ -50,7 +47,7 @@ static const CGFloat JCStuckViewPadding = 16;
 }
 
 - (void)stuckButtonDidClick {
-    [JCStuckMaker stuckWithDegree:JCStuckDegreeModerate untilDate:[NSDate dateWithTimeIntervalSinceNow:10]];
+    [JCStuckMaker stuckWithDegree:JCStuckDegreeModerate untilDate:[NSDate dateWithTimeIntervalSinceNow:5]];
 }
 
 @end

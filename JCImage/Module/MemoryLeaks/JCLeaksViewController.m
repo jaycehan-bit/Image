@@ -30,9 +30,7 @@
 
 @end
 
-@interface JCLeaksViewController () {
-    NSInteger _controllerID;
-}
+@interface JCLeaksViewController ()
 
 @property (nonatomic, strong) UIButton *pushButton;
 

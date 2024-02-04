@@ -9,7 +9,7 @@ import UIKit
 
 struct ViewControllerData {
     static let gJCImageCellIdentifier: String = "gJCImageCellIdentifier"
-    static let JCImageNameList = ["JCImage.JCTableViewController",  "JCImage.JCGLViewController", "JCImage.ModuleController", "JCLeaksViewController", "JCStuckViewController"]
+    static let JCImageNameList = ["JCImage.JCTableViewController",  "JCImage.JCGLViewController", "JCImage.ModuleController", "JCLeaksViewController", "JCStuckViewController", "JCFreshTableViewController", "JCPlayerViewController"]
 }
 
 class ViewController: UIViewController {
@@ -44,8 +44,6 @@ extension ViewController : UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: false)
         let className = ViewControllerData.JCImageNameList[indexPath.row]
         guard let controllerClass = NSClassFromString(className) else {
-            JCStackFrameProvider.provideStackFrame {
-            }
             return
         }
         guard let _controllerClass = controllerClass as? UIViewController.Type else {

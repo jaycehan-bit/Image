@@ -18,8 +18,6 @@ static NSArray * const imageList = @[@"Riven.jpg",  @"Seraphine.jpg", @"Akali.jp
 
 @property (nonatomic, strong) NSMutableArray<JCComplexTableViewCellModel *> *dataList;
 
-@property (nonatomic, strong) NSTimer *timer;
-
 @end
 
 @implementation JCComplexTableViewAdapter
@@ -28,13 +26,6 @@ static NSArray * const imageList = @[@"Riven.jpg",  @"Seraphine.jpg", @"Akali.jp
     self = [super init];
     if (self) {
         [self mockCellData];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            __weak JCComplexTableViewAdapter *weakSelf = self;
-            self.timer = [NSTimer timerWithTimeInterval:0.4 repeats:YES block:^(NSTimer * _Nonnull timer) {
-//                [weakSelf timeConsumingMethod];
-            }];
-            [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
-        });
     }
     return self;
 }
@@ -42,7 +33,6 @@ static NSArray * const imageList = @[@"Riven.jpg",  @"Seraphine.jpg", @"Akali.jp
 #pragma mark - UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self timeConsumingMethod];
     JCComplexTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:JCComplexTableViewCellIdentifier];
     if (!cell) {
         cell = [[JCComplexTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JCComplexTableViewCellIdentifier];
@@ -62,26 +52,28 @@ static NSArray * const imageList = @[@"Riven.jpg",  @"Seraphine.jpg", @"Akali.jp
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self timeConsumingMethod];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self timeConsumingMethod];
 }
 
 #pragma mark - Mock
 
 - (void)mockCellData {
     for (NSUInteger index = 0; index < 50; index ++) {
-        NSString *text = @"";
-        for (NSUInteger i = 0; i < (arc4random() % 10) + 2; i ++) {
-            text = [text stringByAppendingString:JCComplexString];
-        }
-        UIImage *image = nil;
-        if (arc4random() % 2) {
-            image = [UIImage imageNamed:imageList[(arc4random() % imageList.count)]];
-        }
-        JCComplexTableViewCellModel *viewModel = [[JCComplexTableViewCellModel alloc] initWithTitle:text image:image];
+        JCComplexTableViewCellModel *viewModel = [self.class generateRandomViewModel];
         [self.dataList addObject:viewModel];
     }
+}
+
++ (JCComplexTableViewCellModel *)generateRandomViewModel {
+    NSString *text = @"";
+    for (NSUInteger i = 0; i < (arc4random() % 10) + 2; i ++) {
+        text = [text stringByAppendingString:JCComplexString];
+    }
+    UIImage *image = nil;
+    if (arc4random() % 2) {
+        image = [UIImage imageNamed:imageList[(arc4random() % imageList.count)]];
+    }
+    return [[JCComplexTableViewCellModel alloc] initWithTitle:text image:image];
 }
 
 - (NSMutableArray *)dataList {
@@ -91,7 +83,7 @@ static NSArray * const imageList = @[@"Riven.jpg",  @"Seraphine.jpg", @"Akali.jp
     return _dataList;
 }
 
-- (void)timeConsumingMethod {
++ (void)timeConsumingMethod {
     [self.class readLocalFileWithName:@"Package"];
     for (NSUInteger index = 0; index < 1000; index ++) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
