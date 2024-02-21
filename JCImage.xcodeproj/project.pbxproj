@@ -726,6 +726,15 @@
 			path = OpenGLES;
 			sourceTree = "<group>";
 		};
+		4E87CAFA2B85C8FA005D7A63 /* Decoder */ = {
+			isa = PBXGroup;
+			children = (
+				4EC6254B2B54FE2800F4CA55 /* Audio */,
+				4EC6254A2B54FE1F00F4CA55 /* Video */,
+			);
+			path = Decoder;
+			sourceTree = "<group>";
+		};
 		4EAA8B3E2B46CF7E00CE4C67 /* MemoryLeaks */ = {
 			isa = PBXGroup;
 			children = (
@@ -827,13 +836,12 @@
 		4EFCAD5B2AF4991300BDF7ED /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				4E87CAFA2B85C8FA005D7A63 /* Decoder */,
 				4E5AE5A02B70BD25004BD032 /* RenderView */,
 				4E5AE59C2B6FA679004BD032 /* Model */,
 				4E1191A92B6F556800A49DD1 /* ModuleInterface */,
 				4EC625512B54FE8200F4CA55 /* Controller */,
 				4EC625502B54FE5D00F4CA55 /* SyncModule */,
-				4EC6254B2B54FE2800F4CA55 /* Audio */,
-				4EC6254A2B54FE1F00F4CA55 /* Video */,
 				4E5D338D2AF8E3E50049DEE1 /* JCAudioUnit.swift */,
 			);
 			path = Player;
