@@ -6,8 +6,12 @@
 //
 
 #import "avformat.h"
+#import "JCPlayerRenderView.h"
 #import "JCPlayerVideoDecoder.h"
 #import "JCPlayerViewController.h"
+#import "JCPlayerVideoFrame.h"
+
+static const CGFloat JCPlayerRatio = 16 / 9.0;
 
 @interface JCPlayerViewController ()
 
@@ -15,13 +19,17 @@
 
 @property (nonatomic, strong) id<JCVideoDecoder> videoDecoder;
 
+@property (nonatomic, strong) JCPlayerRenderView *playerView;
+
 @end
 
 @implementation JCPlayerViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = UIColor.blackColor;
+    [self.view addSubview:self.playerView];
     self.navigationItem.rightBarButtonItem = self.button;
 }
 
@@ -29,7 +37,21 @@
     if (!URL.length) {
         return;
     }
-    [self.videoDecoder decodeVideoFrameWithURL:URL];
+    
+    static NSArray *imageNameList = @[@"Riven.jpg",  @"Seraphine.jpg", @"Akali.jpg", @"Teemo.png", @"Katarina.jpg"];
+    static NSUInteger index = 0;
+    
+    JCPlayerVideoFrame *videoFrame = [[JCPlayerVideoFrame alloc] init];
+    videoFrame.imageName = imageNameList[index];
+    [self.playerView renderVideoFrame:videoFrame];
+    
+    index += 1;
+    index = index % imageNameList.count;
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    self.playerView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.width / JCPlayerRatio);
 }
 
 #pragma mark - Init
@@ -39,6 +61,14 @@
         _videoDecoder = [[JCPlayerVideoDecoder alloc] init];
     }
     return _videoDecoder;
+}
+
+- (JCPlayerRenderView *)playerView {
+    if (!_playerView) {
+        _playerView = [[JCPlayerRenderView alloc] initWithFrame:CGRectZero];
+        _playerView.backgroundColor = UIColor.blackColor;
+    }
+    return _playerView;
 }
 
 #pragma mark - DEBUG

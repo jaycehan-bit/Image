@@ -6,10 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JCVideoFrame.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JCPlayerRenderView : UIView
+
+- (void)renderVideoFrame:(id<JCVideoFrame>)videoFrame;
 
 @end
 

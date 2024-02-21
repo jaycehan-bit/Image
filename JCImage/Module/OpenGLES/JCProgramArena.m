@@ -133,7 +133,7 @@
 }
 
 - (GLuint)textureUniform {
-    return glGetUniformLocation(_program, "inputImageTexture");
+    return glGetUniformLocation(_program, "texSampler");
 }
 
 @end
