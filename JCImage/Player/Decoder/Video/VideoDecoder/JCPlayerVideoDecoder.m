@@ -7,8 +7,19 @@
 
 #import "avformat.h"
 #import "JCPlayerVideoDecoder.h"
+#import "JCPlayerVideoFrame.h"
+
+@interface JCPlayerVideoDecoder ()
+
+@property (nonatomic, copy) NSArray<id<JCVideoFrame>> *frameBuffer;
+
+@end
 
 @implementation JCPlayerVideoDecoder
+
+- (id<JCVideoFrame>)decodeVideoWithAVPacket:(AVPacket)packet size:(NSUInteger)size {
+    return nil;
+}
 
 - (void)decodeVideoFrameWithURL:(NSString *)URL {
     AVFormatContext *format_context = formate_context(URL);
@@ -38,6 +49,7 @@
     }
     AVPacket *av_packet = av_malloc(sizeof(AVPacket));
     AVFrame *av_frame = av_frame_alloc();
+    NSMutableArray *frameBuffer = [NSMutableArray array];
     while (!av_read_frame(format_context, av_packet)) {
         if (av_packet->stream_index != stream_index) {
             // 存在stream_index不相等的情况0.0
@@ -63,8 +75,13 @@
             break;;
         } else {
             NSLog(@"✅✅✅ Receive frame success");
+            @autoreleasepool {
+                JCPlayerVideoFrame *videoFrame = [[JCPlayerVideoFrame alloc] initWithAVFrame:av_frame];
+                [frameBuffer addObject:videoFrame];
+            }
         }
     }
+    self.frameBuffer = frameBuffer.copy;
 }
 
 static AVFormatContext * formate_context(NSString *URL) {

@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "avformat.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol JCVideoFrame <NSObject>
@@ -15,9 +15,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign, readonly) CGFloat width;
 
-@property (nonatomic, strong, readonly) id imageBuffer;
+@property (nonatomic, assign, readonly) uint8_t **data;
 
-@property (nonatomic, copy) NSString *imageName;
+@property (nonatomic, strong, readonly) NSData *luma;
+
+@property (nonatomic, strong, readonly) NSData *chromaB;
+
+@property (nonatomic, strong, readonly) NSData *chromaR;
+
+@property (nonatomic, assign, readonly) AVFrame *avFrame;
 
 @end
 

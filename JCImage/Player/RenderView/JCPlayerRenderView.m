@@ -64,16 +64,17 @@ static const GLfloat JCPlayerTextureCoordinates[] = {
 
 - (void)renderVideoFrame:(id<JCVideoFrame>)videoFrame {
     if (!videoFrame) {
-//        return;
+        return;
     }
     [EAGLContext setCurrentContext:self.EAGLContext];
     [self configRenderContext];
     [self compileProgramIfNeeded];
     
-    UIImage *image = [UIImage imageNamed:videoFrame.imageName];
-    GLuint textureID = [self generateTextureForImage:image];
-    
-    CGFloat height = image.size.height / image.size.width * self.renderWidth;
+//    UIImage *image = [UIImage imageNamed:videoFrame.imageName];
+//    UIImage *image = nil;
+//    GLuint textureID = [self generateTextureForImage:image];
+    GLuint textureID = [self.class generateTextureForVideoFrame:videoFrame];
+    CGFloat height = videoFrame.height / videoFrame.width * self.renderWidth;
     glViewport(0, 0, self.renderWidth, height);
     
     glClearColor(0.0, 0.0, 1.0, 1.0);
@@ -118,6 +119,29 @@ static const GLfloat JCPlayerTextureCoordinates[] = {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (GLsizei)image.size.width, (GLsizei)image.size.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    if (textureID == 0) {
+        NSLog(@"❌❌❌ Fail to gen texture");
+    } else {
+        NSLog(@"✅✅✅ Texture gen success");
+    }
+    return textureID;
+}
+
++ (GLuint)generateTextureForVideoFrame:(id<JCVideoFrame>)videoFrame {
+    if (videoFrame.data == NULL) {
+//        return 0;
+    }
+    GLuint textureID;
+    glGenTextures(1, &textureID);
+    glBindTexture(GL_TEXTURE_2D, textureID);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (GLsizei)videoFrame.width, (GLsizei)videoFrame.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, videoFrame.avFrame->data);
     glBindTexture(GL_TEXTURE_2D, 0);
     if (textureID == 0) {
         NSLog(@"❌❌❌ Fail to gen texture");

@@ -50,6 +50,7 @@
 		4E5AE5A32B70BD39004BD032 /* JCPlayerRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5AE5A22B70BD39004BD032 /* JCPlayerRenderView.m */; };
 		4E5D338E2AF8E3E50049DEE1 /* JCAudioUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5D338D2AF8E3E50049DEE1 /* JCAudioUnit.swift */; };
 		4E7134942B15E9C9002A7DC3 /* JCGLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7134932B15E9C9002A7DC3 /* JCGLViewController.swift */; };
+		4E87CAFD2B85C938005D7A63 /* JCPlayerDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E87CAFC2B85C938005D7A63 /* JCPlayerDecoder.m */; };
 		4EA815B42B387F3C00E28F0A /* JCEAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA815B32B387F3C00E28F0A /* JCEAGLView.m */; };
 		4EA815B72B388AF800E28F0A /* JCProgramArena.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA815B62B388AF800E28F0A /* JCProgramArena.m */; };
 		4EAA8B412B46CFA000CE4C67 /* JCLeaksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAA8B402B46CFA000CE4C67 /* JCLeaksViewController.m */; };
@@ -259,6 +260,8 @@
 		4E7134932B15E9C9002A7DC3 /* JCGLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCGLViewController.swift; sourceTree = "<group>"; };
 		4E87CAF82B85BA19005D7A63 /* JCAudioDecoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCAudioDecoder.h; sourceTree = "<group>"; };
 		4E87CAF92B85C083005D7A63 /* JCAudioFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCAudioFrame.h; sourceTree = "<group>"; };
+		4E87CAFB2B85C938005D7A63 /* JCPlayerDecoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCPlayerDecoder.h; sourceTree = "<group>"; };
+		4E87CAFC2B85C938005D7A63 /* JCPlayerDecoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCPlayerDecoder.m; sourceTree = "<group>"; };
 		4EA815B22B387F3C00E28F0A /* JCEAGLView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCEAGLView.h; sourceTree = "<group>"; };
 		4EA815B32B387F3C00E28F0A /* JCEAGLView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCEAGLView.m; sourceTree = "<group>"; };
 		4EA815B52B388AF800E28F0A /* JCProgramArena.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCProgramArena.h; sourceTree = "<group>"; };
@@ -731,6 +734,8 @@
 			children = (
 				4EC6254B2B54FE2800F4CA55 /* Audio */,
 				4EC6254A2B54FE1F00F4CA55 /* Video */,
+				4E87CAFB2B85C938005D7A63 /* JCPlayerDecoder.h */,
+				4E87CAFC2B85C938005D7A63 /* JCPlayerDecoder.m */,
 			);
 			path = Decoder;
 			sourceTree = "<group>";
@@ -984,6 +989,7 @@
 				19FEB6AF2B348D18001E432B /* JCProgramProvider.m in Sources */,
 				4EA815B42B387F3C00E28F0A /* JCEAGLView.m in Sources */,
 				4E1C176B2B639B1100563325 /* JCComplexTableViewCell.m in Sources */,
+				4E87CAFD2B85C938005D7A63 /* JCPlayerDecoder.m in Sources */,
 				4E5AE5A32B70BD39004BD032 /* JCPlayerRenderView.m in Sources */,
 				4E3F3AE12B679AE60002BC47 /* JCComplexTableViewAdapter.m in Sources */,
 				19D73A8F2AE94640003571E7 /* ViewController.swift in Sources */,

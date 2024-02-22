@@ -37,16 +37,8 @@ static const CGFloat JCPlayerRatio = 16 / 9.0;
     if (!URL.length) {
         return;
     }
-    
-    static NSArray *imageNameList = @[@"Riven.jpg",  @"Seraphine.jpg", @"Akali.jpg", @"Teemo.png", @"Katarina.jpg"];
-    static NSUInteger index = 0;
-    
-    JCPlayerVideoFrame *videoFrame = [[JCPlayerVideoFrame alloc] init];
-    videoFrame.imageName = imageNameList[index];
-    [self.playerView renderVideoFrame:videoFrame];
-    
-    index += 1;
-    index = index % imageNameList.count;
+    [self.videoDecoder decodeVideoFrameWithURL:URL];
+    [self.playerView renderVideoFrame:self.videoDecoder.frameBuffer[10]];
 }
 
 - (void)viewWillLayoutSubviews {

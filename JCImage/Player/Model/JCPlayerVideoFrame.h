@@ -6,11 +6,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "avformat.h"
 #import "JCVideoFrame.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JCPlayerVideoFrame : NSObject <JCVideoFrame>
+
+- (instancetype)initWithAVFrame:(AVFrame *)frame;
 
 @end
 

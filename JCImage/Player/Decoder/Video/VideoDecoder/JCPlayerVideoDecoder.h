@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JCPlayerVideoDecoder : NSObject <JCVideoDecoder>
 
+@property (nonatomic, copy, readonly) NSArray<id<JCVideoFrame>> *frameBuffer;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -10,30 +10,39 @@
 
 @interface JCPlayerVideoFrame ()
 
+@property (nonatomic, assign) CGFloat height;
+
+@property (nonatomic, assign) CGFloat width;
+
+@property (nonatomic, assign) uint8_t **data;
+
+@property (nonatomic, strong) NSData *luma;
+
+@property (nonatomic, strong) NSData *chromaB;
+
+@property (nonatomic, strong) NSData *chromaR;
+
+@property (nonatomic, assign) AVFrame *avFrame;
+
 @end
 
 @implementation JCPlayerVideoFrame
 
-@synthesize height, width, imageBuffer, imageName;
+- (instancetype)initWithAVFrame:(AVFrame *)frame {
+    self = [super init];
+    self.height = frame->height;
+    self.width = frame->width;
+//    self.data = (uint8_t **)malloc(sizeof(uint8_t *));
+//    for (int i = 0; i < 3; i++) {
+//        self.data[i] = (uint8_t *)malloc(AV_NUM_DATA_POINTERS * sizeof(uint8_t));
+//        memcpy(self.data[i], frame->data[i], frame->width);
+//    }
+    self.avFrame = frame;
+    return self;
+}
 
-- (id)imageBuffer {
-#if DEBUG
-    UIImage *image = [UIImage imageNamed:@"Seraphine.jpg"];
-    CGDataProviderRef dataProvider = CGImageGetDataProvider(image.CGImage);
-    CFDataRef dataRef = CGDataProviderCopyData(dataProvider);
-    uint8_t *pixel = (uint8_t *)CFDataGetBytePtr(dataRef);
-//    CGFloat height = image.size.height / image.size.width * self.backingWidth;
-
-#endif
-    return nil;
+- (uint8_t **)data {
+    return self.avFrame->data;
 }
 
 @end
-
-/*
-CGImageRef imageRef = image.CGImage;
-CGDataProviderRef dataProvider = CGImageGetDataProvider(imageRef);
-CFDataRef dataRef = CGDataProviderCopyData(dataProvider);
-uint8_t *pixel = (uint8_t *)CFDataGetBytePtr(dataRef);
-CGFloat height = image.size.height / image.size.width * self.backingWidth;
-*/
