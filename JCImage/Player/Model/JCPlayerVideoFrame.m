@@ -20,18 +20,6 @@
 
 @property (nonatomic, strong) NSData *chroma;
 
-@property (nonatomic, assign) AVFrame *avFrame;
-
-
-// 亮度
-@property (nonatomic, assign) uint8_t *__luminance;
-
-// 色度
-@property (nonatomic, assign) uint8_t  *__chrominance;
-
-// 浓度
-@property (nonatomic, assign) uint8_t *__chroma;
-
 @end
 
 @implementation JCPlayerVideoFrame
@@ -43,7 +31,6 @@
     self.luminance = copyFrameData(frame->data[0], frame->linesize[0], frame->width, frame->height);
     self.chrominance = copyFrameData(frame->data[1], frame->linesize[1], frame->width / 2, frame->height / 2);
     self.chroma = copyFrameData(frame->data[2], frame->linesize[2], frame->width / 2, frame->height / 2);
-    self.avFrame = frame;
     return self;
 }
 
@@ -57,18 +44,6 @@ static NSData * copyFrameData(const uint8_t *src, const uint linesize, const uin
         src += linesize;
     }
     return mutableData.copy;
-}
-
-- (uint8_t *)__luminance {
-    return self.avFrame->data[0];
-}
-
-- (uint8_t *)__chrominance {
-    return self.avFrame->data[1];
-}
-
-- (uint8_t *)__chroma {
-    return self.avFrame->data[2];
 }
 
 @end

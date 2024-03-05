@@ -45,15 +45,15 @@ static const GLfloat indices[] = {
 
 @property (nonatomic, assign) GLuint program;
 
-@property (nonatomic, assign) int renderWidth;
-
-@property (nonatomic, assign) int renderHeight;
-
 @property (nonatomic, strong) JCProgramArena *programProvider;
 
 @property (nonatomic, strong) NSLock *lock;
 
 @property (nonatomic, assign) unsigned int VAO;
+
+@property (nonatomic, assign) unsigned int renderBuffer;
+
+@property (nonatomic, assign) unsigned int frameBuffer;
 
 @end
 
@@ -93,70 +93,44 @@ static const GLfloat indices[] = {
 - (void)generateTexturesWithVideoFrame:(id<JCVideoFrame>)videoFrame {
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, _textures[0]);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, (GLsizei)videoFrame.width, (GLsizei)videoFrame.height, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, videoFrame.__luminance);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, (GLsizei)videoFrame.width, (GLsizei)videoFrame.height, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, videoFrame.luminance.bytes);
     
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, _textures[1]);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, (GLsizei)videoFrame.width / 2, (GLsizei)videoFrame.height  / 2, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, videoFrame.__chrominance);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, (GLsizei)videoFrame.width / 2, (GLsizei)videoFrame.height  / 2, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, videoFrame.chrominance.bytes);
     
     glActiveTexture(GL_TEXTURE2);
     glBindTexture(GL_TEXTURE_2D, _textures[2]);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, (GLsizei)videoFrame.width  / 2, (GLsizei)videoFrame.height  / 2, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, videoFrame.__chroma);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, (GLsizei)videoFrame.width  / 2, (GLsizei)videoFrame.height  / 2, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, videoFrame.chroma.bytes);
     
-    glBindTexture(GL_TEXTURE_2D, 0);
+    glUniform1i(glGetUniformLocation(self.program, "texture_Y"), 0);
+    glUniform1i(glGetUniformLocation(self.program, "texture_U"), 1);
+    glUniform1i(glGetUniformLocation(self.program, "texture_V"), 2);
 }
 
 #pragma mark - Render
 
 - (void)prepare {
     [EAGLContext setCurrentContext:self.EAGLContext];
-    glViewport(0, 0, self.bounds.size.width, self.bounds.size.height);
-    [self initializeTexture];
     [self configRenderContext];
     [self compileProgramIfNeeded];
+    [self initializeTexture];
     [self configOpenGLObjects];
-}
-
-- (void)renderVideoFrame:(id<JCVideoFrame>)videoFrame {
-    if (!videoFrame) {
-        return;
-    }
-    glClearColor(0.0, 0.0, 0.0, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
-    glUseProgram(self.program);
-    
-    [self generateTexturesWithVideoFrame:videoFrame];
-    
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE0, _textures[0]);
-    
-    glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE1, _textures[1]);
-    
-    glActiveTexture(GL_TEXTURE2);
-    glBindTexture(GL_TEXTURE2, _textures[2]);
-    
-    glBindVertexArray(_VAO);
-    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-    [self.EAGLContext presentRenderbuffer:GL_RENDERBUFFER];
+    glViewport(0, 0, self.bounds.size.width, self.bounds.size.height);
 }
 
 #pragma mark - RenderBuffer
 
 - (void)configRenderContext {
-    static GLuint framebuffers;
-    static GLuint renderbuffers;
+    glDeleteFramebuffers(1, &_frameBuffer);
+    glDeleteRenderbuffers(1, &_renderBuffer);
     
-    glDeleteFramebuffers(1, &framebuffers);
-    glDeleteRenderbuffers(1, &renderbuffers);
+    glGenFramebuffers(1, &_frameBuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, _frameBuffer);
     
-    glGenFramebuffers(1, &framebuffers);
-    glBindFramebuffer(GL_FRAMEBUFFER, framebuffers);
-    
-    glGenRenderbuffers(1, &renderbuffers);
-    glBindRenderbuffer(GL_RENDERBUFFER, renderbuffers);
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, renderbuffers);
+    glGenRenderbuffers(1, &_renderBuffer);
+    glBindRenderbuffer(GL_RENDERBUFFER, _renderBuffer);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, _renderBuffer);
     
     [self.EAGLContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:(CAEAGLLayer *)self.layer];
 
@@ -177,12 +151,12 @@ static const GLfloat indices[] = {
     GLuint VBO;
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_DYNAMIC_DRAW);
     
     GLuint EBO;
     glGenBuffers(1, &EBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_DYNAMIC_DRAW);
     
     glVertexAttribPointer(glGetAttribLocation(self.program, "position"), 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void *)0);
     glEnableVertexAttribArray(glGetAttribLocation(self.program, "position"));
@@ -215,9 +189,25 @@ static const GLfloat indices[] = {
         NSLog(@"✅✅✅ Program complie success");
     }
     glUseProgram(self.program);
-    glUniform1i(glGetUniformLocation(self.program, "texture_Y"), 0);
-    glUniform1i(glGetUniformLocation(self.program, "texture_U"), 1);
-    glUniform1i(glGetUniformLocation(self.program, "texture_V"), 2);
+}
+
+#pragma mark - RenderOperation
+
+- (void)renderVideoFrame:(id<JCVideoFrame>)videoFrame {
+    __weak typeof(self) weakSelf = self;
+    [self.renderQueue addOperationWithBlock:^{
+        if (!weakSelf || !videoFrame) {
+            return;
+        }
+        [EAGLContext setCurrentContext:weakSelf.EAGLContext];
+        glClearColor(0.0, 0.0, 0.0, 1.0);
+        glClear(GL_COLOR_BUFFER_BIT);
+        glUseProgram(weakSelf.program);
+        [weakSelf generateTexturesWithVideoFrame:videoFrame];
+        glBindVertexArray(weakSelf.VAO);
+        glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+        [weakSelf.EAGLContext presentRenderbuffer:GL_RENDERBUFFER];
+    }];
 }
 
 #pragma mark - Initialize
