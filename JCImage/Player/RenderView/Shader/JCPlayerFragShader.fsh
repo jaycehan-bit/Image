@@ -1,11 +1,12 @@
 #version 300 es
 precision highp float;
+out vec4 fragColor;
+in vec2 v_texcoord;
+in vec3 v_color;
+
 uniform sampler2D texture_Y;
 uniform sampler2D texture_U;
 uniform sampler2D texture_V;
-layout(location = 0) out vec4 fragColor;
-in vec2 v_texcoord;
-in vec3 v_color;
 
 void main()
 {
@@ -16,5 +17,4 @@ void main()
     highp float g = y - 0.344 * u - 0.714 * v;
     highp float b = y + 1.772 * u;
     fragColor = vec4(r, g, b, 1.0);
-//    fragColor = vec4(v_color, 1.0);
 }

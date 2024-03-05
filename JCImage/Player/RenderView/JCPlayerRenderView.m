@@ -92,16 +92,16 @@ static const GLfloat indices[] = {
 
 - (void)generateTexturesWithVideoFrame:(id<JCVideoFrame>)videoFrame {
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, 0);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, (GLsizei)videoFrame.width, (GLsizei)videoFrame.height, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, videoFrame.luminance.bytes);
+    glBindTexture(GL_TEXTURE_2D, _textures[0]);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, (GLsizei)videoFrame.width, (GLsizei)videoFrame.height, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, videoFrame.__luminance);
     
     glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, 1);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, (GLsizei)videoFrame.width / 2, (GLsizei)videoFrame.height / 2, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, videoFrame.chrominance.bytes);
+    glBindTexture(GL_TEXTURE_2D, _textures[1]);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, (GLsizei)videoFrame.width / 2, (GLsizei)videoFrame.height  / 2, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, videoFrame.__chrominance);
     
     glActiveTexture(GL_TEXTURE2);
-    glBindTexture(GL_TEXTURE_2D, 2);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, (GLsizei)videoFrame.width / 2, (GLsizei)videoFrame.height / 2, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, videoFrame.chroma.bytes);
+    glBindTexture(GL_TEXTURE_2D, _textures[2]);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, (GLsizei)videoFrame.width  / 2, (GLsizei)videoFrame.height  / 2, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, videoFrame.__chroma);
     
     glBindTexture(GL_TEXTURE_2D, 0);
 }

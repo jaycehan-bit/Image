@@ -38,7 +38,8 @@ static const CGFloat JCPlayerRatio = 16 / 9.0;
         return;
     }
     [self.videoDecoder decodeVideoFrameWithURL:URL];
-    [self.playerView renderVideoFrame:self.videoDecoder.frameBuffer[10]];
+    [self.playerView prepare];
+    [self.playerView renderVideoFrame:self.videoDecoder.frameBuffer[0]];
 }
 
 - (void)viewWillLayoutSubviews {
