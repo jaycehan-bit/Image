@@ -10,21 +10,34 @@
 #import "JCProgramArena.h"
 #import "JCProgramProvider.h"
 
-static const GLfloat JCPlayerImageVertices[] = {
-    -1.0f, -1.0f,
-    1.0f, -1.0f,
-    -1.0f,  1.0f,
-    1.0f,  1.0f,
+static const GLfloat JCPlayerVertices[] = {
+    -1.0, 1.0, 0.0, 0.0, 1.0,   // 左上角
+     1.0, 1.0, 0.0, 1.0, 1.0,   // 右上角
+     1.0,  -1, 0.0, 1.0, 0.0,   // 右下角
+      -1,  -1, 0.0, 0.0, 0,0,   // 左下角
 };
 
-static const GLfloat JCPlayerTextureCoordinates[] = {
-    0.0f, 1.0f,
-    1.0f, 1.0f,
-    0.0f, 0.0f,
-    1.0f, 0.0f,
+static const GLfloat vertices[] = {
+    // 坐标              // 颜色                                // 纹理坐标
+    // 左上角
+    -1.0, 1, 0.0,     1.0, 0.0, 0.0,      0.0, 1.0,
+    // 右上角
+    1, 1, 0.0,     0.0, 1.0, 0.0,        1.0, 1.0,
+    // 右下角
+    1.0, -1.0, 0.0,     0.0, 0.0, 1.0,        1.0, 0.0,
+    // 左下角
+    -1.0, -1.0, 0.0,     0.0, 0.0, 0.0,        0.0, 0.0,
 };
 
-@interface JCPlayerRenderView ()
+
+static const GLfloat indices[] = {
+    0, 1, 2,    // 第一个三角形顶点
+    0, 2, 3,    // 第二个三角形顶点
+};
+
+@interface JCPlayerRenderView () {
+    GLuint _textures[3];
+}
 
 @property (nonatomic, strong) NSOperationQueue *renderQueue;
 
@@ -39,6 +52,8 @@ static const GLfloat JCPlayerTextureCoordinates[] = {
 @property (nonatomic, strong) JCProgramArena *programProvider;
 
 @property (nonatomic, strong) NSLock *lock;
+
+@property (nonatomic, assign) unsigned int VAO;
 
 @end
 
@@ -60,95 +75,71 @@ static const GLfloat JCPlayerTextureCoordinates[] = {
     return self;
 }
 
+#pragma mark - Texture
+
+- (void)initializeTexture {
+    glGenTextures(3, _textures);
+    for (NSUInteger index = 0; index < 3; index ++) {
+        glBindTexture(GL_TEXTURE_2D, _textures[index]);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, 1920, 1080, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, NULL);
+    }
+    glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+- (void)generateTexturesWithVideoFrame:(id<JCVideoFrame>)videoFrame {
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, (GLsizei)videoFrame.width, (GLsizei)videoFrame.height, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, videoFrame.luminance.bytes);
+    
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, 1);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, (GLsizei)videoFrame.width / 2, (GLsizei)videoFrame.height / 2, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, videoFrame.chrominance.bytes);
+    
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_2D, 2);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, (GLsizei)videoFrame.width / 2, (GLsizei)videoFrame.height / 2, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, videoFrame.chroma.bytes);
+    
+    glBindTexture(GL_TEXTURE_2D, 0);
+}
+
 #pragma mark - Render
+
+- (void)prepare {
+    [EAGLContext setCurrentContext:self.EAGLContext];
+    glViewport(0, 0, self.bounds.size.width, self.bounds.size.height);
+    [self initializeTexture];
+    [self configRenderContext];
+    [self compileProgramIfNeeded];
+    [self configOpenGLObjects];
+}
 
 - (void)renderVideoFrame:(id<JCVideoFrame>)videoFrame {
     if (!videoFrame) {
         return;
     }
-    [EAGLContext setCurrentContext:self.EAGLContext];
-    [self configRenderContext];
-    [self compileProgramIfNeeded];
-    
-//    UIImage *image = [UIImage imageNamed:videoFrame.imageName];
-//    UIImage *image = nil;
-//    GLuint textureID = [self generateTextureForImage:image];
-    GLuint textureID = [self.class generateTextureForVideoFrame:videoFrame];
-    CGFloat height = videoFrame.height / videoFrame.width * self.renderWidth;
-    glViewport(0, 0, self.renderWidth, height);
-    
-    glClearColor(0.0, 0.0, 1.0, 1.0);
+    glClearColor(0.0, 0.0, 0.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glBindTexture(GL_TEXTURE_2D, textureID);
     
+    glUseProgram(self.program);
     
-    int position = glGetAttribLocation(self.program, "position");
-    int texcoord = glGetAttribLocation(self.program, "texcoord");
-    int textureLocation = glGetUniformLocation(self.program, "texSampler");
-    
-    glVertexAttribPointer(position, 2, GL_FLOAT, 0, 0, JCPlayerImageVertices);
-    glEnableVertexAttribArray(position);
-    glVertexAttribPointer(texcoord, 2, GL_FLOAT, 0, 0, JCPlayerTextureCoordinates);
-    glEnableVertexAttribArray(texcoord);
+    [self generateTexturesWithVideoFrame:videoFrame];
     
     glActiveTexture(GL_TEXTURE0);
-    glUniform1i(textureLocation, 0);
+    glBindTexture(GL_TEXTURE0, _textures[0]);
     
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE1, _textures[1]);
+    
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE2, _textures[2]);
+    
+    glBindVertexArray(_VAO);
+    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
     [self.EAGLContext presentRenderbuffer:GL_RENDERBUFFER];
-}
-
-#pragma mark - Texture
-
-- (GLuint)generateTextureForImage:(UIImage *)image {
-    if (image == NULL) {
-        return 0;
-    }
-    
-    CGDataProviderRef dataProvider = CGImageGetDataProvider(image.CGImage);
-    CFDataRef dataRef = CGDataProviderCopyData(dataProvider);
-    uint8_t *pixel = (uint8_t *)CFDataGetBytePtr(dataRef);
-    
-    GLuint textureID;
-    glGenTextures(1, &textureID);
-    glBindTexture(GL_TEXTURE_2D, textureID);
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (GLsizei)image.size.width, (GLsizei)image.size.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
-    glBindTexture(GL_TEXTURE_2D, 0);
-    if (textureID == 0) {
-        NSLog(@"❌❌❌ Fail to gen texture");
-    } else {
-        NSLog(@"✅✅✅ Texture gen success");
-    }
-    return textureID;
-}
-
-+ (GLuint)generateTextureForVideoFrame:(id<JCVideoFrame>)videoFrame {
-    if (videoFrame.data == NULL) {
-//        return 0;
-    }
-    GLuint textureID;
-    glGenTextures(1, &textureID);
-    glBindTexture(GL_TEXTURE_2D, textureID);
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (GLsizei)videoFrame.width, (GLsizei)videoFrame.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, videoFrame.avFrame->data);
-    glBindTexture(GL_TEXTURE_2D, 0);
-    if (textureID == 0) {
-        NSLog(@"❌❌❌ Fail to gen texture");
-    } else {
-        NSLog(@"✅✅✅ Texture gen success");
-    }
-    return textureID;
 }
 
 #pragma mark - RenderBuffer
@@ -168,9 +159,7 @@ static const GLfloat JCPlayerTextureCoordinates[] = {
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, renderbuffers);
     
     [self.EAGLContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:(CAEAGLLayer *)self.layer];
-    glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_WIDTH, &_renderWidth);
-    glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_HEIGHT, &_renderHeight);
-    
+
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE) {
         NSLog(@"✅✅✅ Framebuffer config success");
     } else {
@@ -179,14 +168,37 @@ static const GLfloat JCPlayerTextureCoordinates[] = {
     }
 }
 
+#pragma mark - GLObjects
+
+- (void)configOpenGLObjects {
+    glGenVertexArrays(1, &_VAO);
+    glBindVertexArray(self.VAO);
+    
+    GLuint VBO;
+    glGenBuffers(1, &VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    
+    GLuint EBO;
+    glGenBuffers(1, &EBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+    
+    glVertexAttribPointer(glGetAttribLocation(self.program, "position"), 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void *)0);
+    glEnableVertexAttribArray(glGetAttribLocation(self.program, "position"));
+
+    glVertexAttribPointer(glGetAttribLocation(self.program, "color"), 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void *)(3 * sizeof(GLfloat)));
+    glEnableVertexAttribArray(glGetAttribLocation(self.program, "color"));
+
+    glVertexAttribPointer(glGetAttribLocation(self.program, "texcoord"), 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void *)(6 * sizeof(GLfloat)));
+    glEnableVertexAttribArray(glGetAttribLocation(self.program, "texcoord"));
+}
+
 - (void)compileProgramIfNeeded {
-    if (self.program != 0) {
-        return;
-    }
     GLuint vertexShader;
-    [JCProgramProvider shader:&vertexShader type:GL_VERTEX_SHADER filePath:[NSBundle.mainBundle pathForResource:@"VertexShader" ofType:@"vsh"]];
+    [JCProgramProvider shader:&vertexShader type:GL_VERTEX_SHADER filePath:[NSBundle.mainBundle pathForResource:@"JCPlayerVertexShader" ofType:@"vsh"]];
     GLuint fragShader;
-    [JCProgramProvider shader:&fragShader type:GL_FRAGMENT_SHADER filePath:[NSBundle.mainBundle pathForResource:@"FragShader" ofType:@"fsh"]];
+    [JCProgramProvider shader:&fragShader type:GL_FRAGMENT_SHADER filePath:[NSBundle.mainBundle pathForResource:@"JCPlayerFragShader" ofType:@"fsh"]];
 
     [JCProgramProvider program:&_program vertexShader:vertexShader fragSharder:fragShader];
 
@@ -198,10 +210,14 @@ static const GLfloat JCPlayerTextureCoordinates[] = {
     glGetProgramiv(self.program, GL_LINK_STATUS, &status);
     if (status == GL_FALSE) {
         NSLog(@"❌❌❌ Fail to compile program");
+        return;
     } else {
         NSLog(@"✅✅✅ Program complie success");
-        glUseProgram(self.program);
     }
+    glUseProgram(self.program);
+    glUniform1i(glGetUniformLocation(self.program, "texture_Y"), 0);
+    glUniform1i(glGetUniformLocation(self.program, "texture_U"), 1);
+    glUniform1i(glGetUniformLocation(self.program, "texture_V"), 2);
 }
 
 #pragma mark - Initialize
