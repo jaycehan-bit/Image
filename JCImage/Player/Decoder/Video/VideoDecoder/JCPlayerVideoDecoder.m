@@ -75,10 +75,8 @@
             break;;
         } else {
             NSLog(@"✅✅✅ Receive frame success");
-            @autoreleasepool {
-                JCPlayerVideoFrame *videoFrame = [[JCPlayerVideoFrame alloc] initWithAVFrame:av_frame];
-                [frameBuffer addObject:videoFrame];
-            }
+            JCPlayerVideoFrame *videoFrame = [[JCPlayerVideoFrame alloc] initWithAVFrame:av_frame];
+            [frameBuffer addObject:videoFrame];
         }
     }
     self.frameBuffer = frameBuffer.copy;
