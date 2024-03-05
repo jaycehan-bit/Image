@@ -223,7 +223,7 @@ static const GLfloat JCPlayerTextureCoordinates[] = {
 
 - (EAGLContext *)EAGLContext {
     if (!_EAGLContext) {
-        _EAGLContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+        _EAGLContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
     }
     return _EAGLContext;
 }

@@ -17,6 +17,8 @@
 		19FEB6AF2B348D18001E432B /* JCProgramProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FEB6AE2B348D18001E432B /* JCProgramProvider.m */; };
 		19FEB6B22B349281001E432B /* VertexShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 19FEB6B12B349281001E432B /* VertexShader.vsh */; };
 		19FEB6B42B3492CD001E432B /* FragShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 19FEB6B32B3492CD001E432B /* FragShader.fsh */; };
+		4E0646472B95C03400C41077 /* JCPlayerVertexShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 4E0646462B95C03400C41077 /* JCPlayerVertexShader.vsh */; };
+		4E0646492B95C05400C41077 /* JCPlayerFragShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 4E0646482B95C05400C41077 /* JCPlayerFragShader.fsh */; };
 		4E118DA42B6F4A7300A49DD1 /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E118D9D2B6F4A7300A49DD1 /* libavutil.a */; };
 		4E118DA52B6F4A7300A49DD1 /* libavfilter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E118D9E2B6F4A7300A49DD1 /* libavfilter.a */; };
 		4E118DA62B6F4A7300A49DD1 /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E118D9F2B6F4A7300A49DD1 /* libavcodec.a */; };
@@ -86,6 +88,8 @@
 		19FEB6AE2B348D18001E432B /* JCProgramProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCProgramProvider.m; sourceTree = "<group>"; };
 		19FEB6B12B349281001E432B /* VertexShader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = VertexShader.vsh; sourceTree = "<group>"; };
 		19FEB6B32B3492CD001E432B /* FragShader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = FragShader.fsh; sourceTree = "<group>"; };
+		4E0646462B95C03400C41077 /* JCPlayerVertexShader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = JCPlayerVertexShader.vsh; sourceTree = "<group>"; };
+		4E0646482B95C05400C41077 /* JCPlayerFragShader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = JCPlayerFragShader.fsh; sourceTree = "<group>"; };
 		4E118D1B2B6F4A7300A49DD1 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		4E118D1C2B6F4A7300A49DD1 /* buffersrc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffersrc.h; sourceTree = "<group>"; };
 		4E118D1D2B6F4A7300A49DD1 /* buffersink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffersink.h; sourceTree = "<group>"; };
@@ -374,6 +378,15 @@
 				19FEB6B32B3492CD001E432B /* FragShader.fsh */,
 			);
 			path = ShaderFile;
+			sourceTree = "<group>";
+		};
+		4E0646452B95BFE600C41077 /* Shader */ = {
+			isa = PBXGroup;
+			children = (
+				4E0646462B95C03400C41077 /* JCPlayerVertexShader.vsh */,
+				4E0646482B95C05400C41077 /* JCPlayerFragShader.fsh */,
+			);
+			path = Shader;
 			sourceTree = "<group>";
 		};
 		4E118D182B6F4A7300A49DD1 /* FFmpeg-iOS */ = {
@@ -686,6 +699,7 @@
 		4E5AE5A02B70BD25004BD032 /* RenderView */ = {
 			isa = PBXGroup;
 			children = (
+				4E0646452B95BFE600C41077 /* Shader */,
 				4E5AE5A12B70BD39004BD032 /* JCPlayerRenderView.h */,
 				4E5AE5A22B70BD39004BD032 /* JCPlayerRenderView.m */,
 			);
@@ -939,6 +953,7 @@
 				19D73A972AE94642003571E7 /* LaunchScreen.storyboard in Resources */,
 				4E39F11C2AEB7DE60054BAB0 /* Akali.jpg in Resources */,
 				19FEB6B22B349281001E432B /* VertexShader.vsh in Resources */,
+				4E0646492B95C05400C41077 /* JCPlayerFragShader.fsh in Resources */,
 				19D73A942AE94642003571E7 /* Assets.xcassets in Resources */,
 				4E5AE59B2B6F8432004BD032 /* StreetScenery.mp4 in Resources */,
 				4E39F11E2AEB7FB70054BAB0 /* Seraphine.jpg in Resources */,
@@ -947,6 +962,7 @@
 				4ED445CA2B3E8EC6006A6C1D /* Fireworks.mov in Resources */,
 				4E39F1222AEB81AC0054BAB0 /* Katarina.jpg in Resources */,
 				4E3F3AF12B67CE060002BC47 /* EmoticonQQ.bundle in Resources */,
+				4E0646472B95C03400C41077 /* JCPlayerVertexShader.vsh in Resources */,
 				19FEB6B42B3492CD001E432B /* FragShader.fsh in Resources */,
 				19D73A922AE94640003571E7 /* Main.storyboard in Resources */,
 				4E3F3AF62B68B3170002BC47 /* Package.json in Resources */,
