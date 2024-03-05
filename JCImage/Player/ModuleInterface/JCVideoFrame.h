@@ -10,20 +10,20 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol JCVideoFrame <NSObject>
+// 高度
+@property (nonatomic, assign, readonly) NSUInteger height;
 
-@property (nonatomic, assign, readonly) CGFloat height;
+// 宽度
+@property (nonatomic, assign, readonly) NSUInteger width;
 
-@property (nonatomic, assign, readonly) CGFloat width;
+// 亮度
+@property (nonatomic, strong, readonly) NSData *luminance;
 
-@property (nonatomic, assign, readonly) uint8_t **data;
+// 色度
+@property (nonatomic, strong, readonly) NSData *chrominance;
 
-@property (nonatomic, strong, readonly) NSData *luma;
-
-@property (nonatomic, strong, readonly) NSData *chromaB;
-
-@property (nonatomic, strong, readonly) NSData *chromaR;
-
-@property (nonatomic, assign, readonly) AVFrame *avFrame;
+// 浓度
+@property (nonatomic, strong, readonly) NSData *chroma;
 
 @end
 
