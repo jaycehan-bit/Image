@@ -8,10 +8,21 @@
 #import "avformat.h"
 #import "JCPlayerVideoDecoder.h"
 #import "JCPlayerVideoFrame.h"
+#import "JCPlayerVideoInfo.h"
 
 @interface JCPlayerVideoDecoder ()
 
 @property (nonatomic, copy) NSArray<id<JCVideoFrame>> *frameBuffer;
+
+@property (nonatomic, strong) dispatch_queue_t videoDecodeQueue;
+
+@property (nonatomic, copy) NSString *URL;
+
+@property (nonatomic, strong) NSLock *lock;
+
+@property (nonatomic, strong) dispatch_semaphore_t decodeSemaphore;
+
+@property (nonatomic, assign, getter=isRunning) BOOL running;
 
 @end
 
@@ -21,8 +32,45 @@
     return nil;
 }
 
-- (void)decodeVideoFrameWithURL:(NSString *)URL {
+- (id<JCVideoInfo>)decodeVideoInfoWithURL:(NSString *)URL {
+    if (!URL.length) {
+        return nil;
+    }
+    self.URL = URL;
     AVFormatContext *format_context = formate_context(URL);
+    if (!format_context) {
+        return nil;
+    }
+    int stream_index = -1;
+    for (int index = 0; index < format_context->nb_streams; index ++) {
+        if (format_context->streams[index]->codecpar->codec_type == AVMEDIA_TYPE_VIDEO) {
+            stream_index = index;
+            break;
+        }
+    }
+    if (stream_index == -1) {
+        NSLog(@"❌❌❌ Find stream index failed ");
+        return nil;
+    }
+    
+    AVCodec *codec = avcodec_find_decoder(format_context->streams[stream_index]->codecpar->codec_id);
+    AVCodecContext *codec_context = avcodec_alloc_context3(codec);
+    avcodec_parameters_to_context(codec_context, format_context->streams[stream_index]->codecpar);
+    
+    AVStream *videoStream = format_context->streams[stream_index];
+    JCPlayerVideoInfo *videoInfo = [[JCPlayerVideoInfo alloc] init];
+    videoInfo.fps = av_q2d(videoStream->avg_frame_rate);
+    videoInfo.duration = (NSTimeInterval)videoStream->duration / av_q2d(videoStream->avg_frame_rate);
+    videoInfo.width = codec_context->width;
+    videoInfo.height = codec_context->height;
+    return videoInfo;
+}
+
+- (void)decode {
+    if (!self.URL.length) {
+        return;
+    }
+    AVFormatContext *format_context = formate_context(self.URL);
     if (!format_context) {
         return;
     }
@@ -50,7 +98,7 @@
     AVPacket *av_packet = av_malloc(sizeof(AVPacket));
     AVFrame *av_frame = av_frame_alloc();
     NSMutableArray *frameBuffer = [NSMutableArray array];
-    while (!av_read_frame(format_context, av_packet)) {
+    while (self.isRunning && !av_read_frame(format_context, av_packet)) {
         if (av_packet->stream_index != stream_index) {
             // 存在stream_index不相等的情况0.0
             av_packet_unref(av_packet);
@@ -82,6 +130,18 @@
     self.frameBuffer = frameBuffer.copy;
 }
 
+- (void)start {
+    [self.lock lock];
+    self.running = YES;
+    [self.lock unlock];
+}
+
+- (void)stop {
+    [self.lock lock];
+    self.running = NO;
+    [self.lock unlock];
+}
+
 static AVFormatContext * formate_context(NSString *URL) {
     AVFormatContext *formatContext = avformat_alloc_context();
     const char *url = [URL UTF8String];
@@ -94,6 +154,27 @@ static AVFormatContext * formate_context(NSString *URL) {
         NSLog(@"❌❌❌ Find stream info failed with errorCode:%d", node_result);
     }
     return formatContext;
+}
+
+- (dispatch_queue_t)videoDecodeQueue {
+    if (!_videoDecodeQueue) {
+        _videoDecodeQueue = dispatch_queue_create("com.github.jaycehan.bit.JCImage.videoDecode", DISPATCH_QUEUE_SERIAL);
+    }
+    return _videoDecodeQueue;
+}
+
+- (NSLock *)lock {
+    if (!_lock) {
+        _lock = [[NSLock alloc] init];
+    }
+    return _lock;
+}
+
+- (dispatch_semaphore_t)decodeSemaphore {
+    if (!_decodeSemaphore) {
+        _decodeSemaphore = dispatch_semaphore_create(1);
+    }
+    return _decodeSemaphore;
 }
 
 @end

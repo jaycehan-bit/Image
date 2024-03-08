@@ -9,7 +9,7 @@
 #import "JCPlayerRenderView.h"
 #import "JCPlayerVideoDecoder.h"
 #import "JCPlayerViewController.h"
-#import "JCPlayerVideoFrame.h"
+#import "JCVideoFrame.h"
 
 static const CGFloat JCPlayerRatio = 16 / 9.0;
 
@@ -39,9 +39,10 @@ static const CGFloat JCPlayerRatio = 16 / 9.0;
     if (!URL.length) {
         return;
     }
-    [self.videoDecoder decodeVideoFrameWithURL:URL];
-    [self.playerView prepare];
-    [self.playerView renderVideoFrame:self.videoDecoder.frameBuffer[0]];
+    id<JCVideoInfo> videoInfo = [self.videoDecoder decodeVideoInfoWithURL:URL];
+    [self.videoDecoder start];
+    [self.playerView prepareWithVideoInfo:videoInfo];
+//    [self.playerView renderVideoFrame:self.videoDecoder.frameBuffer[0]];
 }
 
 - (void)viewWillLayoutSubviews {

@@ -77,7 +77,7 @@ static const GLfloat indices[] = {
 
 #pragma mark - Texture
 
-- (void)initializeTexture {
+- (void)initializeTextureWithWidth:(GLsizei)width height:(GLsizei)height {
     glGenTextures(3, _textures);
     for (NSUInteger index = 0; index < 3; index ++) {
         glBindTexture(GL_TEXTURE_2D, _textures[index]);
@@ -85,7 +85,7 @@ static const GLfloat indices[] = {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, 1920, 1080, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, NULL);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, width, height, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, NULL);
     }
     glBindTexture(GL_TEXTURE_2D, 0);
 }
@@ -110,11 +110,11 @@ static const GLfloat indices[] = {
 
 #pragma mark - Render
 
-- (void)prepare {
+- (void)prepareWithVideoInfo:(id<JCVideoInfo>)videoInfo {
     [EAGLContext setCurrentContext:self.EAGLContext];
     [self configRenderContext];
     [self compileProgramIfNeeded];
-    [self initializeTexture];
+    [self initializeTextureWithWidth:(GLsizei)videoInfo.width height:(GLsizei)videoInfo.height];
     [self configOpenGLObjects];
     glViewport(0, 0, self.bounds.size.width, self.bounds.size.height);
 }

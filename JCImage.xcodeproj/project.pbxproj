@@ -50,6 +50,7 @@
 		4E5AE59B2B6F8432004BD032 /* StreetScenery.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4E5AE59A2B6F8432004BD032 /* StreetScenery.mp4 */; };
 		4E5AE59F2B6FA692004BD032 /* JCPlayerVideoFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5AE59E2B6FA692004BD032 /* JCPlayerVideoFrame.m */; };
 		4E5AE5A32B70BD39004BD032 /* JCPlayerRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5AE5A22B70BD39004BD032 /* JCPlayerRenderView.m */; };
+		4E5CDF4F2B9AFE5C003F46A0 /* JCPlayerVideoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CDF4E2B9AFE5C003F46A0 /* JCPlayerVideoInfo.m */; };
 		4E5D338E2AF8E3E50049DEE1 /* JCAudioUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5D338D2AF8E3E50049DEE1 /* JCAudioUnit.swift */; };
 		4E7134942B15E9C9002A7DC3 /* JCGLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7134932B15E9C9002A7DC3 /* JCGLViewController.swift */; };
 		4E87CAFD2B85C938005D7A63 /* JCPlayerDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E87CAFC2B85C938005D7A63 /* JCPlayerDecoder.m */; };
@@ -260,6 +261,8 @@
 		4E5AE59E2B6FA692004BD032 /* JCPlayerVideoFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCPlayerVideoFrame.m; sourceTree = "<group>"; };
 		4E5AE5A12B70BD39004BD032 /* JCPlayerRenderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCPlayerRenderView.h; sourceTree = "<group>"; };
 		4E5AE5A22B70BD39004BD032 /* JCPlayerRenderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCPlayerRenderView.m; sourceTree = "<group>"; };
+		4E5CDF4D2B9AFE5C003F46A0 /* JCPlayerVideoInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCPlayerVideoInfo.h; sourceTree = "<group>"; };
+		4E5CDF4E2B9AFE5C003F46A0 /* JCPlayerVideoInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCPlayerVideoInfo.m; sourceTree = "<group>"; };
 		4E5D338D2AF8E3E50049DEE1 /* JCAudioUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCAudioUnit.swift; sourceTree = "<group>"; };
 		4E7134932B15E9C9002A7DC3 /* JCGLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCGLViewController.swift; sourceTree = "<group>"; };
 		4E87CAF82B85BA19005D7A63 /* JCAudioDecoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCAudioDecoder.h; sourceTree = "<group>"; };
@@ -692,6 +695,8 @@
 			children = (
 				4E5AE59D2B6FA692004BD032 /* JCPlayerVideoFrame.h */,
 				4E5AE59E2B6FA692004BD032 /* JCPlayerVideoFrame.m */,
+				4E5CDF4D2B9AFE5C003F46A0 /* JCPlayerVideoInfo.h */,
+				4E5CDF4E2B9AFE5C003F46A0 /* JCPlayerVideoInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1010,6 +1015,7 @@
 				4E3F3AE12B679AE60002BC47 /* JCComplexTableViewAdapter.m in Sources */,
 				19D73A8F2AE94640003571E7 /* ViewController.swift in Sources */,
 				4E2806B92B273E5600ABFA68 /* JCSymbolParser.m in Sources */,
+				4E5CDF4F2B9AFE5C003F46A0 /* JCPlayerVideoInfo.m in Sources */,
 				4E5D338E2AF8E3E50049DEE1 /* JCAudioUnit.swift in Sources */,
 				4E1C17682B639A5B00563325 /* JCStuckViewController.m in Sources */,
 				4E49CC832B6B7623007FCD06 /* JCViewHookModule.m in Sources */,

@@ -12,7 +12,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol JCVideoDecoder <NSObject>
 
-- (void)decodeVideoFrameWithURL:(NSString *)URL;
+@optional
+
+// 启动解码
+- (void)start;
+
+// 停止解码
+- (void)stop;
+
+// 读取视频信息
+- (id<JCVideoInfo>)decodeVideoInfoWithURL:(NSString *)URL;
 
 - (id<JCVideoFrame>)decodeVideoWithAVPacket:(AVPacket)packet size:(NSUInteger)size;
 

@@ -27,4 +27,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@protocol JCVideoInfo <NSObject>
+// 视频时长（毫秒）
+@property (nonatomic, assign, readonly) NSTimeInterval duration;
+
+// 视频宽度
+@property (nonatomic, assign, readonly) NSUInteger width;
+
+// 视频高度
+@property (nonatomic, assign, readonly) NSUInteger height;
+
+// 视频帧率
+@property (nonatomic, assign, readonly) NSUInteger fps;
+
+@end
+
+
 NS_ASSUME_NONNULL_END

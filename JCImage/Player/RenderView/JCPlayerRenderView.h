@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JCPlayerRenderView : UIView
 
-- (void)prepare;
+- (void)prepareWithVideoInfo:(id<JCVideoInfo>)videoInfo;
 
 - (void)renderVideoFrame:(id<JCVideoFrame>)videoFrame;
 
