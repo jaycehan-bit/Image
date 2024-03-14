@@ -6,13 +6,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JCVideoDecoder.h"
+#import "JCPlayerDecoderProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JCPlayerVideoDecoder : NSObject <JCVideoDecoder>
-
-@property (nonatomic, copy, readonly) NSArray<id<JCVideoFrame>> *frameBuffer;
+@interface JCPlayerVideoDecoder : NSObject <JCPlayerVideoDecoder>
 
 @end
 

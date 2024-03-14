@@ -6,12 +6,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JCVideoFrame.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JCPlayerDecoder : NSObject
 
-- (void)openFileWithFilePath:(NSString *)filePath error:(NSError **)error;
+- (id<JCVideoInfo>)openFileWithFilePath:(NSString *)filePath error:(NSError **)error;
 
 - (void)run;
 

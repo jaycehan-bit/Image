@@ -6,37 +6,39 @@
 //
 
 #import "avformat.h"
+#import "JCPlayerAsynModuleDefine.h"
 #import "JCPlayerVideoDecoder.h"
 #import "JCPlayerVideoFrame.h"
 #import "JCPlayerVideoInfo.h"
 
 @interface JCPlayerVideoDecoder ()
 
-@property (nonatomic, copy) NSArray<id<JCVideoFrame>> *frameBuffer;
-
 @property (nonatomic, strong) dispatch_queue_t videoDecodeQueue;
-
-@property (nonatomic, copy) NSString *URL;
-
-@property (nonatomic, strong) NSLock *lock;
 
 @property (nonatomic, strong) dispatch_semaphore_t decodeSemaphore;
 
-@property (nonatomic, assign, getter=isRunning) BOOL running;
 
 @end
 
 @implementation JCPlayerVideoDecoder
 
-- (id<JCVideoFrame>)decodeVideoWithAVPacket:(AVPacket)packet size:(NSUInteger)size {
-    return nil;
+@dynamic valid;
+
+#pragma make - <JCPlayerVideoDecoder>
+
+- (void)openFileWithFilePath:(NSString *)filePath error:(NSError **)error {
+    if (!filePath.length) {
+        *error = [NSError errorWithDomain:NSCocoaErrorDomain code:JCDecodeErrorCodeInvalidPath userInfo:@{NSLocalizedFailureReasonErrorKey : @"Invalid File Path"}];
+        return;
+    }
+    AVFormatContext *format_context = formate_context(filePath);
+    
 }
 
 - (id<JCVideoInfo>)decodeVideoInfoWithURL:(NSString *)URL {
     if (!URL.length) {
         return nil;
     }
-    self.URL = URL;
     AVFormatContext *format_context = formate_context(URL);
     if (!format_context) {
         return nil;
@@ -67,10 +69,7 @@
 }
 
 - (void)decode {
-    if (!self.URL.length) {
-        return;
-    }
-    AVFormatContext *format_context = formate_context(self.URL);
+    AVFormatContext *format_context = formate_context(@"");
     if (!format_context) {
         return;
     }
@@ -98,7 +97,7 @@
     AVPacket *av_packet = av_malloc(sizeof(AVPacket));
     AVFrame *av_frame = av_frame_alloc();
     NSMutableArray *frameBuffer = [NSMutableArray array];
-    while (self.isRunning && !av_read_frame(format_context, av_packet)) {
+    while (!av_read_frame(format_context, av_packet)) {
         if (av_packet->stream_index != stream_index) {
             // 存在stream_index不相等的情况0.0
             av_packet_unref(av_packet);
@@ -120,26 +119,13 @@
             continue;
         } else if (receive_frame_result != 0) {
             NSLog(@"❌❌❌ Fail to receive frame with error code : %d", receive_frame_result);
-            break;;
+            break;
         } else {
             NSLog(@"✅✅✅ Receive frame success");
             JCPlayerVideoFrame *videoFrame = [[JCPlayerVideoFrame alloc] initWithAVFrame:av_frame];
             [frameBuffer addObject:videoFrame];
         }
     }
-    self.frameBuffer = frameBuffer.copy;
-}
-
-- (void)start {
-    [self.lock lock];
-    self.running = YES;
-    [self.lock unlock];
-}
-
-- (void)stop {
-    [self.lock lock];
-    self.running = NO;
-    [self.lock unlock];
 }
 
 static AVFormatContext * formate_context(NSString *URL) {
@@ -161,20 +147,6 @@ static AVFormatContext * formate_context(NSString *URL) {
         _videoDecodeQueue = dispatch_queue_create("com.github.jaycehan.bit.JCImage.videoDecode", DISPATCH_QUEUE_SERIAL);
     }
     return _videoDecodeQueue;
-}
-
-- (NSLock *)lock {
-    if (!_lock) {
-        _lock = [[NSLock alloc] init];
-    }
-    return _lock;
-}
-
-- (dispatch_semaphore_t)decodeSemaphore {
-    if (!_decodeSemaphore) {
-        _decodeSemaphore = dispatch_semaphore_create(1);
-    }
-    return _decodeSemaphore;
 }
 
 @end

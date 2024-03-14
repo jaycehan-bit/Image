@@ -52,11 +52,13 @@
 		4E5AE5A32B70BD39004BD032 /* JCPlayerRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5AE5A22B70BD39004BD032 /* JCPlayerRenderView.m */; };
 		4E5CDF4F2B9AFE5C003F46A0 /* JCPlayerVideoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CDF4E2B9AFE5C003F46A0 /* JCPlayerVideoInfo.m */; };
 		4E5D338E2AF8E3E50049DEE1 /* JCAudioUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5D338D2AF8E3E50049DEE1 /* JCAudioUnit.swift */; };
+		4E5E0FE72BA2F05700FB7F9B /* JCPlayerAsynModuleDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5E0FE62BA2F05700FB7F9B /* JCPlayerAsynModuleDefine.m */; };
 		4E7134942B15E9C9002A7DC3 /* JCGLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7134932B15E9C9002A7DC3 /* JCGLViewController.swift */; };
 		4E87CAFD2B85C938005D7A63 /* JCPlayerDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E87CAFC2B85C938005D7A63 /* JCPlayerDecoder.m */; };
 		4EA815B42B387F3C00E28F0A /* JCEAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA815B32B387F3C00E28F0A /* JCEAGLView.m */; };
 		4EA815B72B388AF800E28F0A /* JCProgramArena.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA815B62B388AF800E28F0A /* JCProgramArena.m */; };
 		4EAA8B412B46CFA000CE4C67 /* JCLeaksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAA8B402B46CFA000CE4C67 /* JCLeaksViewController.m */; };
+		4EBFCC6D2BA1C007008BDAE8 /* JCPlayerSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBFCC6C2BA1C007008BDAE8 /* JCPlayerSyncController.m */; };
 		4EC6254F2B54FE5500F4CA55 /* JCPlayerAudioDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC6254E2B54FE5500F4CA55 /* JCPlayerAudioDecoder.m */; };
 		4EC625542B54FE9700F4CA55 /* JCPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC625532B54FE9700F4CA55 /* JCPlayerViewController.m */; };
 		4ED08C162AECD75400E6CF4A /* JCImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED08C152AECD75400E6CF4A /* JCImageLoader.swift */; };
@@ -70,6 +72,7 @@
 		4ED445CA2B3E8EC6006A6C1D /* Fireworks.mov in Resources */ = {isa = PBXBuildFile; fileRef = 4ED445C92B3E8EC6006A6C1D /* Fireworks.mov */; };
 		4ED5D1C42B445835009AD6AE /* JCStuckDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED5D1C32B445835009AD6AE /* JCStuckDetector.m */; };
 		4EEC9A322B20935500DBA33A /* JCStackFrameCatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEC9A312B20935500DBA33A /* JCStackFrameCatcher.m */; };
+		4EF77CEA2BA32AED001FE31B /* JCPlayerDecoderTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EF77CE92BA32AED001FE31B /* JCPlayerDecoderTools.m */; };
 		4EFAE8142B6B39B5002CC770 /* JCStuckMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EFAE8132B6B39B5002CC770 /* JCStuckMaker.m */; };
 		5CD8D4792E16A99F842BA400 /* libPods-JCImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60EE499D31F6D8017A8490C5 /* libPods-JCImage.a */; };
 /* End PBXBuildFile section */
@@ -221,7 +224,6 @@
 		4E118DA12B6F4A7300A49DD1 /* libavdevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libavdevice.a; sourceTree = "<group>"; };
 		4E118DA22B6F4A7300A49DD1 /* libswresample.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libswresample.a; sourceTree = "<group>"; };
 		4E118DA32B6F4A7300A49DD1 /* libswscale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libswscale.a; sourceTree = "<group>"; };
-		4E1191AB2B6F55B900A49DD1 /* JCVideoDecoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCVideoDecoder.h; sourceTree = "<group>"; };
 		4E1C17662B639A5B00563325 /* JCStuckViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCStuckViewController.h; sourceTree = "<group>"; };
 		4E1C17672B639A5B00563325 /* JCStuckViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCStuckViewController.m; sourceTree = "<group>"; };
 		4E1C17692B639B1100563325 /* JCComplexTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCComplexTableViewCell.h; sourceTree = "<group>"; };
@@ -264,8 +266,10 @@
 		4E5CDF4D2B9AFE5C003F46A0 /* JCPlayerVideoInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCPlayerVideoInfo.h; sourceTree = "<group>"; };
 		4E5CDF4E2B9AFE5C003F46A0 /* JCPlayerVideoInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCPlayerVideoInfo.m; sourceTree = "<group>"; };
 		4E5D338D2AF8E3E50049DEE1 /* JCAudioUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCAudioUnit.swift; sourceTree = "<group>"; };
+		4E5E0FE52BA2F05700FB7F9B /* JCPlayerAsynModuleDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCPlayerAsynModuleDefine.h; sourceTree = "<group>"; };
+		4E5E0FE62BA2F05700FB7F9B /* JCPlayerAsynModuleDefine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCPlayerAsynModuleDefine.m; sourceTree = "<group>"; };
+		4E5E0FE82BA311D700FB7F9B /* JCPlayerDecoderProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCPlayerDecoderProtocol.h; sourceTree = "<group>"; };
 		4E7134932B15E9C9002A7DC3 /* JCGLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCGLViewController.swift; sourceTree = "<group>"; };
-		4E87CAF82B85BA19005D7A63 /* JCAudioDecoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCAudioDecoder.h; sourceTree = "<group>"; };
 		4E87CAF92B85C083005D7A63 /* JCAudioFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCAudioFrame.h; sourceTree = "<group>"; };
 		4E87CAFB2B85C938005D7A63 /* JCPlayerDecoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCPlayerDecoder.h; sourceTree = "<group>"; };
 		4E87CAFC2B85C938005D7A63 /* JCPlayerDecoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCPlayerDecoder.m; sourceTree = "<group>"; };
@@ -276,6 +280,9 @@
 		4EAA8B3F2B46CFA000CE4C67 /* JCLeaksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCLeaksViewController.h; sourceTree = "<group>"; };
 		4EAA8B402B46CFA000CE4C67 /* JCLeaksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCLeaksViewController.m; sourceTree = "<group>"; };
 		4EAA8B422B46D2EE00CE4C67 /* JCLeaskModuleDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCLeaskModuleDefine.h; sourceTree = "<group>"; };
+		4EBFCC6B2BA1C007008BDAE8 /* JCPlayerSyncController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCPlayerSyncController.h; sourceTree = "<group>"; };
+		4EBFCC6C2BA1C007008BDAE8 /* JCPlayerSyncController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCPlayerSyncController.m; sourceTree = "<group>"; };
+		4EBFCC6E2BA1C11C008BDAE8 /* JCPlayerSyncModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCPlayerSyncModule.h; sourceTree = "<group>"; };
 		4EC6254D2B54FE5500F4CA55 /* JCPlayerAudioDecoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCPlayerAudioDecoder.h; sourceTree = "<group>"; };
 		4EC6254E2B54FE5500F4CA55 /* JCPlayerAudioDecoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCPlayerAudioDecoder.m; sourceTree = "<group>"; };
 		4EC625522B54FE9700F4CA55 /* JCPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCPlayerViewController.h; sourceTree = "<group>"; };
@@ -296,6 +303,8 @@
 		4EEC9A2F2B20935400DBA33A /* JCImage-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JCImage-Bridging-Header.h"; sourceTree = "<group>"; };
 		4EEC9A302B20935500DBA33A /* JCStackFrameCatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCStackFrameCatcher.h; sourceTree = "<group>"; };
 		4EEC9A312B20935500DBA33A /* JCStackFrameCatcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCStackFrameCatcher.m; sourceTree = "<group>"; };
+		4EF77CE82BA32AED001FE31B /* JCPlayerDecoderTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCPlayerDecoderTools.h; sourceTree = "<group>"; };
+		4EF77CE92BA32AED001FE31B /* JCPlayerDecoderTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCPlayerDecoderTools.m; sourceTree = "<group>"; };
 		4EFAE8122B6B39B5002CC770 /* JCStuckMaker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCStuckMaker.h; sourceTree = "<group>"; };
 		4EFAE8132B6B39B5002CC770 /* JCStuckMaker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCStuckMaker.m; sourceTree = "<group>"; };
 		60EE499D31F6D8017A8490C5 /* libPods-JCImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JCImage.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -604,8 +613,6 @@
 		4E1191A92B6F556800A49DD1 /* ModuleInterface */ = {
 			isa = PBXGroup;
 			children = (
-				4E1191AB2B6F55B900A49DD1 /* JCVideoDecoder.h */,
-				4E87CAF82B85BA19005D7A63 /* JCAudioDecoder.h */,
 				4E548F842B711BBF0057FEB4 /* JCVideoFrame.h */,
 				4E87CAF92B85C083005D7A63 /* JCAudioFrame.h */,
 			);
@@ -751,10 +758,12 @@
 		4E87CAFA2B85C8FA005D7A63 /* Decoder */ = {
 			isa = PBXGroup;
 			children = (
+				4EF77CE72BA32ADA001FE31B /* Tools */,
 				4EC6254B2B54FE2800F4CA55 /* Audio */,
 				4EC6254A2B54FE1F00F4CA55 /* Video */,
 				4E87CAFB2B85C938005D7A63 /* JCPlayerDecoder.h */,
 				4E87CAFC2B85C938005D7A63 /* JCPlayerDecoder.m */,
+				4E5E0FE82BA311D700FB7F9B /* JCPlayerDecoderProtocol.h */,
 			);
 			path = Decoder;
 			sourceTree = "<group>";
@@ -797,6 +806,11 @@
 		4EC625502B54FE5D00F4CA55 /* SyncModule */ = {
 			isa = PBXGroup;
 			children = (
+				4EBFCC6B2BA1C007008BDAE8 /* JCPlayerSyncController.h */,
+				4EBFCC6C2BA1C007008BDAE8 /* JCPlayerSyncController.m */,
+				4EBFCC6E2BA1C11C008BDAE8 /* JCPlayerSyncModule.h */,
+				4E5E0FE52BA2F05700FB7F9B /* JCPlayerAsynModuleDefine.h */,
+				4E5E0FE62BA2F05700FB7F9B /* JCPlayerAsynModuleDefine.m */,
 			);
 			path = SyncModule;
 			sourceTree = "<group>";
@@ -845,6 +859,15 @@
 				4E2806B62B271CBB00ABFA68 /* JCStackFrameDefine.h */,
 			);
 			path = Stack;
+			sourceTree = "<group>";
+		};
+		4EF77CE72BA32ADA001FE31B /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4EF77CE82BA32AED001FE31B /* JCPlayerDecoderTools.h */,
+				4EF77CE92BA32AED001FE31B /* JCPlayerDecoderTools.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		4EFAE8112B6B39A6002CC770 /* StuckTools */ = {
@@ -1009,6 +1032,7 @@
 				4EC625542B54FE9700F4CA55 /* JCPlayerViewController.m in Sources */,
 				19FEB6AF2B348D18001E432B /* JCProgramProvider.m in Sources */,
 				4EA815B42B387F3C00E28F0A /* JCEAGLView.m in Sources */,
+				4E5E0FE72BA2F05700FB7F9B /* JCPlayerAsynModuleDefine.m in Sources */,
 				4E1C176B2B639B1100563325 /* JCComplexTableViewCell.m in Sources */,
 				4E87CAFD2B85C938005D7A63 /* JCPlayerDecoder.m in Sources */,
 				4E5AE5A32B70BD39004BD032 /* JCPlayerRenderView.m in Sources */,
@@ -1016,6 +1040,7 @@
 				19D73A8F2AE94640003571E7 /* ViewController.swift in Sources */,
 				4E2806B92B273E5600ABFA68 /* JCSymbolParser.m in Sources */,
 				4E5CDF4F2B9AFE5C003F46A0 /* JCPlayerVideoInfo.m in Sources */,
+				4EBFCC6D2BA1C007008BDAE8 /* JCPlayerSyncController.m in Sources */,
 				4E5D338E2AF8E3E50049DEE1 /* JCAudioUnit.swift in Sources */,
 				4E1C17682B639A5B00563325 /* JCStuckViewController.m in Sources */,
 				4E49CC832B6B7623007FCD06 /* JCViewHookModule.m in Sources */,
@@ -1028,6 +1053,7 @@
 				4E49CC782B6B6B55007FCD06 /* JCFreshTableViewController.m in Sources */,
 				4EAA8B412B46CFA000CE4C67 /* JCLeaksViewController.m in Sources */,
 				4E5AE59F2B6FA692004BD032 /* JCPlayerVideoFrame.m in Sources */,
+				4EF77CEA2BA32AED001FE31B /* JCPlayerDecoderTools.m in Sources */,
 				4E2A214F2AEF79D700F4DB35 /* JCTableViewController.swift in Sources */,
 				4EFAE8142B6B39B5002CC770 /* JCStuckMaker.m in Sources */,
 				19D73AA52AE9786D003571E7 /* JCCommonUnit.swift in Sources */,

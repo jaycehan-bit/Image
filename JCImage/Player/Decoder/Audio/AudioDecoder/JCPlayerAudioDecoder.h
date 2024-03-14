@@ -6,11 +6,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JCAudioDecoder.h"
+#import "JCPlayerDecoderProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JCPlayerAudioDecoder : NSObject <JCAudioDecoder>
+@interface JCPlayerAudioDecoder : NSObject <JCPlayerAudioDecoder>
 
 @end
 

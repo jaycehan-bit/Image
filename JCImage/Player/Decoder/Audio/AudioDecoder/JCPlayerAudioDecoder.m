@@ -18,6 +18,14 @@
 
 @implementation JCPlayerAudioDecoder
 
+@dynamic valid;
+
+#pragma mark - <JCPlayerAudioDecoder>
+
+- (void)openFileWithFilePath:(NSString *)filePath error:(NSError **)error {
+    
+}
+
 - (void)decodeAudioFrameWithURL:(NSString *)URL {
     AVFormatContext *format_context = formate_context(URL);
     if (!format_context) {

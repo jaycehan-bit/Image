@@ -6,15 +6,18 @@
 //
 
 #import "avformat.h"
-#import "JCPlayerDecoder.h"
 #import "JCPlayerAudioDecoder.h"
+#import "JCPlayerAsynModuleDefine.h"
+#import "JCPlayerDecoder.h"
+#import "JCPlayerDecoderProtocol.h"
 #import "JCPlayerVideoDecoder.h"
+#import "JCPlayerVideoInfo.h"
 
 @interface JCPlayerDecoder ()
 
-@property (nonatomic, strong) JCPlayerAudioDecoder *audioDecoder;
+@property (nonatomic, strong) id<JCPlayerAudioDecoder> audioDecoder;
 
-@property (nonatomic, strong) JCPlayerVideoDecoder *videoDecoder;
+@property (nonatomic, strong) id<JCPlayerVideoDecoder> videoDecoder;
 
 @property (nonatomic, assign) AVFormatContext *formatContext;
 
@@ -22,20 +25,54 @@
 
 @implementation JCPlayerDecoder
 
-- (void)openFileWithFilePath:(NSString *)filePath error:(NSError **)error {
+- (id<JCVideoInfo>)openFileWithFilePath:(NSString *)filePath error:(NSError **)error {
     if (!filePath.length) {
-        *error = [NSError errorWithDomain:NSURLErrorDomain code:-1001 userInfo:@{NSLocalizedFailureReasonErrorKey : @"Invalid file path"}];
-        return;
+        *error = [NSError errorWithDomain:NSURLErrorDomain code:JCDecodeErrorCodeInvalidPath userInfo:@{NSLocalizedFailureReasonErrorKey : @"Invalid file path"}];
+        return nil;
     }
     self.formatContext = formate_context(filePath);
+    if (!self.formatContext) {
+        *error = [NSError errorWithDomain:NSURLErrorDomain code:JCDecodeErrorCodeInvalidFile userInfo:@{NSLocalizedFailureReasonErrorKey : @"Invalid video file"}];
+        return nil;
+    }
+    
+    
+    
+    int stream_index = -1;
+    for (int index = 0; index < self.formatContext->nb_streams; index ++) {
+        if (self.formatContext->streams[index]->codecpar->codec_type == AVMEDIA_TYPE_VIDEO) {
+            stream_index = index;
+            break;
+        }
+    }
+    if (stream_index == -1) {
+        NSLog(@"❌❌❌ Find video stream index failed");
+    }
+    // 获取解码器
+    AVCodec *codec = avcodec_find_decoder(self.formatContext->streams[stream_index]->codecpar->codec_id);
+    // 创建解码器上下文
+    AVCodecContext *codec_context = avcodec_alloc_context3(codec);
+    // 复制解码器参数到解码器上下文
+    int result = avcodec_parameters_to_context(codec_context, self.formatContext->streams[stream_index]->codecpar);
+    if (result < 0) {
+        *error = [NSError errorWithDomain:NSURLErrorDomain code:JCDecodeErrorCodecContextError userInfo:@{NSLocalizedFailureReasonErrorKey : @"Failed to copy codecContext"}];
+        return nil;
+    }
+    AVStream *videoStream = self.formatContext->streams[stream_index];
+    JCPlayerVideoInfo *videoInfo = [[JCPlayerVideoInfo alloc] init];
+    videoInfo.fps = av_q2d(videoStream->avg_frame_rate);
+    videoInfo.duration = (NSTimeInterval)videoStream->duration / av_q2d(videoStream->avg_frame_rate);
+    videoInfo.width = codec_context->width;
+    videoInfo.height = codec_context->height;
+    return videoInfo;
 }
+
+#pragma mark - Control
 
 - (void)run {
     if (!self.formatContext) {
         return;
     }
-    
-    
 }
 
 - (void)pause {
@@ -43,6 +80,12 @@
 }
 
 - (void)stop {
+    
+}
+
+#pragma mark - Decode
+
+- (void)decode {
     
 }
 
@@ -79,14 +122,14 @@ static NSArray * detachStreams(AVFormatContext *format_context, enum AVMediaType
 
 #pragma mark - Init
 
-- (JCPlayerVideoDecoder *)videoDecoder {
+- (id<JCPlayerVideoDecoder>)videoDecoder {
     if (!_videoDecoder) {
         _videoDecoder = [[JCPlayerVideoDecoder alloc] init];
     }
     return _videoDecoder;
 }
 
-- (JCPlayerAudioDecoder *)audioDecoder {
+- (id<JCPlayerAudioDecoder>)audioDecoder {
     if (!_audioDecoder) {
         _audioDecoder = [[JCPlayerAudioDecoder alloc] init];
     }

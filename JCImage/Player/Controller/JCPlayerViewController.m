@@ -7,8 +7,8 @@
 
 #import "avformat.h"
 #import "JCPlayerRenderView.h"
-#import "JCPlayerVideoDecoder.h"
 #import "JCPlayerViewController.h"
+#import "JCPlayerSyncController.h"
 #import "JCVideoFrame.h"
 
 static const CGFloat JCPlayerRatio = 16 / 9.0;
@@ -19,9 +19,9 @@ static const CGFloat JCPlayerRatio = 16 / 9.0;
 
 @property (nonatomic, strong) UIBarButtonItem *nextButton;
 
-@property (nonatomic, strong) id<JCVideoDecoder> videoDecoder;
-
 @property (nonatomic, strong) JCPlayerRenderView *playerView;
+
+@property (nonatomic, strong) JCPlayerSyncController *syncController;
 
 @end
 
@@ -39,10 +39,8 @@ static const CGFloat JCPlayerRatio = 16 / 9.0;
     if (!URL.length) {
         return;
     }
-    id<JCVideoInfo> videoInfo = [self.videoDecoder decodeVideoInfoWithURL:URL];
-    [self.videoDecoder start];
+    id<JCVideoInfo> videoInfo = [self.syncController openFileWithFilePath:URL];
     [self.playerView prepareWithVideoInfo:videoInfo];
-//    [self.playerView renderVideoFrame:self.videoDecoder.frameBuffer[0]];
 }
 
 - (void)viewWillLayoutSubviews {
@@ -52,19 +50,19 @@ static const CGFloat JCPlayerRatio = 16 / 9.0;
 
 #pragma mark - Init
 
-- (id<JCVideoDecoder>)videoDecoder {
-    if (!_videoDecoder) {
-        _videoDecoder = [[JCPlayerVideoDecoder alloc] init];
-    }
-    return _videoDecoder;
-}
-
 - (JCPlayerRenderView *)playerView {
     if (!_playerView) {
         _playerView = [[JCPlayerRenderView alloc] initWithFrame:CGRectZero];
         _playerView.backgroundColor = UIColor.blackColor;
     }
     return _playerView;
+}
+
+- (JCPlayerSyncController *)syncController {
+    if (!_syncController) {
+        _syncController = [[JCPlayerSyncController alloc] init];
+    }
+    return _syncController;
 }
 
 #pragma mark - DEBUG
@@ -92,10 +90,10 @@ static const CGFloat JCPlayerRatio = 16 / 9.0;
 
 - (void)nextButtonDidClick {
     static NSUInteger index = 1;
-    if (index >= self.videoDecoder.frameBuffer.count) {
-        index = 0;
-    }
-    [self.playerView renderVideoFrame:self.videoDecoder.frameBuffer[index]];
+//    if (index >= self.videoDecoder.frameBuffer.count) {
+//        index = 0;
+//    }
+//    [self.playerView renderVideoFrame:self.videoDecoder.frameBuffer[index]];
     index += 1;
 }
 
