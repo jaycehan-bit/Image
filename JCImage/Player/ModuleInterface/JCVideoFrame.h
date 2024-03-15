@@ -9,7 +9,25 @@
 #import "avformat.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol JCVideoFrame <NSObject>
+typedef NS_ENUM(NSUInteger, JCFrameType) {
+    JCFrameTypeVideo = 0,   // 视频帧
+    JCFrameTypeAudio = 1,   // 音频帧
+};
+
+@protocol JCFrame <NSObject>
+
+// 帧类型
+@property (nonatomic, assign, readonly) JCFrameType type;
+
+// 帧时长
+@property (nonatomic, assign, readonly) CGFloat duration;
+
+// 帧位置
+@property (nonatomic, assign, readonly) CGFloat position;
+
+@end
+
+@protocol JCVideoFrame <JCFrame>
 // 高度
 @property (nonatomic, assign, readonly) NSUInteger height;
 
@@ -27,9 +45,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@protocol JCAudioFrame <NSObject>
+@protocol JCAudioFrame <JCFrame>
 
-@property (nonatomic, strong, readonly) id sampleBuffer;
+@property (nonatomic, strong, readonly) NSDate *sampleData;
 
 @property (nonatomic, assign, readonly) NSUInteger channel;
 

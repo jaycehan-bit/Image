@@ -94,6 +94,7 @@
 		19FEB6B32B3492CD001E432B /* FragShader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = FragShader.fsh; sourceTree = "<group>"; };
 		4E0646462B95C03400C41077 /* JCPlayerVertexShader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = JCPlayerVertexShader.vsh; sourceTree = "<group>"; };
 		4E0646482B95C05400C41077 /* JCPlayerFragShader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = JCPlayerFragShader.fsh; sourceTree = "<group>"; };
+		4E0CDBAD2BA44653000D6851 /* JCPlayerVideoFrame+Writable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JCPlayerVideoFrame+Writable.h"; sourceTree = "<group>"; };
 		4E118D1B2B6F4A7300A49DD1 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		4E118D1C2B6F4A7300A49DD1 /* buffersrc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffersrc.h; sourceTree = "<group>"; };
 		4E118D1D2B6F4A7300A49DD1 /* buffersink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffersink.h; sourceTree = "<group>"; };
@@ -702,6 +703,7 @@
 				4E5AE59E2B6FA692004BD032 /* JCPlayerVideoFrame.m */,
 				4E5CDF4D2B9AFE5C003F46A0 /* JCPlayerVideoInfo.h */,
 				4E5CDF4E2B9AFE5C003F46A0 /* JCPlayerVideoInfo.m */,
+				4E0CDBAD2BA44653000D6851 /* JCPlayerVideoFrame+Writable.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";

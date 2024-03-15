@@ -17,9 +17,13 @@ typedef NS_ENUM(NSUInteger, JCPlayerOpenFileStatus) {
 };
 
 typedef NS_ENUM(NSInteger, JCDecodeErrorCode) {
-    JCDecodeErrorCodeSuccess = 0,       // 成功
-    JCDecodeErrorCodeInvalidPath = 1,   // 错误路径
-    JCDecodeErrorCodeInvalidFile = 2,   // 无效视频文件
-    JCDecodeErrorCodeInvalidStream = 3, // 无效视频流
-    JCDecodeErrorCodecContextError = 4, // 解码器上下文错误
+    JCDecodeErrorCodeSuccess = 0,           // 成功
+    JCDecodeErrorCodeInvalidPath = 1,       // 错误路径
+    JCDecodeErrorCodeInvalidFile = 2,       // 无效视频文件
+    JCDecodeErrorCodeInvalidStream = 3,     // 无效视频流
+    JCDecodeErrorCodecContextError = 4,     // 解码器上下文错误
+    JCDecodeErrorCodecOpenCodecError = 5,   // 打开解码器错误
+    
+    
+    JCDecodeErrorCodeEAGAIN = 35,           // 解码帧失败，需继续send pakcet
 };

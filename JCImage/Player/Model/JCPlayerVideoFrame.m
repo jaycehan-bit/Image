@@ -10,6 +10,10 @@
 
 @interface JCPlayerVideoFrame ()
 
+@property (nonatomic, assign) CGFloat duration;
+
+@property (nonatomic, assign) CGFloat position;
+
 @property (nonatomic, assign) NSUInteger height;
 
 @property (nonatomic, assign) NSUInteger width;
@@ -44,6 +48,10 @@ static NSData * copyFrameData(const uint8_t *src, const uint linesize, const uin
         src += linesize;
     }
     return mutableData.copy;
+}
+
+- (JCFrameType)type {
+    return JCFrameTypeVideo;
 }
 
 @end
