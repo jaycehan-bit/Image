@@ -25,6 +25,9 @@ typedef NS_ENUM(NSUInteger, JCFrameType) {
 // 帧位置
 @property (nonatomic, assign, readonly) CGFloat position;
 
+// 构造方法
+- (instancetype)initWithAVFrame:(AVFrame *)frame;
+
 @end
 
 @protocol JCVideoFrame <JCFrame>

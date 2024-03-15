@@ -13,8 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JCPlayerVideoFrame : NSObject <JCVideoFrame>
 
-- (instancetype)initWithAVFrame:(AVFrame *)frame;
-
 @end
 
 NS_ASSUME_NONNULL_END

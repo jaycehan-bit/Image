@@ -27,8 +27,7 @@
 - (id<JCVideoInfo>)openFileWithFilePath:(NSString *)filePath; {
     NSError *error = nil;
     id<JCVideoInfo> videoFrame = [self.decoder openFileWithFilePath:filePath error:&error];
-    
-    if (!error) {
+    if (!error && videoFrame) {
         return videoFrame;
     }
     return nil;

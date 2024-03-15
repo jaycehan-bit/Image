@@ -12,13 +12,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JCPlayerDecoder : NSObject
 
+/**
+ * @brief 打开视频文件，读取视频信息
+ * @param filePath 目标文件路径
+ * @param error 错误
+ * @return 视频信息
+ */
 - (id<JCVideoInfo>)openFileWithFilePath:(NSString *)filePath error:(NSError **)error;
 
-- (void)run;
-
-- (void)pause;
-
-- (void)stop;
+/**
+ * @brief 解码一段视频帧
+ * @param duration 解码视频时长，可能稍微超出
+ * @return 解码数据
+ */
+- (NSArray<id<JCFrame>> *)decodeVideoFramesWithDuration:(CGFloat)duration;
 
 @end
 

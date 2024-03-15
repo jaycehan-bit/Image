@@ -64,7 +64,7 @@
     }
 }
 
-- (id<JCFrame>)decodeVideoFrameWithPacket:(AVPacket)packet error:(NSError *__autoreleasing  _Nullable *)error {
+- (NSArray<id<JCFrame>> *)decodeVideoFrameWithPacket:(AVPacket)packet error:(NSError **)error {
     JCPlayerVideoFrame *videoFrame = nil;
     int packetSize = packet.size;
     int send_packet_result = avcodec_send_packet(self.codec_context, &packet);
@@ -83,7 +83,7 @@
         JCPlayerVideoFrame *videoFrame = [[JCPlayerVideoFrame alloc] initWithAVFrame:frame];
         videoFrame.duration = frame->pkt_duration * self.timeBase;
         videoFrame.position = frame->pkt_pos * self.timeBase;
-        return videoFrame;
+        return @[videoFrame];
     }
     return nil;
 }

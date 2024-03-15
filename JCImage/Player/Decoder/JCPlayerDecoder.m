@@ -10,8 +10,10 @@
 #import "JCPlayerAsynModuleDefine.h"
 #import "JCPlayerDecoder.h"
 #import "JCPlayerDecoderProtocol.h"
+#import "JCPlayerDecoderTools.h"
 #import "JCPlayerVideoDecoder.h"
 #import "JCPlayerVideoInfo.h"
+
 
 @interface JCPlayerDecoder ()
 
@@ -36,7 +38,11 @@
         return nil;
     }
     
-    
+    [self.videoDecoder openFileWithFilePath:filePath error:error];
+    [self.audioDecoder openFileWithFilePath:filePath error:error];
+    if (error) {
+        return nil;
+    }
     
     int stream_index = -1;
     for (int index = 0; index < self.formatContext->nb_streams; index ++) {
@@ -67,57 +73,43 @@
     return videoInfo;
 }
 
-#pragma mark - Control
-
-- (void)run {
-    if (!self.formatContext) {
-        return;
+- (NSArray<id<JCFrame>> *)decodeVideoFramesWithDuration:(CGFloat)duration {
+    if (!self.videoDecoder.valid && !self.audioDecoder.valid) {
+        return @[];
     }
-}
-
-- (void)pause {
-    
-}
-
-- (void)stop {
-    
-}
-
-#pragma mark - Decode
-
-- (void)decode {
-    
-}
-
-#pragma mark - Helper
-
-static AVFormatContext * formate_context(NSString *URL) {
-    AVFormatContext *formatContext = avformat_alloc_context();
-    const char *url = [URL UTF8String];
-    int node_result = avformat_open_input(&formatContext, url, NULL, NULL);
-    if (node_result != 0) {
-        NSLog(@"❌❌❌ Open input failed with errorCode:%d", node_result);
-    }
-    node_result = avformat_find_stream_info(formatContext, NULL);
-    if (node_result < 0) {
-        NSLog(@"❌❌❌ Find stream info failed with errorCode:%d", node_result);
-    }
-    
-    if (node_result < 0) {
-        avformat_close_input(&formatContext);
-        avformat_free_context(formatContext);
-    }
-    return formatContext;
-}
-
-static NSArray * detachStreams(AVFormatContext *format_context, enum AVMediaType media_type) {
-    NSMutableArray *array = [NSMutableArray array];
-    for (NSUInteger stream_index = 0; stream_index < format_context->nb_streams; stream_index ++) {
-        if (format_context->streams[stream_index]->codecpar->codec_type == media_type) {
-            [array addObject:@(stream_index)];
+    NSMutableArray<id<JCFrame>> *frames = [NSMutableArray<id<JCFrame>> array];
+    AVPacket packet;
+    __block CGFloat decodeDuration = 0;
+    BOOL finish = NO;
+    while (!finish) {
+        if (av_read_frame(self.formatContext, &packet) < 0) {
+            break;
         }
+        id<JCPlayerDecoder> decoder = [self decoderForPacket:packet];
+        if (!decoder) {
+            finish = YES;
+        }
+        NSArray<id<JCFrame>> *videoFrame = [decoder decodeVideoFrameWithPacket:packet error:nil];
+        [videoFrame enumerateObjectsUsingBlock:^(id<JCFrame>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            decodeDuration += obj.duration;
+        }];
+        if (decodeDuration >= duration) {
+            finish = YES;
+        }
+        [frames addObjectsFromArray:videoFrame];
     }
-    return array.copy;
+    av_packet_unref(&packet);
+    return frames.copy;
+}
+
+- (id<JCPlayerDecoder>)decoderForPacket:(const AVPacket)packet {
+    if (packet.stream_index == self.videoDecoder.stream_index) {
+        return self.videoDecoder;
+    }
+    if (packet.stream_index == self.audioDecoder.stream_index) {
+        return self.audioDecoder;
+    }
+    return nil;
 }
 
 #pragma mark - Init

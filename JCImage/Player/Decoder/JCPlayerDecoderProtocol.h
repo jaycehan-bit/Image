@@ -44,31 +44,17 @@ NS_ASSUME_NONNULL_BEGIN
  * @param packet 视频帧
  * @param error 错误信息
  */
-- (id<JCFrame>)decodeVideoFrameWithPacket:(AVPacket)packet error:(NSError **)error;
+- (NSArray<id<JCFrame>> *)decodeVideoFrameWithPacket:(AVPacket)packet error:(NSError **)error;
 
 @end
 
 
 @protocol JCPlayerVideoDecoder <JCPlayerDecoder>
 
-/**
- * @brief 解码视频帧
- * @param packet 视频帧
- * @param error 错误信息
- */
-//- (id<JCVideoFrame>)decodeVideoFrameWithPacket:(AVPacket)packet error:(NSError **)error;
-
 @end
 
 
 @protocol JCPlayerAudioDecoder <JCPlayerDecoder>
-
-/**
- * @brief 解码音频帧
- * @param packet 视频帧
- * @param error 错误信息
- */
-//- (id<JCAudioFrame>)decodeVideoFrameWithPacket:(AVPacket)packet error:(NSError **)error;
 
 @end
 
