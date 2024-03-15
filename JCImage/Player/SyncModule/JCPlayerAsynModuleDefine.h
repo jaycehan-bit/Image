@@ -7,6 +7,10 @@
 
 #import <Foundation/Foundation.h>
 
+// 无效的流索引
+FOUNDATION_EXTERN const NSInteger JCPlayerInvalidStreamIndex;
+
+
 typedef NS_ENUM(NSUInteger, JCPlayerOpenFileStatus) {
     JCPlayerOpenFileStatusSuccess = 0,  // 打开成功
     JCPlayerOpenFileStatusFailed = 1,   // 打开失败

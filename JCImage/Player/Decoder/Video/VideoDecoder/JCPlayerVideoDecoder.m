@@ -7,9 +7,8 @@
 
 #import "avformat.h"
 #import "JCPlayerAsynModuleDefine.h"
+#import "JCPlayerDecoderTools.h"
 #import "JCPlayerVideoDecoder.h"
-#import "JCPlayerVideoFrame.h"
-#import "JCPlayerVideoInfo.h"
 
 @interface JCPlayerVideoDecoder ()
 

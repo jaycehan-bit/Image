@@ -10,7 +10,7 @@
 
 @implementation JCPlayerDecoderTools
 
-static NSArray *findStreamIndex(const AVFormatContext *format_context, const enum AVMediaType media_type) {
+NSArray *findStreamIndex(const AVFormatContext *format_context, const enum AVMediaType media_type) {
     NSMutableArray *indexArray = [NSMutableArray array];
     for (NSUInteger index = 0; index < format_context->nb_streams; index++) {
         if (format_context->streams[index]->codecpar->codec_type == media_type) {
@@ -20,7 +20,7 @@ static NSArray *findStreamIndex(const AVFormatContext *format_context, const enu
     return indexArray.copy;
 }
 
-static void streamFPSTimeBase(const AVStream *stream, CGFloat *FPS, CGFloat *timeBase) {
+void streamFPSTimeBase(const AVStream *stream, CGFloat *FPS, CGFloat *timeBase) {
     if (stream->time_base.den && stream->time_base.num) {
         *timeBase = av_q2d(stream->time_base);
     }

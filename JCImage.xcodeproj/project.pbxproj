@@ -270,7 +270,6 @@
 		4E5E0FE62BA2F05700FB7F9B /* JCPlayerAsynModuleDefine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCPlayerAsynModuleDefine.m; sourceTree = "<group>"; };
 		4E5E0FE82BA311D700FB7F9B /* JCPlayerDecoderProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCPlayerDecoderProtocol.h; sourceTree = "<group>"; };
 		4E7134932B15E9C9002A7DC3 /* JCGLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCGLViewController.swift; sourceTree = "<group>"; };
-		4E87CAF92B85C083005D7A63 /* JCAudioFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCAudioFrame.h; sourceTree = "<group>"; };
 		4E87CAFB2B85C938005D7A63 /* JCPlayerDecoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCPlayerDecoder.h; sourceTree = "<group>"; };
 		4E87CAFC2B85C938005D7A63 /* JCPlayerDecoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCPlayerDecoder.m; sourceTree = "<group>"; };
 		4EA815B22B387F3C00E28F0A /* JCEAGLView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCEAGLView.h; sourceTree = "<group>"; };
@@ -614,7 +613,6 @@
 			isa = PBXGroup;
 			children = (
 				4E548F842B711BBF0057FEB4 /* JCVideoFrame.h */,
-				4E87CAF92B85C083005D7A63 /* JCAudioFrame.h */,
 			);
 			path = ModuleInterface;
 			sourceTree = "<group>";

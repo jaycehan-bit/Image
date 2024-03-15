@@ -27,6 +27,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@protocol JCAudioFrame <NSObject>
+
+@property (nonatomic, strong, readonly) id sampleBuffer;
+
+@property (nonatomic, assign, readonly) NSUInteger channel;
+
+@end
+
 @protocol JCVideoInfo <NSObject>
 // 视频时长（毫秒）
 @property (nonatomic, assign, readonly) NSTimeInterval duration;

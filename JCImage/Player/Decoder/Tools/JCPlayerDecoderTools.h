@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "avformat.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,9 +18,13 @@ NS_ASSUME_NONNULL_BEGIN
  * @param media_type 需要寻找的媒体类型
  * @return NSArray<NSNumber *> 索引列表
  */
-static NSArray<NSNumber *> *findStreamIndex(const AVFormatContext *format_context, const enum AVMediaType media_type);
+NSArray<NSNumber *> *findStreamIndex(const AVFormatContext *format_context, const enum AVMediaType media_type);
 
-static void streamFPSTimeBase(const AVStream *stream, CGFloat *FPS, CGFloat *timeBase);
+/**
+ * @brief 获取视频文件FPS和时间基
+ * @param stream 流
+ */
+void streamFPSTimeBase(const AVStream *stream, CGFloat *FPS, CGFloat *timeBase);
 
 @end
 
