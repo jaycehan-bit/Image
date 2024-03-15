@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 static NSArray<NSNumber *> *findStreamIndex(const AVFormatContext *format_context, const enum AVMediaType media_type);
 
+static void streamFPSTimeBase(const AVStream *stream, CGFloat *FPS, CGFloat *timeBase);
+
 @end
 
 NS_ASSUME_NONNULL_END

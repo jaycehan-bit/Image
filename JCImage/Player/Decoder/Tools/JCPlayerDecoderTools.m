@@ -20,4 +20,17 @@ static NSArray *findStreamIndex(const AVFormatContext *format_context, const enu
     return indexArray.copy;
 }
 
+static void streamFPSTimeBase(const AVStream *stream, CGFloat *FPS, CGFloat *timeBase) {
+    if (stream->time_base.den && stream->time_base.num) {
+        *timeBase = av_q2d(stream->time_base);
+    }
+    if (stream->avg_frame_rate.den && stream->avg_frame_rate.num) {
+        *FPS = av_q2d(stream->avg_frame_rate);
+    } else if (stream->r_frame_rate.den && stream->r_frame_rate.num) {
+        *FPS = av_q2d(stream->r_frame_rate);
+    } else if (*timeBase > 0){
+        *FPS = 1.0 / *timeBase;
+    }
+}
+
 @end
