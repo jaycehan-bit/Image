@@ -26,6 +26,14 @@ NSArray<NSNumber *> *findStreamIndex(const AVFormatContext *format_context, cons
  */
 void streamFPSTimeBase(const AVStream *stream, CGFloat *FPS, CGFloat *timeBase);
 
+
+/**
+ * @brief 获取视频文件格式上下问
+ * @param URL 视频文件地址
+ * @return AVFormatContext * 上下文
+ */
+AVFormatContext *formate_context(NSString *URL);
+
 @end
 
 NS_ASSUME_NONNULL_END
