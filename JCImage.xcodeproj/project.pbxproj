@@ -17,6 +17,7 @@
 		19FEB6AF2B348D18001E432B /* JCProgramProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FEB6AE2B348D18001E432B /* JCProgramProvider.m */; };
 		19FEB6B22B349281001E432B /* VertexShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 19FEB6B12B349281001E432B /* VertexShader.vsh */; };
 		19FEB6B42B3492CD001E432B /* FragShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 19FEB6B32B3492CD001E432B /* FragShader.fsh */; };
+		4E0239592BA8100B00FA8498 /* JCPlayerAudioRender.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0239582BA8100B00FA8498 /* JCPlayerAudioRender.m */; };
 		4E0646472B95C03400C41077 /* JCPlayerVertexShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 4E0646462B95C03400C41077 /* JCPlayerVertexShader.vsh */; };
 		4E0646492B95C05400C41077 /* JCPlayerFragShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 4E0646482B95C05400C41077 /* JCPlayerFragShader.fsh */; };
 		4E0CDBB22BA460BE000D6851 /* JCPlayerAudioFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0CDBB12BA460BE000D6851 /* JCPlayerAudioFrame.m */; };
@@ -93,6 +94,8 @@
 		19FEB6AE2B348D18001E432B /* JCProgramProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCProgramProvider.m; sourceTree = "<group>"; };
 		19FEB6B12B349281001E432B /* VertexShader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = VertexShader.vsh; sourceTree = "<group>"; };
 		19FEB6B32B3492CD001E432B /* FragShader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = FragShader.fsh; sourceTree = "<group>"; };
+		4E0239572BA8100B00FA8498 /* JCPlayerAudioRender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCPlayerAudioRender.h; sourceTree = "<group>"; };
+		4E0239582BA8100B00FA8498 /* JCPlayerAudioRender.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCPlayerAudioRender.m; sourceTree = "<group>"; };
 		4E0646462B95C03400C41077 /* JCPlayerVertexShader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = JCPlayerVertexShader.vsh; sourceTree = "<group>"; };
 		4E0646482B95C05400C41077 /* JCPlayerFragShader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = JCPlayerFragShader.fsh; sourceTree = "<group>"; };
 		4E0CDBAD2BA44653000D6851 /* JCPlayerVideoFrame+Writable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JCPlayerVideoFrame+Writable.h"; sourceTree = "<group>"; };
@@ -394,6 +397,25 @@
 				19FEB6B32B3492CD001E432B /* FragShader.fsh */,
 			);
 			path = ShaderFile;
+			sourceTree = "<group>";
+		};
+		4E0239552BA80C7700FA8498 /* VideoRender */ = {
+			isa = PBXGroup;
+			children = (
+				4E0646452B95BFE600C41077 /* Shader */,
+				4E5AE5A12B70BD39004BD032 /* JCPlayerRenderView.h */,
+				4E5AE5A22B70BD39004BD032 /* JCPlayerRenderView.m */,
+			);
+			path = VideoRender;
+			sourceTree = "<group>";
+		};
+		4E0239562BA80C8A00FA8498 /* AudioRender */ = {
+			isa = PBXGroup;
+			children = (
+				4E0239572BA8100B00FA8498 /* JCPlayerAudioRender.h */,
+				4E0239582BA8100B00FA8498 /* JCPlayerAudioRender.m */,
+			);
+			path = AudioRender;
 			sourceTree = "<group>";
 		};
 		4E0646452B95BFE600C41077 /* Shader */ = {
@@ -731,14 +753,13 @@
 			path = Frame;
 			sourceTree = "<group>";
 		};
-		4E5AE5A02B70BD25004BD032 /* RenderView */ = {
+		4E5AE5A02B70BD25004BD032 /* Render */ = {
 			isa = PBXGroup;
 			children = (
-				4E0646452B95BFE600C41077 /* Shader */,
-				4E5AE5A12B70BD39004BD032 /* JCPlayerRenderView.h */,
-				4E5AE5A22B70BD39004BD032 /* JCPlayerRenderView.m */,
+				4E0239562BA80C8A00FA8498 /* AudioRender */,
+				4E0239552BA80C7700FA8498 /* VideoRender */,
 			);
-			path = RenderView;
+			path = Render;
 			sourceTree = "<group>";
 		};
 		4E7134902B15E8BC002A7DC3 /* Module */ = {
@@ -875,7 +896,7 @@
 			isa = PBXGroup;
 			children = (
 				4E87CAFA2B85C8FA005D7A63 /* Decoder */,
-				4E5AE5A02B70BD25004BD032 /* RenderView */,
+				4E5AE5A02B70BD25004BD032 /* Render */,
 				4E5AE59C2B6FA679004BD032 /* Frame */,
 				4E1191A92B6F556800A49DD1 /* ModuleInterface */,
 				4EC625512B54FE8200F4CA55 /* Controller */,
@@ -1053,6 +1074,7 @@
 				4E49CC7B2B6B6CB1007FCD06 /* JCFreshTableViewAdapter.m in Sources */,
 				4E3FABB02B6A3CDF0002BC47 /* JCStuckInfoStorage.m in Sources */,
 				4E39F1242AEB95990054BAB0 /* JCImageTableViewCell.swift in Sources */,
+				4E0239592BA8100B00FA8498 /* JCPlayerAudioRender.m in Sources */,
 				4ED08C162AECD75400E6CF4A /* JCImageLoader.swift in Sources */,
 				4E3FABA82B6A23000002BC47 /* JCStuckDetectorX.m in Sources */,
 				4E28E25C2B26B89000ABFA68 /* JCStackFrameProvider.swift in Sources */,

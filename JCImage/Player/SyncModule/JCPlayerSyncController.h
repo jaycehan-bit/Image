@@ -20,6 +20,17 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (id<JCVideoInfo>)openFileWithFilePath:(NSString *)filePath;
 
+
+/**!
+ * @brief 开始解码
+ */
+- (void)run;
+
+/**!
+ * @brief 终止解码，清空上下文
+ */
+- (void)stop;
+
 @end
 
 NS_ASSUME_NONNULL_END
