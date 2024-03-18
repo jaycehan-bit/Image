@@ -39,8 +39,8 @@ static const CGFloat JCPlayerRatio = 16 / 9.0;
     if (!URL.length) {
         return;
     }
-    id<JCVideoInfo> videoInfo = [self.syncController openFileWithFilePath:URL];
-    [self.playerView prepareWithVideoInfo:videoInfo];
+    id<JCPlayerVideoContext> videoContext = [self.syncController openFileWithFilePath:URL];
+    [self.playerView prepareWithVideoInfo:videoContext.videoInfo];
 }
 
 - (void)viewWillLayoutSubviews {

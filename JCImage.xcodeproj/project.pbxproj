@@ -18,6 +18,7 @@
 		19FEB6B22B349281001E432B /* VertexShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 19FEB6B12B349281001E432B /* VertexShader.vsh */; };
 		19FEB6B42B3492CD001E432B /* FragShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 19FEB6B32B3492CD001E432B /* FragShader.fsh */; };
 		4E0239592BA8100B00FA8498 /* JCPlayerAudioRender.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0239582BA8100B00FA8498 /* JCPlayerAudioRender.m */; };
+		4E023DC12BA8403500FA8498 /* JCVideoContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E023DC02BA8403500FA8498 /* JCVideoContext.m */; };
 		4E0646472B95C03400C41077 /* JCPlayerVertexShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 4E0646462B95C03400C41077 /* JCPlayerVertexShader.vsh */; };
 		4E0646492B95C05400C41077 /* JCPlayerFragShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 4E0646482B95C05400C41077 /* JCPlayerFragShader.fsh */; };
 		4E0CDBB22BA460BE000D6851 /* JCPlayerAudioFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0CDBB12BA460BE000D6851 /* JCPlayerAudioFrame.m */; };
@@ -96,6 +97,9 @@
 		19FEB6B32B3492CD001E432B /* FragShader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = FragShader.fsh; sourceTree = "<group>"; };
 		4E0239572BA8100B00FA8498 /* JCPlayerAudioRender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCPlayerAudioRender.h; sourceTree = "<group>"; };
 		4E0239582BA8100B00FA8498 /* JCPlayerAudioRender.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCPlayerAudioRender.m; sourceTree = "<group>"; };
+		4E023DBF2BA8403500FA8498 /* JCVideoContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCVideoContext.h; sourceTree = "<group>"; };
+		4E023DC02BA8403500FA8498 /* JCVideoContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCVideoContext.m; sourceTree = "<group>"; };
+		4E023DC22BA8413B00FA8498 /* JCPlayerVideoContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCPlayerVideoContext.h; sourceTree = "<group>"; };
 		4E0646462B95C03400C41077 /* JCPlayerVertexShader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = JCPlayerVertexShader.vsh; sourceTree = "<group>"; };
 		4E0646482B95C05400C41077 /* JCPlayerFragShader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = JCPlayerFragShader.fsh; sourceTree = "<group>"; };
 		4E0CDBAD2BA44653000D6851 /* JCPlayerVideoFrame+Writable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JCPlayerVideoFrame+Writable.h"; sourceTree = "<group>"; };
@@ -418,6 +422,16 @@
 			path = AudioRender;
 			sourceTree = "<group>";
 		};
+		4E023DBE2BA8401F00FA8498 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4E023DBF2BA8403500FA8498 /* JCVideoContext.h */,
+				4E023DC02BA8403500FA8498 /* JCVideoContext.m */,
+				4E023DC22BA8413B00FA8498 /* JCPlayerVideoContext.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		4E0646452B95BFE600C41077 /* Shader */ = {
 			isa = PBXGroup;
 			children = (
@@ -656,14 +670,6 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
-		4E1191A92B6F556800A49DD1 /* ModuleInterface */ = {
-			isa = PBXGroup;
-			children = (
-				4E548F842B711BBF0057FEB4 /* JCVideoFrame.h */,
-			);
-			path = ModuleInterface;
-			sourceTree = "<group>";
-		};
 		4E1C17652B639A2A00563325 /* Stuck */ = {
 			isa = PBXGroup;
 			children = (
@@ -749,6 +755,7 @@
 				4E0CDBB32BA4628F000D6851 /* VideoFrame */,
 				4E5CDF4D2B9AFE5C003F46A0 /* JCPlayerVideoInfo.h */,
 				4E5CDF4E2B9AFE5C003F46A0 /* JCPlayerVideoInfo.m */,
+				4E548F842B711BBF0057FEB4 /* JCVideoFrame.h */,
 			);
 			path = Frame;
 			sourceTree = "<group>";
@@ -802,6 +809,7 @@
 		4E87CAFA2B85C8FA005D7A63 /* Decoder */ = {
 			isa = PBXGroup;
 			children = (
+				4E023DBE2BA8401F00FA8498 /* Model */,
 				4EF77CE72BA32ADA001FE31B /* Tools */,
 				4EC6254B2B54FE2800F4CA55 /* AudioDecoder */,
 				4EC6254A2B54FE1F00F4CA55 /* VideoDecoder */,
@@ -898,7 +906,6 @@
 				4E87CAFA2B85C8FA005D7A63 /* Decoder */,
 				4E5AE5A02B70BD25004BD032 /* Render */,
 				4E5AE59C2B6FA679004BD032 /* Frame */,
-				4E1191A92B6F556800A49DD1 /* ModuleInterface */,
 				4EC625512B54FE8200F4CA55 /* Controller */,
 				4EC625502B54FE5D00F4CA55 /* SyncModule */,
 				4E5D338D2AF8E3E50049DEE1 /* JCAudioUnit.swift */,
@@ -1045,6 +1052,7 @@
 				19FEB6AF2B348D18001E432B /* JCProgramProvider.m in Sources */,
 				4EA815B42B387F3C00E28F0A /* JCEAGLView.m in Sources */,
 				4E5E0FE72BA2F05700FB7F9B /* JCPlayerAsynModuleDefine.m in Sources */,
+				4E023DC12BA8403500FA8498 /* JCVideoContext.m in Sources */,
 				4E1C176B2B639B1100563325 /* JCComplexTableViewCell.m in Sources */,
 				4E87CAFD2B85C938005D7A63 /* JCPlayerDecoder.m in Sources */,
 				4E5AE5A32B70BD39004BD032 /* JCPlayerRenderView.m in Sources */,

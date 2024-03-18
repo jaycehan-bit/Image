@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "JCPlayerAsynModuleDefine.h"
-#import "JCVideoFrame.h"
+#import "JCPlayerVideoContext.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param filePath 视频文件路径
  * @return 视频上下文，nil表示打开/读取视频文件失败
  */
-- (id<JCVideoInfo>)openFileWithFilePath:(NSString *)filePath;
+- (id<JCPlayerVideoContext>)openFileWithFilePath:(NSString *)filePath;
 
 
 /**!

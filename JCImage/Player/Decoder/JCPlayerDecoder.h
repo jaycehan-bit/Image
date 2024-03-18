@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JCVideoFrame.h"
+#import "JCPlayerVideoContext.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param error 错误
  * @return 视频信息
  */
-- (id<JCVideoInfo>)openFileWithFilePath:(NSString *)filePath error:(NSError **)error;
+- (id<JCPlayerVideoContext>)openFileWithFilePath:(NSString *)filePath error:(NSError **)error;
 
 /**
  * @brief 解码一段视频帧

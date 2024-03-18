@@ -56,7 +56,13 @@ typedef NS_ENUM(NSUInteger, JCFrameType) {
 
 @end
 
-@protocol JCVideoInfo <NSObject>
+#pragma mark --
+
+@protocol JCPlayerInfo <NSObject>
+
+@end
+
+@protocol JCVideoInfo <JCPlayerInfo>
 // 视频时长（毫秒）
 @property (nonatomic, assign, readonly) NSTimeInterval duration;
 
@@ -68,6 +74,16 @@ typedef NS_ENUM(NSUInteger, JCFrameType) {
 
 // 视频帧率
 @property (nonatomic, assign, readonly) NSUInteger fps;
+
+@end
+
+@protocol JCAudioInfo <JCPlayerInfo>
+
+// 采样率
+@property (nonatomic, assign, readonly) CGFloat sampleRate;
+
+// 声道数
+@property (nonatomic, assign, readonly) CGFloat channels;
 
 @end
 

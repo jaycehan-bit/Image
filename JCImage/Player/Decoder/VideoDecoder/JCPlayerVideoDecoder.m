@@ -11,6 +11,7 @@
 #import "JCPlayerDecoderTools.h"
 #import "JCPlayerVideoDecoder.h"
 #import "JCPlayerVideoFrame+Writable.h"
+#import "JCPlayerVideoInfo.h"
 
 @interface JCPlayerVideoDecoder ()
 
@@ -44,10 +45,10 @@
     return self.stream_index != JCPlayerInvalidStreamIndex;
 }
 
-- (void)openFileWithFilePath:(NSString *)filePath error:(NSError **)error {
+- (id<JCPlayerInfo>)openFileWithFilePath:(NSString *)filePath error:(NSError **)error {
     if (!filePath.length) {
         *error = [NSError errorWithDomain:NSCocoaErrorDomain code:JCDecodeErrorCodeInvalidPath userInfo:@{NSLocalizedFailureReasonErrorKey : @"Invalid File Path"}];
-        return;
+        return nil;
     }
     self.format_context = formate_context(filePath);
     self.stream_index = findStreamIndex(self.format_context, AVMEDIA_TYPE_VIDEO).firstObject.integerValue;
@@ -61,7 +62,15 @@
     int avcodec_open2_result = avcodec_open2(self.codec_context, codec, NULL);
     if (avcodec_open2_result != 0) {
         *error = [NSError errorWithDomain:NSCocoaErrorDomain code:JCDecodeErrorCodecOpenCodecError userInfo:@{NSLocalizedFailureReasonErrorKey : @"Open Codec Error"}];
+        return nil;
     }
+    AVStream *videoStream = self.format_context->streams[self.stream_index];
+    JCPlayerVideoInfo *videoInfo = [[JCPlayerVideoInfo alloc] init];
+    videoInfo.fps = av_q2d(videoStream->avg_frame_rate);
+    videoInfo.duration = (NSTimeInterval)videoStream->duration / av_q2d(videoStream->avg_frame_rate);
+    videoInfo.width = self.codec_context->width;
+    videoInfo.height = self.codec_context->height;
+    return videoInfo;
 }
 
 - (NSArray<id<JCFrame>> *)decodeVideoFrameWithPacket:(AVPacket)packet error:(NSError **)error {

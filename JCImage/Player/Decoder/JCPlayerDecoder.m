@@ -12,8 +12,7 @@
 #import "JCPlayerDecoderProtocol.h"
 #import "JCPlayerDecoderTools.h"
 #import "JCPlayerVideoDecoder.h"
-#import "JCPlayerVideoInfo.h"
-
+#import "JCVideoContext.h"
 
 @interface JCPlayerDecoder ()
 
@@ -27,7 +26,7 @@
 
 @implementation JCPlayerDecoder
 
-- (id<JCVideoInfo>)openFileWithFilePath:(NSString *)filePath error:(NSError **)error {
+- (id<JCPlayerVideoContext>)openFileWithFilePath:(NSString *)filePath error:(NSError **)error {
     if (!filePath.length) {
         *error = [NSError errorWithDomain:NSURLErrorDomain code:JCDecodeErrorCodeInvalidPath userInfo:@{NSLocalizedFailureReasonErrorKey : @"Invalid file path"}];
         return nil;
@@ -38,8 +37,8 @@
         return nil;
     }
     
-    [self.videoDecoder openFileWithFilePath:filePath error:error];
-    [self.audioDecoder openFileWithFilePath:filePath error:error];
+    id<JCVideoInfo>videoInfo = (id<JCVideoInfo>)[self.videoDecoder openFileWithFilePath:filePath error:error];
+    id<JCAudioInfo>audioInfo = (id<JCAudioInfo>)[self.audioDecoder openFileWithFilePath:filePath error:error];
     if (error) {
         return nil;
     }
@@ -64,13 +63,10 @@
         *error = [NSError errorWithDomain:NSURLErrorDomain code:JCDecodeErrorCodecContextError userInfo:@{NSLocalizedFailureReasonErrorKey : @"Failed to copy codecContext"}];
         return nil;
     }
-    AVStream *videoStream = self.formatContext->streams[stream_index];
-    JCPlayerVideoInfo *videoInfo = [[JCPlayerVideoInfo alloc] init];
-    videoInfo.fps = av_q2d(videoStream->avg_frame_rate);
-    videoInfo.duration = (NSTimeInterval)videoStream->duration / av_q2d(videoStream->avg_frame_rate);
-    videoInfo.width = codec_context->width;
-    videoInfo.height = codec_context->height;
-    return videoInfo;
+    JCVideoContext *videoContext = [[JCVideoContext alloc] init];
+    videoContext.videoInfo = videoInfo;
+    videoContext.audioInfo = audioInfo;
+    return videoContext;
 }
 
 - (NSArray<id<JCFrame>> *)decodeVideoFramesWithDuration:(CGFloat)duration {

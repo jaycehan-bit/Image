@@ -13,6 +13,7 @@
 #import "JCPlayerAudioDecoder.h"
 #import "JCPlayerAudioFrame+Writable.h"
 #import "JCPlayerDecoderTools.h"
+#import "JCPlayerVideoInfo.h"
 
 @interface JCPlayerAudioDecoder ()
 
@@ -47,11 +48,10 @@
 - (BOOL)valid {
     return self.stream_index != JCPlayerInvalidStreamIndex;
 }
-
-- (void)openFileWithFilePath:(NSString *)filePath error:(NSError **)error {
+- (id<JCPlayerInfo>)openFileWithFilePath:(NSString *)filePath error:(NSError *__autoreleasing  _Nullable *)error {
     if (!filePath.length) {
         *error = [NSError errorWithDomain:NSCocoaErrorDomain code:JCDecodeErrorCodeInvalidPath userInfo:@{NSLocalizedFailureReasonErrorKey : @"Invalid File Path"}];
-        return;
+        return nil;
     }
     self.format_context = formate_context(filePath);
     self.stream_index = findStreamIndex(self.format_context, AVMEDIA_TYPE_VIDEO).firstObject.integerValue;
@@ -68,6 +68,10 @@
         NSLog(@"❌❌❌ Failed to open codec");
     }
     [self configSwtContextIfNeeded];
+    JCPlayerAudioInfo *audioInfo = [[JCPlayerAudioInfo alloc] init];
+    audioInfo.channels = self.codec_context->channels;
+    audioInfo.sampleRate = self.codec_context->sample_rate;
+    return audioInfo;
 }
 
 - (NSArray<id<JCFrame>> *)decodeVideoFrameWithPacket:(AVPacket)packet error:(NSError **)error {

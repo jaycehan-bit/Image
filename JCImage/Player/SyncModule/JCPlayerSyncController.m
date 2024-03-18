@@ -36,12 +36,12 @@
     return self;
 }
 
-- (id<JCVideoInfo>)openFileWithFilePath:(NSString *)filePath; {
+- (id<JCPlayerVideoContext>)openFileWithFilePath:(NSString *)filePath; {
     NSError *error = nil;
-    id<JCVideoInfo> videoFrame = [self.decoder openFileWithFilePath:filePath error:&error];
-    if (!error && videoFrame) {
+    id<JCPlayerVideoContext> videoContext = [self.decoder openFileWithFilePath:filePath error:&error];
+    if (!error && videoContext) {
         [self startDecodingLoop];
-        return videoFrame;
+        return videoContext;
     }
     return nil;
 }

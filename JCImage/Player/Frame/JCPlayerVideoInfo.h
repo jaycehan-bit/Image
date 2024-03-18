@@ -26,4 +26,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface JCPlayerAudioInfo : NSObject <JCAudioInfo>
+
+// 采样率
+@property (nonatomic, assign) CGFloat sampleRate;
+
+// 声道数
+@property (nonatomic, assign) CGFloat channels;
+
+@end
+
 NS_ASSUME_NONNULL_END

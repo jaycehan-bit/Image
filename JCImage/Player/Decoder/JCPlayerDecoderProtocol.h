@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param filePath 视频文件路径
  * @param error 错误信息
  */
-- (void)openFileWithFilePath:(NSString *)filePath error:(NSError **)error;
+- (id<JCPlayerInfo>)openFileWithFilePath:(NSString *)filePath error:(NSError **)error;
 
 /**
  * @brief 解码视频帧

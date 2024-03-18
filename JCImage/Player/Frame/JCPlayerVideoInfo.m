@@ -10,3 +10,7 @@
 @implementation JCPlayerVideoInfo
 
 @end
+
+@implementation JCPlayerAudioInfo
+
+@end
