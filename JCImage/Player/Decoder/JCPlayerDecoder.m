@@ -39,28 +39,7 @@
     
     id<JCVideoInfo>videoInfo = (id<JCVideoInfo>)[self.videoDecoder openFileWithFilePath:filePath error:error];
     id<JCAudioInfo>audioInfo = (id<JCAudioInfo>)[self.audioDecoder openFileWithFilePath:filePath error:error];
-    if (error) {
-        return nil;
-    }
-    
-    int stream_index = -1;
-    for (int index = 0; index < self.formatContext->nb_streams; index ++) {
-        if (self.formatContext->streams[index]->codecpar->codec_type == AVMEDIA_TYPE_VIDEO) {
-            stream_index = index;
-            break;
-        }
-    }
-    if (stream_index == -1) {
-        NSLog(@"❌❌❌ Find video stream index failed");
-    }
-    // 获取解码器
-    AVCodec *codec = avcodec_find_decoder(self.formatContext->streams[stream_index]->codecpar->codec_id);
-    // 创建解码器上下文
-    AVCodecContext *codec_context = avcodec_alloc_context3(codec);
-    // 复制解码器参数到解码器上下文
-    int result = avcodec_parameters_to_context(codec_context, self.formatContext->streams[stream_index]->codecpar);
-    if (result < 0) {
-        *error = [NSError errorWithDomain:NSURLErrorDomain code:JCDecodeErrorCodecContextError userInfo:@{NSLocalizedFailureReasonErrorKey : @"Failed to copy codecContext"}];
+    if (*error) {
         return nil;
     }
     JCVideoContext *videoContext = [[JCVideoContext alloc] init];

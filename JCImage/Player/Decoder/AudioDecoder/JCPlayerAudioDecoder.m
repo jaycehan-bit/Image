@@ -54,7 +54,7 @@
         return nil;
     }
     self.format_context = formate_context(filePath);
-    self.stream_index = findStreamIndex(self.format_context, AVMEDIA_TYPE_VIDEO).firstObject.integerValue;
+    self.stream_index = findStreamIndex(self.format_context, AVMEDIA_TYPE_AUDIO).firstObject.integerValue;
     AVStream *stream = self.format_context->streams[self.stream_index];
     streamFPSTimeBase(stream, &_FPS, &_timeBase);
     
@@ -158,7 +158,7 @@
         NSLog(@"❌❌❌ Create swr_context failed");
         return;
     }
-    if (!swr_init(self.swr_context)) {
+    if (swr_init(self.swr_context) != 0) {
         NSLog(@"❌❌❌ Init swr_context failed");
         swr_free(&_swr_context);
         return;

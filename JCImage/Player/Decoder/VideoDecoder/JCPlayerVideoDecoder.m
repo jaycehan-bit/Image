@@ -74,12 +74,13 @@
 }
 
 - (NSArray<id<JCFrame>> *)decodeVideoFrameWithPacket:(AVPacket)packet error:(NSError **)error {
-    JCPlayerVideoFrame *videoFrame = nil;
-    int packetSize = packet.size;
     int send_packet_result = avcodec_send_packet(self.codec_context, &packet);
+    if (send_packet_result != 0) {
+        NSLog(@"❌❌❌ Fail to send video packet with error code : %d", send_packet_result);
+        return nil;
+    }
     AVFrame *frame = av_frame_alloc();
     int receive_frame_result = avcodec_receive_frame(self.codec_context, frame);
-    
     if (receive_frame_result == AVERROR(EAGAIN)) {
         // 解码数据不够，需继续send_packet
         NSLog(@"⚠️⚠️⚠️ Fail to receive frame with AVERROR error : %d", receive_frame_result);
