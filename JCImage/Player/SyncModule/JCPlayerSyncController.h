@@ -20,6 +20,19 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (id<JCPlayerVideoContext>)openFileWithFilePath:(NSString *)filePath;
 
+/**!
+ * @brief 获取音频渲染数据
+ * @param buffer 数据存储队列
+ * @param numOfFrames 帧数
+ * @param numOfChannels 声道数
+ */
+- (void)fillAudioRenderDataWithBuffer:(SInt16 *)buffer numOfFrames:(NSUInteger)numOfFrames numOfChannels:(NSUInteger)numOfChannels;
+
+/**!
+ * @brief 下一帧被渲染的视频数据
+ * @return <JCVideoFrame> 视频帧数据
+ */
+- (id<JCVideoFrame>)renderedVideoFrame;
 
 /**!
  * @brief 开始解码

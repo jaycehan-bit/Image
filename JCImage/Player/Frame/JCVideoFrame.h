@@ -50,9 +50,7 @@ typedef NS_ENUM(NSUInteger, JCFrameType) {
 
 @protocol JCAudioFrame <JCFrame>
 
-@property (nonatomic, strong, readonly) NSDate *sampleData;
-
-@property (nonatomic, assign, readonly) NSUInteger channel;
+@property (nonatomic, strong, readonly) NSData *sampleData;
 
 @end
 
@@ -84,6 +82,12 @@ typedef NS_ENUM(NSUInteger, JCFrameType) {
 
 // 声道数
 @property (nonatomic, assign, readonly) CGFloat channels;
+
+// 采样格式
+@property (nonatomic, assign, readonly) enum AVSampleFormat sampleFormat;
+
+// 编码音频数据的位数
+@property (nonatomic, assign, readonly) NSUInteger codedSampleBits;
 
 @end
 

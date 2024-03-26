@@ -29,6 +29,8 @@
 
 @property (nonatomic, assign) CGFloat FPS;
 
+@property (nonatomic, assign) BOOL finish;
+
 @end
 
 @implementation JCPlayerAudioDecoder
@@ -71,43 +73,54 @@
     JCPlayerAudioInfo *audioInfo = [[JCPlayerAudioInfo alloc] init];
     audioInfo.channels = self.codec_context->channels;
     audioInfo.sampleRate = self.codec_context->sample_rate;
+    audioInfo.sampleFormat = self.codec_context->sample_fmt;
+    audioInfo.codedSampleBits = self.codec_context->bits_per_coded_sample;
     return audioInfo;
 }
 
 - (NSArray<id<JCFrame>> *)decodeVideoFrameWithPacket:(AVPacket)packet error:(NSError **)error {
     NSMutableArray<id<JCFrame>> *frameBuffer = [NSMutableArray array];
-    int packetSize = packet.size;
     AVFrame *frame = av_frame_alloc();
-    while (packetSize > 0) {
-        int send_packet_result = avcodec_send_packet(self.codec_context, &packet);
-        if (send_packet_result == AVERROR_EOF) {
-            NSLog(@"✅✅✅ Send audio packet finish");
-        } else if (send_packet_result != 0) {
-            NSLog(@"❌❌❌ Fail to send audio packet with error code : %d", send_packet_result);
-        } else {
-            NSLog(@"✅✅✅ Send audio packet success");
-        }
+    int send_packet_result = avcodec_send_packet(self.codec_context, &packet);
+    if (send_packet_result == AVERROR_EOF) {
+        NSLog(@"✅✅✅ Send audio packet finish");
+        self.finish = YES;
+        av_frame_free(&frame);
+        return frameBuffer;
+    } else if (send_packet_result != 0) {
+        NSLog(@"❌❌❌ Fail to send audio packet with error code : %d", send_packet_result);
+        av_frame_free(&frame);
+        return frameBuffer;
+    } else {
+        NSLog(@"✅✅✅ Send audio packet success");
+    }
+    while (YES) {
         int receive_frame_result = avcodec_receive_frame(self.codec_context, frame);
         if (receive_frame_result == AVERROR(EAGAIN)) {
             // 解码数据不够，需继续send_packet
             NSLog(@"⚠️⚠️⚠️ Fail to receive frame with AVERROR error : %d", receive_frame_result);
             *error = [NSError errorWithDomain:NSCocoaErrorDomain code:JCDecodeErrorCodeEAGAIN userInfo:@{NSLocalizedFailureReasonErrorKey : @"EAGAIN Error"}];
             break;
+        } else if (receive_frame_result == AVERROR_EOF) {
+            NSLog(@"✅✅✅ Receive audio frame EOF");
+            *error = [NSError errorWithDomain:NSCocoaErrorDomain code:JCDecodeErrorCodeEOF userInfo:nil];
+            break;
         } else if (receive_frame_result != 0) {
             NSLog(@"❌❌❌ Fail to receive audio frame with error code : %d", receive_frame_result);
+            *error = [NSError errorWithDomain:NSCocoaErrorDomain code:JCDecodeErrorCodeReceiveFrame userInfo:@{NSLocalizedFailureReasonErrorKey : @"Receive Error"}];
             break;
         } else {
             NSLog(@"✅✅✅ Receive audio frame success");
             JCPlayerAudioFrame *audioFrame = [self convertAudioFrameWithAVFrame:frame];
             if (audioFrame) {
                 [frameBuffer addObject:audioFrame];
-                packetSize -= audioFrame.duration;
             } else {
                 break;
             }
         }
     }
-    return frameBuffer;
+    av_frame_free(&frame);
+    return [frameBuffer copy];
 }
 
 #pragma mark - Private
@@ -118,12 +131,12 @@
     }
     uint8_t *audioData;
     int numberOfFrame = 0;
-    if (self.swr_context) {
-        numberOfFrame = swr_convert(self.swr_context, &audioData, (int)(frame->nb_samples * 2), (const uint8_t **)frame->data, frame->nb_samples);
-    } else {
+//    if (self.swr_context) {
+//        numberOfFrame = swr_convert(self.swr_context, &audioData, (int)(frame->nb_samples * 2), (const uint8_t **)frame->data, frame->nb_samples);
+//    } else {
         audioData = frame->data[0];
         numberOfFrame = frame->nb_samples;
-    }
+//    }
     const NSUInteger numberOfElement = numberOfFrame * frame->channels;
     NSMutableData *pcm = [NSMutableData data];
     memcmp(pcm.mutableBytes, audioData, numberOfElement * sizeof(SInt16));

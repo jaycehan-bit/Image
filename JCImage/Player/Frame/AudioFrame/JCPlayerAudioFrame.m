@@ -15,9 +15,9 @@
 
 @property (nonatomic, assign) CGFloat position;
 
-@property (nonatomic, strong) NSDate *sampleData;
+@property (nonatomic, strong) NSData *sampleData;
 
-@property (nonatomic, assign) NSUInteger channel;
+@property (nonatomic, assign) NSUInteger channels;
 
 @end
 
@@ -25,7 +25,7 @@
 
 - (instancetype)initWithAVFrame:(AVFrame *)frame {
     self = [super init];
-    self.channel = frame->channels;
+    self.channels = frame->channels;
     return self;
 }
 

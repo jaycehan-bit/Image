@@ -34,6 +34,12 @@ NS_ASSUME_NONNULL_BEGIN
 // 声道数
 @property (nonatomic, assign) CGFloat channels;
 
+// 采样格式
+@property (nonatomic, assign) enum AVSampleFormat sampleFormat;
+
+// 编码音频数据的位数
+@property (nonatomic, assign) NSUInteger codedSampleBits;
+
 @end
 
 NS_ASSUME_NONNULL_END

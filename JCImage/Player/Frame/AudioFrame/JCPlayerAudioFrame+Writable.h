@@ -15,9 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) CGFloat position;
 
-@property (nonatomic, strong) NSDate *sampleData;
+@property (nonatomic, strong) NSData *sampleData;
 
-@property (nonatomic, assign) NSUInteger channel;
+@property (nonatomic, assign) NSUInteger channels;
+
+@property (nonatomic, assign) enum AVSampleFormat sampleFormat;
+
+@property (nonatomic, assign) NSUInteger codedSampleBits;
 
 @end
 

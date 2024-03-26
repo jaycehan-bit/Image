@@ -25,5 +25,8 @@ typedef NS_ENUM(NSInteger, JCDecodeErrorCode) {
     JCDecodeErrorCodecOpenCodecError = 5,   // 打开解码器错误
     
     
-    JCDecodeErrorCodeEAGAIN = 35,           // 解码帧失败，需继续send pakcet
+    JCDecodeErrorCodeEAGAIN = 101,           // 解码帧失败，需继续send pakcet
+    JCDecodeErrorCodeSendPacket = 102,       // send pakcet失败
+    JCDecodeErrorCodeReceiveFrame = 103,     // receive frame失败
+    JCDecodeErrorCodeEOF = 104,              // receive EOF
 };

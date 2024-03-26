@@ -17,3 +17,5 @@
 #import "JCLeaksViewController.h"
 
 #import "JCStuckViewController.h"
+
+#import "JCPlayer.h"

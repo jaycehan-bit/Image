@@ -13,4 +13,12 @@
 
 @implementation JCPlayerAudioInfo
 
+@synthesize sampleRate;
+
+@synthesize channels;
+
+@synthesize sampleFormat;
+
+@synthesize codedSampleBits;
+
 @end

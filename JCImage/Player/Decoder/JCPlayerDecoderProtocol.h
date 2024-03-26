@@ -33,6 +33,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) CGFloat FPS;
 
 /**
+ * @brief 解码完成（EOF）
+ */
+@property (nonatomic, assign, readonly, getter=isFinish) BOOL finish;
+
+/**
  * @brief 读取视频文件数据
  * @param filePath 视频文件路径
  * @param error 错误信息

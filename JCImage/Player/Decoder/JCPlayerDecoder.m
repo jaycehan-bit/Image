@@ -48,8 +48,9 @@
     return videoContext;
 }
 
-- (NSArray<id<JCFrame>> *)decodeVideoFramesWithDuration:(CGFloat)duration {
+- (NSArray<id<JCFrame>> *)decodeVideoFramesWithDuration:(CGFloat)duration error:(NSError **)error {
     if (!self.videoDecoder.valid && !self.audioDecoder.valid) {
+        *error = [NSError errorWithDomain:NSCocoaErrorDomain code:-1 userInfo:nil];
         return @[];
     }
     NSMutableArray<id<JCFrame>> *frames = [NSMutableArray<id<JCFrame>> array];
@@ -63,10 +64,25 @@
         id<JCPlayerDecoder> decoder = [self decoderForPacket:packet];
         if (!decoder) {
             finish = YES;
+            break;
         }
-        NSArray<id<JCFrame>> *videoFrame = [decoder decodeVideoFrameWithPacket:packet error:nil];
+        NSArray<id<JCFrame>> *videoFrame = [decoder decodeVideoFrameWithPacket:packet error:error];
+        if ((*error).code == JCDecodeErrorCodeEAGAIN) {
+            *error = nil;
+        }
+        if ((*error).code == JCDecodeErrorCodeEOF) {
+            *error = nil;
+            if ([self decodeFinish]) {
+                break;
+            }
+        }
+        if (*error) {
+            break;
+        }
         [videoFrame enumerateObjectsUsingBlock:^(id<JCFrame>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            decodeDuration += obj.duration;
+            if (obj.type == JCFrameTypeAudio) {
+                decodeDuration += obj.duration;
+            }
         }];
         if (decodeDuration >= duration) {
             finish = YES;
@@ -85,6 +101,16 @@
         return self.audioDecoder;
     }
     return nil;
+}
+
+- (BOOL)decodeFinish {
+    if (!self.videoDecoder.isFinish) {
+        return NO;
+    }
+    if (!self.audioDecoder.isFinish) {
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark - Init

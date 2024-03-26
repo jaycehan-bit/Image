@@ -25,6 +25,8 @@
 
 @property (nonatomic, assign) CGFloat FPS;
 
+@property (nonatomic, assign) BOOL finish;
+
 @end
 
 @implementation JCPlayerVideoDecoder
@@ -77,6 +79,7 @@
     int send_packet_result = avcodec_send_packet(self.codec_context, &packet);
     if (send_packet_result != 0) {
         NSLog(@"❌❌❌ Fail to send video packet with error code : %d", send_packet_result);
+        *error = [NSError errorWithDomain:NSCocoaErrorDomain code:JCDecodeErrorCodeSendPacket userInfo:@{NSLocalizedFailureReasonErrorKey : @"Send packet error"}];
         return nil;
     }
     AVFrame *frame = av_frame_alloc();
@@ -85,6 +88,9 @@
         // 解码数据不够，需继续send_packet
         NSLog(@"⚠️⚠️⚠️ Fail to receive frame with AVERROR error : %d", receive_frame_result);
         *error = [NSError errorWithDomain:NSCocoaErrorDomain code:JCDecodeErrorCodeEAGAIN userInfo:@{NSLocalizedFailureReasonErrorKey : @"EAGAIN Error"}];
+    } else if (receive_frame_result == AVERROR_EOF) {
+        *error = [NSError errorWithDomain:NSCocoaErrorDomain code:JCDecodeErrorCodeEOF userInfo:@{NSLocalizedFailureReasonErrorKey : @"EOF Error"}];
+        self.finish = YES;
     } else if (receive_frame_result != 0) {
         NSLog(@"❌❌❌ Fail to receive frame with error code : %d", receive_frame_result);
         *error = [NSError errorWithDomain:NSCocoaErrorDomain code:receive_frame_result userInfo:@{NSLocalizedFailureReasonErrorKey : @"Receive frame Error"}];
@@ -93,8 +99,10 @@
         JCPlayerVideoFrame *videoFrame = [[JCPlayerVideoFrame alloc] initWithAVFrame:frame];
         videoFrame.duration = frame->pkt_duration * self.timeBase;
         videoFrame.position = frame->pkt_pos * self.timeBase;
+        av_frame_free(&frame);
         return @[videoFrame];
     }
+    av_frame_free(&frame);
     return nil;
 }
 

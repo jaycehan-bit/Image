@@ -23,9 +23,10 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * @brief 解码一段视频帧
  * @param duration 解码视频时长，可能稍微超出
+ * @param error 错误信息
  * @return 解码数据
  */
-- (NSArray<id<JCFrame>> *)decodeVideoFramesWithDuration:(CGFloat)duration;
+- (NSArray<id<JCFrame>> *)decodeVideoFramesWithDuration:(CGFloat)duration error:(NSError **)error;
 
 @end
 
