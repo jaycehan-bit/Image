@@ -74,6 +74,7 @@
 		4ED421182B3DA8ED006A6C1D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ED421172B3DA8ED006A6C1D /* AudioToolbox.framework */; };
 		4ED445CA2B3E8EC6006A6C1D /* Fireworks.mov in Resources */ = {isa = PBXBuildFile; fileRef = 4ED445C92B3E8EC6006A6C1D /* Fireworks.mov */; };
 		4ED5D1C42B445835009AD6AE /* JCStuckDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED5D1C32B445835009AD6AE /* JCStuckDetector.m */; };
+		4EDA520F2BB43FF000D5B95E /* ikun.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4EDA520E2BB43FF000D5B95E /* ikun.mp4 */; };
 		4EEC9A322B20935500DBA33A /* JCStackFrameCatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEC9A312B20935500DBA33A /* JCStackFrameCatcher.m */; };
 		4EF77CEA2BA32AED001FE31B /* JCPlayerDecoderTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EF77CE92BA32AED001FE31B /* JCPlayerDecoderTools.m */; };
 		4EFAE8142B6B39B5002CC770 /* JCStuckMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EFAE8132B6B39B5002CC770 /* JCStuckMaker.m */; };
@@ -311,6 +312,7 @@
 		4ED5D1C22B445835009AD6AE /* JCStuckDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCStuckDetector.h; sourceTree = "<group>"; };
 		4ED5D1C32B445835009AD6AE /* JCStuckDetector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCStuckDetector.m; sourceTree = "<group>"; };
 		4ED5D1C62B445975009AD6AE /* JCStuckModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCStuckModule.h; sourceTree = "<group>"; };
+		4EDA520E2BB43FF000D5B95E /* ikun.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ikun.mp4; sourceTree = "<group>"; };
 		4EEC9A2F2B20935400DBA33A /* JCImage-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JCImage-Bridging-Header.h"; sourceTree = "<group>"; };
 		4EEC9A302B20935500DBA33A /* JCStackFrameCatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCStackFrameCatcher.h; sourceTree = "<group>"; };
 		4EEC9A312B20935500DBA33A /* JCStackFrameCatcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCStackFrameCatcher.m; sourceTree = "<group>"; };
@@ -688,6 +690,7 @@
 		4E39F1182AEB74BB0054BAB0 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				4EDA520E2BB43FF000D5B95E /* ikun.mp4 */,
 				4E3F3AF02B67CE060002BC47 /* EmoticonQQ.bundle */,
 				19FEB6B02B3491EF001E432B /* ShaderFile */,
 				4E39F11F2AEB81A30054BAB0 /* Riven.jpg */,
@@ -1004,6 +1007,7 @@
 				19D73A942AE94642003571E7 /* Assets.xcassets in Resources */,
 				4E5AE59B2B6F8432004BD032 /* StreetScenery.mp4 in Resources */,
 				4E39F11E2AEB7FB70054BAB0 /* Seraphine.jpg in Resources */,
+				4EDA520F2BB43FF000D5B95E /* ikun.mp4 in Resources */,
 				4E39F11A2AEB74C50054BAB0 /* Teemo.png in Resources */,
 				4E39F1202AEB81A30054BAB0 /* Riven.jpg in Resources */,
 				4ED445CA2B3E8EC6006A6C1D /* Fireworks.mov in Resources */,

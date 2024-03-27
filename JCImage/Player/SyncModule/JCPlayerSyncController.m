@@ -8,7 +8,7 @@
 #import "JCPlayerDecoder.h"
 #import "JCPlayerSyncController.h"
 
-static const NSTimeInterval gJCPlayerMinimumDuration = 10.0;
+static const NSTimeInterval gJCPlayerMinimumDuration = 8.0;
 static const NSTimeInterval gJCPlayerMaximumGap = 0.05;
 
 @interface JCPlayerSyncController ()
@@ -81,7 +81,7 @@ static const NSTimeInterval gJCPlayerMaximumGap = 0.05;
         }
         // 当前音频帧未读完
         const void *bytes = self.currentAudioFrame.sampleData.bytes + self.currentAudioFrameOffset;
-        size_t copySize = MIN(numOfFrames *numOfChannels * sizeof(SInt16), self.currentAudioFrame.sampleData.length - self.currentAudioFrameOffset);
+        size_t copySize = MIN(numOfFrames * numOfChannels * sizeof(SInt16), self.currentAudioFrame.sampleData.length - self.currentAudioFrameOffset);
         memcmp(buffer, bytes, copySize);
         numOfFrames -= copySize / (numOfChannels * sizeof(SInt16));
         buffer += copySize / sizeof(SInt16);
@@ -100,23 +100,20 @@ static const NSTimeInterval gJCPlayerMaximumGap = 0.05;
 
 - (id<JCVideoFrame>)renderedVideoFrame {
     id<JCVideoFrame> videoFrame = self.videoFrameQueue.firstObject;
+    [self.frameQueueLock lock];
     if (videoFrame) {
         [self.videoFrameQueue removeObjectAtIndex:0];
     }
-    /*
     if (videoFrame.position - self.audioPosition > gJCPlayerMaximumGap) {
         // 视频快于音频,继续渲染当前帧
         return nil;
     }
-    [self.frameQueueLock lock];
     while (self.audioPosition - videoFrame.position > gJCPlayerMaximumGap && videoFrame) {
         // 音频快于视频,丢弃部分视频帧
         [self.videoFrameQueue removeObjectAtIndex:0];
         videoFrame = self.videoFrameQueue.firstObject;
     }
-     
     [self.frameQueueLock unlock];
-     */
     return videoFrame;
 }
 

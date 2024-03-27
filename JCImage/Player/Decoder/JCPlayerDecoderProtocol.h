@@ -39,10 +39,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  * @brief 读取视频文件数据
- * @param filePath 视频文件路径
+ * @param formatContext 视频文件格式上下文
  * @param error 错误信息
  */
-- (id<JCPlayerInfo>)openFileWithFilePath:(NSString *)filePath error:(NSError **)error;
+- (id<JCPlayerInfo>)openFileWithFormatContext:(AVFormatContext *)formatContext error:(NSError **)error;
 
 /**
  * @brief 解码视频帧

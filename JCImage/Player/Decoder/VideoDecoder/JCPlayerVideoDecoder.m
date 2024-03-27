@@ -46,13 +46,8 @@
 - (BOOL)valid {
     return self.stream_index != JCPlayerInvalidStreamIndex;
 }
-
-- (id<JCPlayerInfo>)openFileWithFilePath:(NSString *)filePath error:(NSError **)error {
-    if (!filePath.length) {
-        *error = [NSError errorWithDomain:NSCocoaErrorDomain code:JCDecodeErrorCodeInvalidPath userInfo:@{NSLocalizedFailureReasonErrorKey : @"Invalid File Path"}];
-        return nil;
-    }
-    self.format_context = formate_context(filePath);
+- (id<JCPlayerInfo>)openFileWithFormatContext:(AVFormatContext *)formatContext error:(NSError **)error {
+    self.format_context = formatContext;
     self.stream_index = findStreamIndex(self.format_context, AVMEDIA_TYPE_VIDEO).firstObject.integerValue;
     AVStream *stream = self.format_context->streams[self.stream_index];
     streamFPSTimeBase(stream, &_FPS, &_timeBase);
@@ -69,13 +64,14 @@
     AVStream *videoStream = self.format_context->streams[self.stream_index];
     JCPlayerVideoInfo *videoInfo = [[JCPlayerVideoInfo alloc] init];
     videoInfo.fps = av_q2d(videoStream->avg_frame_rate);
-    videoInfo.duration = (NSTimeInterval)videoStream->duration / av_q2d(videoStream->avg_frame_rate);
+    videoInfo.duration = (NSTimeInterval)videoStream->duration * self.timeBase;
     videoInfo.width = self.codec_context->width;
     videoInfo.height = self.codec_context->height;
     return videoInfo;
 }
 
 - (NSArray<id<JCFrame>> *)decodeVideoFrameWithPacket:(AVPacket)packet error:(NSError **)error {
+    NSAssert(packet.stream_index == self.stream_index, @"❌❌❌[Mismatched packet type]");
     int send_packet_result = avcodec_send_packet(self.codec_context, &packet);
     if (send_packet_result != 0) {
         NSLog(@"❌❌❌ Fail to send video packet with error code : %d", send_packet_result);
@@ -98,7 +94,7 @@
         NSLog(@"✅✅✅ Receive frame success");
         JCPlayerVideoFrame *videoFrame = [[JCPlayerVideoFrame alloc] initWithAVFrame:frame];
         videoFrame.duration = frame->pkt_duration * self.timeBase;
-        videoFrame.position = frame->pkt_pos * self.timeBase;
+        videoFrame.position = frame->pts * self.timeBase;
         av_frame_free(&frame);
         return @[videoFrame];
     }

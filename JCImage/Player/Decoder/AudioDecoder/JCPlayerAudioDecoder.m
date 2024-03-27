@@ -15,6 +15,8 @@
 #import "JCPlayerDecoderTools.h"
 #import "JCPlayerVideoInfo.h"
 
+static const int out_sample_rate = 44100;
+
 @interface JCPlayerAudioDecoder ()
 
 @property (nonatomic, assign) AVFormatContext *format_context;
@@ -50,12 +52,9 @@
 - (BOOL)valid {
     return self.stream_index != JCPlayerInvalidStreamIndex;
 }
-- (id<JCPlayerInfo>)openFileWithFilePath:(NSString *)filePath error:(NSError *__autoreleasing  _Nullable *)error {
-    if (!filePath.length) {
-        *error = [NSError errorWithDomain:NSCocoaErrorDomain code:JCDecodeErrorCodeInvalidPath userInfo:@{NSLocalizedFailureReasonErrorKey : @"Invalid File Path"}];
-        return nil;
-    }
-    self.format_context = formate_context(filePath);
+
+- (id<JCPlayerInfo>)openFileWithFormatContext:(AVFormatContext *)formatContext error:(NSError *__autoreleasing  _Nullable *)error {
+    self.format_context = formatContext;
     self.stream_index = findStreamIndex(self.format_context, AVMEDIA_TYPE_AUDIO).firstObject.integerValue;
     AVStream *stream = self.format_context->streams[self.stream_index];
     streamFPSTimeBase(stream, &_FPS, &_timeBase);
@@ -79,21 +78,19 @@
 }
 
 - (NSArray<id<JCFrame>> *)decodeVideoFrameWithPacket:(AVPacket)packet error:(NSError **)error {
-    NSMutableArray<id<JCFrame>> *frameBuffer = [NSMutableArray array];
-    AVFrame *frame = av_frame_alloc();
+    NSAssert(packet.stream_index == self.stream_index, @"❌❌❌[Mismatched packet type]");
     int send_packet_result = avcodec_send_packet(self.codec_context, &packet);
     if (send_packet_result == AVERROR_EOF) {
         NSLog(@"✅✅✅ Send audio packet finish");
-        self.finish = YES;
-        av_frame_free(&frame);
-        return frameBuffer;
+        return nil;
     } else if (send_packet_result != 0) {
         NSLog(@"❌❌❌ Fail to send audio packet with error code : %d", send_packet_result);
-        av_frame_free(&frame);
-        return frameBuffer;
+        return nil;
     } else {
         NSLog(@"✅✅✅ Send audio packet success");
     }
+    NSMutableArray<id<JCFrame>> *frameBuffer = [NSMutableArray array];
+    AVFrame *frame = av_frame_alloc();
     while (YES) {
         int receive_frame_result = avcodec_receive_frame(self.codec_context, frame);
         if (receive_frame_result == AVERROR(EAGAIN)) {
@@ -103,6 +100,7 @@
             break;
         } else if (receive_frame_result == AVERROR_EOF) {
             NSLog(@"✅✅✅ Receive audio frame EOF");
+            self.finish = YES;
             *error = [NSError errorWithDomain:NSCocoaErrorDomain code:JCDecodeErrorCodeEOF userInfo:nil];
             break;
         } else if (receive_frame_result != 0) {
@@ -112,6 +110,9 @@
         } else {
             NSLog(@"✅✅✅ Receive audio frame success");
             JCPlayerAudioFrame *audioFrame = [self convertAudioFrameWithAVFrame:frame];
+            if (audioFrame.sampleData.length) {
+                NSLog(@"");
+            }
             if (audioFrame) {
                 [frameBuffer addObject:audioFrame];
             } else {
@@ -129,19 +130,22 @@
     if (frame->data[0] == NULL) {
         return nil;
     }
-    uint8_t *audioData;
+    int dataSize = av_samples_get_buffer_size(frame->linesize, _codec_context->channels, frame->nb_samples, _codec_context->sample_fmt, 0);
+    uint8_t *audioData = (uint8_t *)malloc(dataSize);
+    memset(audioData, 0, dataSize);
     int numberOfFrame = 0;
-//    if (self.swr_context) {
-//        numberOfFrame = swr_convert(self.swr_context, &audioData, (int)(frame->nb_samples * 2), (const uint8_t **)frame->data, frame->nb_samples);
-//    } else {
+    if (frame->format != AV_SAMPLE_FMT_S16) {
+        numberOfFrame = swr_convert(self.swr_context, &audioData, frame->nb_samples * out_sample_rate / frame->sample_rate + 256, (const uint8_t **)frame->data, frame->nb_samples);
+    } else {
         audioData = frame->data[0];
+        memcpy(audioData, frame->data[0], frame->linesize[0]);
         numberOfFrame = frame->nb_samples;
-//    }
+    }
     const NSUInteger numberOfElement = numberOfFrame * frame->channels;
     NSMutableData *pcm = [NSMutableData data];
     memcmp(pcm.mutableBytes, audioData, numberOfElement * sizeof(SInt16));
     JCPlayerAudioFrame *audioFrame = [[JCPlayerAudioFrame alloc] initWithAVFrame:frame];
-    audioFrame.position = frame->pkt_pos * self.timeBase;
+    audioFrame.position = frame->pts * self.timeBase;
     audioFrame.duration = frame->pkt_duration * self.timeBase;
     audioFrame.sampleData = pcm.copy;
     return audioFrame;
@@ -156,7 +160,6 @@
     uint64_t in_ch_layout = self.codec_context->channel_layout;
     
     enum AVSampleFormat out_format = AV_SAMPLE_FMT_S16;
-    int out_sample_rate = 44100;
     uint64_t out_ch_layout = av_get_default_channel_layout(self.codec_context->channels);
     
     self.swr_context = swr_alloc_set_opts(NULL, 

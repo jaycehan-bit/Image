@@ -37,8 +37,8 @@
         return nil;
     }
     
-    id<JCVideoInfo>videoInfo = (id<JCVideoInfo>)[self.videoDecoder openFileWithFilePath:filePath error:error];
-    id<JCAudioInfo>audioInfo = (id<JCAudioInfo>)[self.audioDecoder openFileWithFilePath:filePath error:error];
+    id<JCVideoInfo>videoInfo = (id<JCVideoInfo>)[self.videoDecoder openFileWithFormatContext:self.formatContext error:error];
+    id<JCAudioInfo>audioInfo = (id<JCAudioInfo>)[self.audioDecoder openFileWithFormatContext:self.formatContext error:error];
     if (*error) {
         return nil;
     }

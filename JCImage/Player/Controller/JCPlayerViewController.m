@@ -104,7 +104,7 @@ static const CGFloat JCPlayerRatio = 16 / 9.0;
 }
 
 - (void)debugButtonDidClick {
-    NSString *path = [NSBundle.mainBundle pathForResource:@"StreetScenery.mp4" ofType:nil];
+    NSString *path = [NSBundle.mainBundle pathForResource:@"ikun.mp4" ofType:nil];
     [self playVideoWithURL:path];
 }
 
